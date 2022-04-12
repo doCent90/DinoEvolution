@@ -15,6 +15,7 @@ public class Egg : MonoBehaviour
     public float Damage => _damage;
 
     public event Action OtherEggTaked;
+    public event Action<Transform> Finished;
     public event Action<Transform, float, float> Taked;
 
     public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, float step, float time)
@@ -28,5 +29,11 @@ public class Egg : MonoBehaviour
     public void Animate()
     {
         OtherEggTaked?.Invoke();
+    }
+
+    public void MoveToNest(Transform nest)
+    {
+        Animate();
+        Finished?.Invoke(nest);        
     }
 }

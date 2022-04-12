@@ -14,11 +14,19 @@ public class EggMover : MonoBehaviour
     {
         _egg = GetComponent<Egg>();
         _egg.Taked += OnTaked;
+        _egg.Finished += OnFinished;
     }
 
     private void OnDisable()
     {
         _egg.Taked -= OnTaked;
+        _egg.Finished -= OnFinished;
+    }
+
+    private void OnFinished(Transform nest)
+    {
+        enabled = false;
+        transform.position = nest.position;
     }
 
     private void OnTaked(Transform followPosition, float step, float time)

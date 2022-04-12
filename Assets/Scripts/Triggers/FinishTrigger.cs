@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class FinishTrigger : MonoBehaviour
 {
-    public event Action Finished;
+    [SerializeField] private Nests _nests;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out PlayerSpeedHandler player))
-            Finished?.Invoke();
+        if (other.TryGetComponent(out Egg egg))
+        {
+            _nests.TakeEgg(egg);
+            Time.timeScale = 0.05f;
+        }
     }
 }
