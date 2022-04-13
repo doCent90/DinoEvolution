@@ -1,14 +1,20 @@
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Nest : MonoBehaviour
 {
     [SerializeField] private Transform _point;
 
-    public bool IsBusy { get; private set; } = false;
+    private BoxCollider _boxCollider;
 
     public Transform GetNestPosition()
     {
-        IsBusy = true;
+        _boxCollider.enabled = false;
         return _point;
+    }
+
+    private void OnEnable()
+    {
+        _boxCollider = GetComponent<BoxCollider>();
     }
 }
