@@ -9,7 +9,7 @@ public class PlayerMover : MonoBehaviour
 
     private float _slideDirection;
 
-    private const float TRESHOLD = 2.2f;
+    private const float TRESHOLD = 1f;
 
     private void Move()
     {

@@ -27,7 +27,6 @@ public class Egg : MonoBehaviour
 
     public event Action Washed;
     public event Action Triggered;
-    public event Action<EggModel> UVHeated;
     public event Action<FinalPlace> BossAreaReached;
     public event Action<Transform, float, float> Taked;
 
@@ -82,14 +81,14 @@ public class Egg : MonoBehaviour
         _cleanEgg = egg.GetComponent<MeshRenderer>();
     }
 
-    private void ToHatch()
+    private void ToGrinder()
     {
         if(WasWashed && WasLightsHeated && HaveNest)
         {
-            Animate();
             _dino.enabled = true;
             _nest.enabled = false;
             _cleanEgg.enabled = false;
+            _eggModel.DestroyCells();
         }
         else
         {
@@ -102,7 +101,7 @@ public class Egg : MonoBehaviour
     {
         WasLightsHeated = true;
         _cleanEgg.enabled = false;
-        UVHeated?.Invoke(_eggModel);
+        _eggModel.EnableCleanCells();
     }
 
     private void Wash()
@@ -125,14 +124,14 @@ public class Egg : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out Washer washer))
+        if(other.TryGetComponent(out WashGate washer))
             Wash();
 
         if(other.TryGetComponent(out UVLamp uFLamp))
             UVLampHeating();
 
         if(other.TryGetComponent(out Grinder grinder))
-            ToHatch();
+            ToGrinder();
 
         if (other.TryGetComponent(out NestGate nestGate))
             TakeNest();

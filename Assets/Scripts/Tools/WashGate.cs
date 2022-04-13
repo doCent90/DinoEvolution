@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Washer : MonoBehaviour
+public class WashGate : MonoBehaviour
 {
     [SerializeField] private ParticleSystem[] _particleSystems;
 

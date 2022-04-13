@@ -8,6 +8,7 @@ public class CellDestroy : MonoBehaviour
 {
     private Renderer _renderer;
     private Rigidbody _rigidbody;
+    private Transform _currentParent;
 
     private const float DELAY = 4f;
     private const float POWER = 4f;
@@ -27,6 +28,7 @@ public class CellDestroy : MonoBehaviour
             _renderer = GetComponent<Renderer>();
 
         _rigidbody = GetComponent<Rigidbody>();
+        _currentParent = transform.parent;
     }
 
     private IEnumerator TimeToDestroy()
@@ -45,8 +47,8 @@ public class CellDestroy : MonoBehaviour
         float y;
 
         x = Random.Range(-range, range);
-        z = Random.Range(range, range * range);
-        y = Random.Range(range, range * 2);
+        z = Random.Range(range, range);
+        y = Random.Range(0, range);
 
         _rigidbody.isKinematic = false;
         _rigidbody.AddForce(new Vector3(x, y, z), ForceMode.Force);

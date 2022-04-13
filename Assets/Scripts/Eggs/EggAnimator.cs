@@ -17,15 +17,14 @@ public class EggAnimator : MonoBehaviour
     private void OnEnable()
     {
         _egg = GetComponent<Egg>();
+
         _egg.Washed += OnWashed;
-        _egg.UVHeated += OnUVHeated;
         _egg.Triggered += OnTakedAnimation;
     }
 
     private void OnDisable()
     {
         _egg.Washed -= OnWashed;
-        _egg.UVHeated -= OnUVHeated;
         _egg.Triggered -= OnTakedAnimation;
     }
 
@@ -37,11 +36,6 @@ public class EggAnimator : MonoBehaviour
             item.Destroy();
 
         OnTakedAnimation();
-    }
-
-    private void OnUVHeated(EggModel eggModel)
-    {
-        eggModel.DestroyCells();
     }
 
     private void OnTakedAnimation()
