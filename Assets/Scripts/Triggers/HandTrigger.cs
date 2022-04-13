@@ -6,7 +6,7 @@ public class HandTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out FinishTrigger finishTrigger))
+        if (other.TryGetComponent(out RoadOverTrigger finishTrigger))
             _player.DisableMove();
     }
 }

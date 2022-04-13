@@ -14,12 +14,12 @@ public class EggAnimator : MonoBehaviour
     private void OnEnable()
     {
         _egg = GetComponent<Egg>();
-        _egg.OtherEggTaked += OnTakedAnimation;
+        _egg.Triggered += OnTakedAnimation;
     }
 
     private void OnDisable()
     {
-        _egg.OtherEggTaked -= OnTakedAnimation;
+        _egg.Triggered -= OnTakedAnimation;
     }
 
     private void OnTakedAnimation()

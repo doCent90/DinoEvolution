@@ -21,9 +21,34 @@ public class Egg : MonoBehaviour
     public float Health => _health;
     public float Damage => _damage;
 
-    public event Action OtherEggTaked;
+    public event Action Triggered;
     public event Action<Nest> NestsReached;
     public event Action<Transform, float, float> Taked;
+
+    public void ModifyDamage(float damage)
+    {
+        Animate();
+        _damage = GetValue(damage, _damage);
+    }
+
+    public void ModifyHealth(float health)
+    {
+        Animate();
+        _health = GetValue(health, _health);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Animate();
+
+        if(_health < damage)
+            Die();
+        else
+            _health -= damage;
+
+        if(_health <= 0)
+            Die();
+    }
 
     public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, float step, float time)
     {
@@ -35,7 +60,7 @@ public class Egg : MonoBehaviour
 
     public void Animate()
     {
-        OtherEggTaked?.Invoke();
+        Triggered?.Invoke();
     }
 
     public void MoveToNest(Nest nest)
@@ -51,6 +76,12 @@ public class Egg : MonoBehaviour
         _sphereCollider = GetComponent<SphereCollider>();
     }
 
+    private float GetValue(float value, float target)
+    {
+        target += value;
+        return target;
+    }
+
     private void Heat()
     {
         WasLightsHeated = true;
@@ -63,6 +94,11 @@ public class Egg : MonoBehaviour
         _dirtyEgg.enabled = false;
         WasWashed = true;
         Animate();
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
