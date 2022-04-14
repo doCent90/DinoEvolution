@@ -10,12 +10,14 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] private Transform _eggStackPosition;
 
     private bool _isBusy = false;
+    private Stack<Egg> _eggs = new Stack<Egg>();
 
     public EggMover LastInStack { get; private set; }
 
     public void SetLastEgg(EggMover eggMover)
     {
         LastInStack = eggMover;
+        _eggs.Push(LastInStack.Egg);
     }
 
     public void OnEggAdded()
@@ -27,7 +29,7 @@ public class PlayerHand : MonoBehaviour
     {
         if (other.TryGetComponent(out Egg egg) && _isBusy == false)
         {
-            LastInStack = egg.Mover;
+            LastInStack = egg.EggMover;
             egg.transform.parent = transform;
             egg.transform.position = _eggStackPosition.position;
             egg.OnHandTaked(this);

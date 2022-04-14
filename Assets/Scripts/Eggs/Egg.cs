@@ -18,11 +18,11 @@ public class Egg : MonoBehaviour
     private readonly float _eggStackStep = 0.8f;
 
     private EggModel _eggModel;
-    private PlayerHand _playerHand;
     private MeshRenderer _cleanEgg;
     private SphereCollider _sphereCollider;
 
-    public EggMover Mover => _eggMover;
+    public EggMover EggMover => _eggMover;
+    public PlayerHand PlayerHand { get; private set; }
 
     public bool HasInStack { get; private set; } = false;
     public bool HaveNest { get; private set; } = false;
@@ -52,15 +52,15 @@ public class Egg : MonoBehaviour
     public void OnHandTaked(PlayerHand playerHand)
     {
         HasInStack = true;
-        _playerHand = playerHand;
+        PlayerHand = playerHand;
         _eggMover.OnTakedHand(playerHand);
     }
 
-    public void OnNextTaked(Transform follwer, PlayerHand playerHand)
+    public void OnNextTaked(EggMover follwerEgg, PlayerHand playerHand)
     {
         HasInStack = true;
-        _playerHand = playerHand;
-        _eggMover.OnTaked(_playerHand, follwer, _eggStackStep, _power);
+        PlayerHand = playerHand;
+        _eggMover.OnTaked(PlayerHand, follwerEgg, _eggStackStep, _power);
     }
 
     public void Animate()
