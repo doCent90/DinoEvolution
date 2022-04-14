@@ -4,19 +4,19 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class EggMover : MonoBehaviour
 {
-
-    private Player _player;
-    private FinalPlace _place;
-    private PlayerHand _playerHand;
-    private Transform _origParent;
+    private Egg _egg;
     private SphereCollider _collider;
-    private Transform _followPosition;
+    private Transform _followEgg;
+    private Transform _origParent;
+    private Transform _nextEgg;
 
     private float _power;
     private float _step;
-    private bool _bossAreaReached = false;
+    private bool _hasStack = false;
 
     private const float SPEED = 20f;
+
+    public PlayerHand PlayerHand { get; private set; }
 
     public void Disable()
     {
@@ -27,55 +27,65 @@ public class EggMover : MonoBehaviour
     public void ResetFollow()
     {
         transform.parent = _origParent;
-        _player = null;
-        _playerHand = null;
-        _followPosition = null;
+        _followEgg = null;
     }
 
-    public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, bool firstEgg, float step, float power)
+    public void SetNextEgg(Transform egg)
+    {
+        _nextEgg = egg;
+    }
+
+    public void OnTakedHand(PlayerHand playerHand)
+    {
+        PlayerHand = playerHand;
+    }
+
+    public void OnTaked(PlayerHand playerHand, Transform followEgg, float step, float power)
     {
         transform.parent = null;
-
-        if (firstEgg)
-            _power = 1;
-        else
-            _power = power;
-
+        PlayerHand = playerHand;
         _step = step;
-        _player = player;
-        _playerHand = playerHand;
-        _followPosition = followPosition;
-    }
-
-    public void OnBossAreaReached(FinalPlace place)
-    {
-        _place = place;
-        _bossAreaReached = true;
-        transform.parent = place.transform;
+        _power = power;
+        _followEgg = followEgg;
+        _hasStack = _egg.HasInStack;
     }
 
     private void OnEnable()
     {
+        _egg = GetComponent<Egg>();
+        _collider = GetComponent<SphereCollider>();
+
         _origParent = transform.parent;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Egg egg))
+        {
+            if (egg.HasInStack == false && this == PlayerHand.LastInStack)
+            {
+                SetNextEgg(egg.transform);
+                egg.OnNextTaked(transform, PlayerHand);
+                PlayerHand.SetLastEgg(egg.Mover);
+            }
+            else if (egg.HasInStack == false && this != PlayerHand.LastInStack)
+            {
+                PlayerHand.LastInStack.SetNextEgg(egg.transform);
+                egg.OnNextTaked(PlayerHand.LastInStack.transform, PlayerHand);
+                PlayerHand.SetLastEgg(egg.Mover);
+            }
+        }
     }
 
     private void LateUpdate()
     {
-        if (_player == null)
+        if (_hasStack == false || _followEgg == null)
             return;
 
         Vector3 position;
+        Vector3 targetPosition = new Vector3(_followEgg.position.x, _followEgg.position.y, _followEgg.position.z + _step);
 
-        if (_bossAreaReached == false)
-        {
-            Vector3 targetPosition = new Vector3(_followPosition.position.x, _followPosition.position.y, _followPosition.position.z + _step);
-            position = Vector3.Lerp(transform.position, targetPosition, _power);
-            transform.position = position;
-        }
-        //else
-        //{
-        //    Vector3 targetPosition = _place.GetPlacePosition().position;
-        //    position = Vector3.MoveTowards(transform.position, targetPosition, SPEED * Time.deltaTime);
-        //}
+        position = Vector3.Lerp(transform.position, targetPosition, _power);
+        transform.position = position;
     }
 }
