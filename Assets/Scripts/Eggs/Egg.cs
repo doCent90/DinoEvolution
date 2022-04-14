@@ -14,13 +14,15 @@ public class Egg : MonoBehaviour
 
     private float _health;
     private float _damage;
+    private readonly float _power = 0.4f;
+    private readonly float _eggStackStep = 0.8f;
 
     private EggModel _eggModel;
+    private PlayerHand _playerHand;
     private MeshRenderer _cleanEgg;
     private SphereCollider _sphereCollider;
 
-    public Player Player { get; private set; }
-    public PlayerHand PlayerHand { get; private set; }
+    public EggMover Mover => _eggMover;
 
     public bool HasInStack { get; private set; } = false;
     public bool HaveNest { get; private set; } = false;
@@ -47,24 +49,23 @@ public class Egg : MonoBehaviour
             Die();
     }
 
-    public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, bool firstEgg, float step, float power)
+    public void OnHandTaked(PlayerHand playerHand)
     {
         HasInStack = true;
-        Player = player;
-        PlayerHand = playerHand;
-        _eggMover.OnTaked(player, playerHand, followPosition, firstEgg, step, power);
+        _playerHand = playerHand;
+        _eggMover.OnTakedHand(playerHand);
+    }
+
+    public void OnNextTaked(Transform follwer, PlayerHand playerHand)
+    {
+        HasInStack = true;
+        _playerHand = playerHand;
+        _eggMover.OnTaked(_playerHand, follwer, _eggStackStep, _power);
     }
 
     public void Animate()
     {
         _eggAnimator.ScaleAnimation();
-    }
-
-    public void MoveToPlace(FinalPlace place)
-    {
-        Animate();
-        _eggMover.OnBossAreaReached(place);
-        _sphereCollider.enabled = false;
     }
 
     private void OnEnable()
@@ -140,8 +141,5 @@ public class Egg : MonoBehaviour
 
         if (other.TryGetComponent(out NestGate nestGate))
             TakeNest();
-
-        if (other.TryGetComponent(out FinalPlace nest))
-            MoveToPlace(nest);
     }
 }

@@ -17,8 +17,7 @@ public class SortGate : MonoBehaviour
     {
         if(egg.WasLightsHeated == false || egg.WasWashed == false || egg.HaveNest == false)
         {
-            egg.GetComponent<Collider>().enabled = false;
-            egg.PlayerHand.DeleteNotCompleteEgg(egg);
+            //egg.PlayerHand.DeleteNotCompleteEgg(egg);
 
             //egg.transform.parent = transform;
             //egg.GetComponent<EggMover>().enabled = false;
