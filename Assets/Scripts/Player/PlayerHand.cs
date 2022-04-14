@@ -6,6 +6,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(BoxCollider))]
 public class PlayerHand : MonoBehaviour
 {
+    [SerializeField] private PlayerAnimator _animator;
     [SerializeField] private Transform _eggStackPosition;
     [Header("Settings")]
     [Range(0f, 1f)]
@@ -40,6 +41,7 @@ public class PlayerHand : MonoBehaviour
 
         egg.OnTaked(_player, this, positionInStack, _eggStackStep, _time);       
         StartCoroutine(EggsAnimation());
+        _animator.Take();
     }
 
     private void OnEnable()

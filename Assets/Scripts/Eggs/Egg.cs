@@ -7,6 +7,7 @@ public class Egg : MonoBehaviour
 {
     [SerializeField] private EggType _eggType;
     [SerializeField] private Transform _eggParent;
+    [SerializeField] private EggAnimator _eggAnimator;
     [SerializeField] private MeshRenderer _dino;
     [SerializeField] private MeshRenderer _nest;
 
@@ -25,8 +26,6 @@ public class Egg : MonoBehaviour
     public bool WasWashed { get; private set; } = false;
     public bool WasLightsHeated { get; private set; } = false;
 
-    public event Action Washed;
-    public event Action Triggered;
     public event Action<FinalPlace> BossAreaReached;
     public event Action<Transform, float, float> Taked;
 
@@ -53,7 +52,7 @@ public class Egg : MonoBehaviour
 
     public void Animate()
     {
-        Triggered?.Invoke();
+        _eggAnimator.ScaleAnimation();
     }
 
     public void MoveToPlace(FinalPlace place)
@@ -108,14 +107,14 @@ public class Egg : MonoBehaviour
     private void Wash()
     {
         WasWashed = true;
-        Washed?.Invoke();
+        _eggAnimator.Wash();
     }
 
     private void TakeNest()
     {
-        Animate();
         HaveNest = true;
         _nest.enabled = true;
+        _eggAnimator.TakeNest();
     }
 
     private void Die()

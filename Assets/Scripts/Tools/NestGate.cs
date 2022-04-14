@@ -1,3 +1,18 @@
 using UnityEngine;
 
-public class NestGate : MonoBehaviour {}
+[RequireComponent(typeof(NestGateAnimator))]
+public class NestGate : MonoBehaviour
+{
+    private NestGateAnimator _nestGateAnimator;
+
+    private void OnEnable()
+    {
+        _nestGateAnimator = GetComponent<NestGateAnimator>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Egg egg))
+            _nestGateAnimator.DeleteCurrentNest();
+    }
+}

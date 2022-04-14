@@ -563,7 +563,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3225219893992530158, guid: 7a4d0f2fd9c558c49a8cc718fcc6245d, type: 3}
+  - {fileID: 2100000, guid: 2314f7271a635c64cacaa329203f8abb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1706,6 +1706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eggType: {fileID: 11400000, guid: 9763ecf4575a8894d8c12ed9d2ce282f, type: 2}
   _eggParent: {fileID: 5304125320087246484}
+  _eggAnimator: {fileID: 5304125320110239482}
   _dino: {fileID: 5304125320686997120}
   _nest: {fileID: 578339927094968686}
 --- !u!114 &5304125320110239482
@@ -1721,6 +1722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 5304125320087246484}
+  _animator: {fileID: 5304125320110239479}
   _dirtyEgg: {fileID: 6151075166306256154}
   _cellsDirt:
   - {fileID: 58337911042539469}

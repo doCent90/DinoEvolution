@@ -5,44 +5,40 @@ using DG.Tweening;
 public class EggAnimator : MonoBehaviour
 {
     [SerializeField] private Transform _model;
+    [SerializeField] private Animator _animator;
     [SerializeField] private MeshRenderer _dirtyEgg;
     [SerializeField] private CellDestroy[] _cellsDirt;
 
-    private Egg _egg;
     private RoadParent _roadParent;
     private float _targetScale = 1.6f;
 
+    private const string NEST = "Nest";
     private const float DURATION = 0.07f;
     private const float DURATION_WASH = 1f;
 
-    private void OnEnable()
+    public void TakeNest()
     {
-        _egg = GetComponent<Egg>();
-        _roadParent = FindObjectOfType<RoadParent>();
-
-        _egg.Washed += OnWashed;
-        _egg.Triggered += OnTakedAnimation;
+        _animator.SetTrigger(NEST);
     }
 
-    private void OnDisable()
-    {
-        _egg.Washed -= OnWashed;
-        _egg.Triggered -= OnTakedAnimation;
-    }
-
-    private void OnWashed()
+    public void Wash()
     {
         _dirtyEgg.transform.DOScale(0, DURATION_WASH);
 
         foreach (var item in _cellsDirt)
             item.Destroy(_roadParent.transform);
 
-        OnTakedAnimation();
+        ScaleAnimation();
     }
 
-    private void OnTakedAnimation()
+    public void ScaleAnimation()
     {
         var tween1 = _model.DOScale(_targetScale, DURATION);
         var tween2 = _model.DOScale(1, DURATION).SetDelay(DURATION);
+    }
+
+    private void OnEnable()
+    {
+        _roadParent = FindObjectOfType<RoadParent>();
     }
 }
