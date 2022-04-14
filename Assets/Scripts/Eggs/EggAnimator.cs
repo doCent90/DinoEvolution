@@ -9,6 +9,7 @@ public class EggAnimator : MonoBehaviour
     [SerializeField] private CellDestroy[] _cellsDirt;
 
     private Egg _egg;
+    private RoadParent _roadParent;
     private float _targetScale = 1.6f;
 
     private const float DURATION = 0.07f;
@@ -17,6 +18,7 @@ public class EggAnimator : MonoBehaviour
     private void OnEnable()
     {
         _egg = GetComponent<Egg>();
+        _roadParent = FindObjectOfType<RoadParent>();
 
         _egg.Washed += OnWashed;
         _egg.Triggered += OnTakedAnimation;
@@ -33,7 +35,7 @@ public class EggAnimator : MonoBehaviour
         _dirtyEgg.transform.DOScale(0, DURATION_WASH);
 
         foreach (var item in _cellsDirt)
-            item.Destroy();
+            item.Destroy(_roadParent.transform);
 
         OnTakedAnimation();
     }

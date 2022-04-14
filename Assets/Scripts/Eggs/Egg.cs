@@ -102,6 +102,7 @@ public class Egg : MonoBehaviour
         WasLightsHeated = true;
         _cleanEgg.enabled = false;
         _eggModel.EnableCleanCells();
+        Animate();
     }
 
     private void Wash()

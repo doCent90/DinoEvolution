@@ -16,8 +16,8 @@ MonoBehaviour:
   _damage: 2
   _health: 10
   _eggModelType:
+  - {fileID: 5327234473167632361, guid: 4e262a018a2874743b944093a0e011b7, type: 3}
   - {fileID: 8473939482032130097, guid: 8589a98dd328b5146ab6042915e0c208, type: 3}
   - {fileID: 2058422925919755206, guid: b56b956de9eccf74090eba99b5bd77fc, type: 3}
   - {fileID: 8297108511440115145, guid: 146d50fc4b2257b4297f8260b6a363cd, type: 3}
-  - {fileID: 5327234473167632361, guid: 4e262a018a2874743b944093a0e011b7, type: 3}
   - {fileID: 3482704969100230111, guid: 861e7b64fbf53f4439c14daf49cb3f0d, type: 3}
