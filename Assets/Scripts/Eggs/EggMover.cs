@@ -1,13 +1,15 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Egg))]
+[RequireComponent(typeof(SphereCollider))]
 public class EggMover : MonoBehaviour
 {
-    [SerializeField] private bool _firstEgg = false;
 
     private Player _player;
     private FinalPlace _place;
     private PlayerHand _playerHand;
+    private Transform _origParent;
+    private SphereCollider _collider;
     private Transform _followPosition;
 
     private float _power;
@@ -16,20 +18,29 @@ public class EggMover : MonoBehaviour
 
     private const float SPEED = 20f;
 
+    public void Disable()
+    {
+        _collider.enabled = false;
+        ResetFollow();
+    }
+
     public void ResetFollow()
-    {        
+    {
+        transform.parent = _origParent;
         _player = null;
+        _playerHand = null;
         _followPosition = null;
     }
 
-    public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, float step, float power)
+    public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, bool firstEgg, float step, float power)
     {
         transform.parent = null;
 
-        if (_firstEgg)
+        if (firstEgg)
             _power = 1;
         else
             _power = power;
+
         _step = step;
         _player = player;
         _playerHand = playerHand;
@@ -41,6 +52,11 @@ public class EggMover : MonoBehaviour
         _place = place;
         _bossAreaReached = true;
         transform.parent = place.transform;
+    }
+
+    private void OnEnable()
+    {
+        _origParent = transform.parent;
     }
 
     private void LateUpdate()

@@ -38,7 +38,9 @@ public class PlayerHand : MonoBehaviour
     public void OnEggAdded(Egg egg)
     {
         IncreaseCollider();
+        bool firstEgg;
         Egg lastEgg;
+        Transform positionInStack;
 
         if (_eggsStack.Count > 0)
             lastEgg = _eggsStack.Peek();
@@ -47,14 +49,19 @@ public class PlayerHand : MonoBehaviour
 
         _eggList.Add(egg);
         _eggsStack.Push(egg);
-        Transform positionInStack;
 
         if (_eggsStack.Count <= 1)
+        {
+            firstEgg = true;
             positionInStack = _eggStackPosition;
+        }
         else
+        {
+            firstEgg = false;
             positionInStack = lastEgg.transform;
+        }
 
-        egg.OnTaked(_player, this, positionInStack, _eggStackStep, _power);       
+        egg.OnTaked(_player, this, positionInStack, firstEgg, _eggStackStep, _power);       
         StartCoroutine(EggsAnimation());
         _animator.Take();
     }

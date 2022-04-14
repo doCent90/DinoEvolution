@@ -31,7 +31,7 @@ public class Egg : MonoBehaviour
 
     public void ResetEgg()
     {
-        _eggMover.ResetFollow();
+        _eggMover.Disable();
     }
 
     public void TakeDamage(float damage)
@@ -47,12 +47,12 @@ public class Egg : MonoBehaviour
             Die();
     }
 
-    public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, float step, float power)
+    public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, bool firstEgg, float step, float power)
     {
         HasInStack = true;
         Player = player;
         PlayerHand = playerHand;
-        _eggMover.OnTaked(player, playerHand, followPosition, step, power);
+        _eggMover.OnTaked(player, playerHand, followPosition, firstEgg, step, power);
     }
 
     public void Animate()
