@@ -1,12 +1,14 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Egg))]
+[RequireComponent(typeof(EggAnimator))]
 [RequireComponent(typeof(SphereCollider))]
 public class EggMover : MonoBehaviour
 {
     private SphereCollider _collider;
     private Transform _origParent;
-    private EggMover _followEgg;
+    private EggAnimator _eggAnimator;
+    private EggMover _leaderEgg;
     private EggMover _nextEgg;
 
     private float _power;
@@ -14,6 +16,7 @@ public class EggMover : MonoBehaviour
     private bool _hasStack = false;
 
     private const float SPEED = 20f;
+    private const float DELAY = 0.05f;
 
     public Egg Egg { get; private set; }
     public PlayerHand PlayerHand { get; private set; }
@@ -27,7 +30,7 @@ public class EggMover : MonoBehaviour
     public void ResetFollow()
     {
         transform.parent = _origParent;
-        _followEgg = null;
+        _leaderEgg = null;
     }
 
     public void SetNextEgg(EggMover egg)
@@ -46,14 +49,28 @@ public class EggMover : MonoBehaviour
         PlayerHand = playerHand;
         _step = step;
         _power = power;
-        _followEgg = followEgg;
+        _leaderEgg = followEgg;
         _hasStack = Egg.HasInStack;
+        Animate();
+    }
+
+    public void Animate()
+    {
+        _eggAnimator.ScaleAnimation();
+        Invoke(nameof(AnimateLeaderEgg), DELAY);
+    }
+
+    public void AnimateLeaderEgg()
+    {
+        if(_leaderEgg != null)
+            _leaderEgg.Animate();
     }
 
     private void OnEnable()
     {
         Egg = GetComponent<Egg>();
         _collider = GetComponent<SphereCollider>();
+        _eggAnimator = GetComponent<EggAnimator>();
 
         _origParent = transform.parent;
     }
@@ -79,11 +96,11 @@ public class EggMover : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_hasStack == false || _followEgg == null)
+        if (_hasStack == false || _leaderEgg == null)
             return;
 
         Vector3 position;
-        Vector3 targetPosition = new Vector3(_followEgg.transform.position.x, _followEgg.transform.position.y, _followEgg.transform.position.z + _step);
+        Vector3 targetPosition = new Vector3(_leaderEgg.transform.position.x, _leaderEgg.transform.position.y, _leaderEgg.transform.position.z + _step);
 
         position = Vector3.Lerp(transform.position, targetPosition, _power);
         transform.position = position;
