@@ -10,36 +10,51 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] private Transform _eggStackPosition;
     [Header("Settings")]
     [Range(0f, 1f)]
-    [SerializeField] private float _time = 0.5f;
+    [SerializeField] private float _power = 0.5f;
     [SerializeField] private float _eggStackStep = 0.8f;
     [SerializeField] private float _addColliderSize = 0.3f;
 
-    private Stack<Egg> _eggs = new Stack<Egg>();
+    private Stack<Egg> _eggsStack = new Stack<Egg>();
+    private List<Egg> _eggList = new List<Egg>();
     private BoxCollider _boxCollider;
+    private Vector3 _origCollider;
     private Player _player;
 
     private const float DELAY = 0.03f;
     private const float MULTIPLY = 1.5f;
+
+    public void DeleteNotCompleteEgg(Egg currentEgg)
+    {
+        foreach (var egg in _eggList)
+        {
+            if(egg == currentEgg)
+            {
+                _eggList.Remove(egg);
+                egg.ResetEgg();
+            }
+        }
+    }
 
     public void OnEggAdded(Egg egg)
     {
         IncreaseCollider();
         Egg lastEgg;
 
-        if (_eggs.Count > 0)
-            lastEgg = _eggs.Peek();
+        if (_eggsStack.Count > 0)
+            lastEgg = _eggsStack.Peek();
         else
             lastEgg = null;
 
-        _eggs.Push(egg);
+        _eggList.Add(egg);
+        _eggsStack.Push(egg);
         Transform positionInStack;
 
-        if (_eggs.Count <= 1)
+        if (_eggsStack.Count <= 1)
             positionInStack = _eggStackPosition;
         else
             positionInStack = lastEgg.transform;
 
-        egg.OnTaked(_player, this, positionInStack, _eggStackStep, _time);       
+        egg.OnTaked(_player, this, positionInStack, _eggStackStep, _power);       
         StartCoroutine(EggsAnimation());
         _animator.Take();
     }
@@ -48,6 +63,8 @@ public class PlayerHand : MonoBehaviour
     {
         _player = GetComponent<Player>();
         _boxCollider = GetComponent<BoxCollider>();
+
+        _origCollider = _boxCollider.size;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -61,9 +78,11 @@ public class PlayerHand : MonoBehaviour
         var waitForSecods = new WaitForSeconds(DELAY);
         yield return waitForSecods;
 
-        foreach (var item in _eggs)
+        foreach (var item in _eggsStack)
         {
-            item.Animate();
+            if(item != null)
+                item.Animate();
+
             yield return waitForSecods;
         }
     }

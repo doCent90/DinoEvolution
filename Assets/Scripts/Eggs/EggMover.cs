@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Egg))]
@@ -6,49 +5,42 @@ public class EggMover : MonoBehaviour
 {
     [SerializeField] private bool _firstEgg = false;
 
-    private Egg _egg;
-    private FinalPlace _place;
     private Player _player;
+    private FinalPlace _place;
+    private PlayerHand _playerHand;
     private Transform _followPosition;
 
-    private float _time;
+    private float _power;
     private float _step;
-    private bool _placeReached = false;
+    private bool _bossAreaReached = false;
 
     private const float SPEED = 20f;
 
-    private void OnEnable()
-    {
-        _egg = GetComponent<Egg>();
-        _egg.Taked += OnTaked;
-        _egg.BossAreaReached += OnNestsReached;
+    public void ResetFollow()
+    {        
+        _player = null;
+        _followPosition = null;
     }
 
-    private void OnDisable()
-    {
-        _egg.Taked -= OnTaked;
-        _egg.BossAreaReached -= OnNestsReached;
-    }
-
-    private void OnNestsReached(FinalPlace place)
-    {
-        _place = place;
-        _placeReached = true;
-        transform.parent = place.transform;
-    }
-
-    private void OnTaked(Transform followPosition, float step, float time)
+    public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, float step, float power)
     {
         transform.parent = null;
 
         if (_firstEgg)
-            _time = 1;
+            _power = 1;
         else
-            _time = time;
-
+            _power = power;
         _step = step;
-        _player = _egg.Player;
+        _player = player;
+        _playerHand = playerHand;
         _followPosition = followPosition;
+    }
+
+    public void OnBossAreaReached(FinalPlace place)
+    {
+        _place = place;
+        _bossAreaReached = true;
+        transform.parent = place.transform;
     }
 
     private void LateUpdate()
@@ -58,17 +50,16 @@ public class EggMover : MonoBehaviour
 
         Vector3 position;
 
-        if (_placeReached == false && _followPosition != null)
+        if (_bossAreaReached == false)
         {
             Vector3 targetPosition = new Vector3(_followPosition.position.x, _followPosition.position.y, _followPosition.position.z + _step);
-            position = Vector3.Lerp(transform.position, targetPosition, _time);
+            position = Vector3.Lerp(transform.position, targetPosition, _power);
+            transform.position = position;
         }
-        else
-        {
-            Vector3 targetPosition = _place.GetPlacePosition().position;
-            position = Vector3.MoveTowards(transform.position, targetPosition, SPEED * Time.deltaTime);
-        }
-
-        transform.position = position;
+        //else
+        //{
+        //    Vector3 targetPosition = _place.GetPlacePosition().position;
+        //    position = Vector3.MoveTowards(transform.position, targetPosition, SPEED * Time.deltaTime);
+        //}
     }
 }

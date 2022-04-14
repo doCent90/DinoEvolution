@@ -6,6 +6,7 @@ using DG.Tweening;
 public class Egg : MonoBehaviour
 {
     [SerializeField] private EggType _eggType;
+    [SerializeField] private EggMover _eggMover;
     [SerializeField] private Transform _eggParent;
     [SerializeField] private EggAnimator _eggAnimator;
     [SerializeField] private MeshRenderer _dino;
@@ -27,7 +28,11 @@ public class Egg : MonoBehaviour
     public bool WasLightsHeated { get; private set; } = false;
 
     public event Action<FinalPlace> BossAreaReached;
-    public event Action<Transform, float, float> Taked;
+
+    public void ResetEgg()
+    {
+        _eggMover.ResetFollow();
+    }
 
     public void TakeDamage(float damage)
     {
@@ -42,12 +47,12 @@ public class Egg : MonoBehaviour
             Die();
     }
 
-    public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, float step, float time)
+    public void OnTaked(Player player, PlayerHand playerHand, Transform followPosition, float step, float power)
     {
         HasInStack = true;
         Player = player;
         PlayerHand = playerHand;
-        Taked?.Invoke(followPosition, step, time);
+        _eggMover.OnTaked(player, playerHand, followPosition, step, power);
     }
 
     public void Animate()
@@ -58,7 +63,7 @@ public class Egg : MonoBehaviour
     public void MoveToPlace(FinalPlace place)
     {
         Animate();
-        BossAreaReached?.Invoke(place);
+        _eggMover.OnBossAreaReached(place);
         _sphereCollider.enabled = false;
     }
 

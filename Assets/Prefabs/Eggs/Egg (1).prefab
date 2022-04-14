@@ -1705,6 +1705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eggType: {fileID: 11400000, guid: 9763ecf4575a8894d8c12ed9d2ce282f, type: 2}
+  _eggMover: {fileID: 5304125320110239483}
   _eggParent: {fileID: 5304125320087246484}
   _eggAnimator: {fileID: 5304125320110239482}
   _dino: {fileID: 5304125320686997120}
