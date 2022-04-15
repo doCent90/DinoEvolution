@@ -5,22 +5,22 @@ public class Buttons : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private LevelsLoader _levelsLoader;
+    [SerializeField] private InputController _inputController;
     [Header("Canvas")]
     [SerializeField] private CanvasGroup _gamePanel;
     [SerializeField] private CanvasGroup _startPanel;
     [Header("Buttons")]
-    [SerializeField] private Button _start;
     [SerializeField] private Button _restart;
 
     private void OnEnable()
     {
-        _start.onClick.AddListener(StartGame);
         _restart.onClick.AddListener(Restart);
+        _inputController.Clicked += StartGame;
     }
 
     private void OnDisable()
     {
-        _start.onClick.RemoveListener(StartGame);
+        _inputController.Clicked -= StartGame;
         _restart.onClick.RemoveListener(Restart);
     }
 

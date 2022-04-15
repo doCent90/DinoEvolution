@@ -3,7 +3,7 @@ using IJunior.TypedScenes;
 
 public class LevelsLoader : MonoBehaviour
 {
-    [SerializeField] private Boss _boss;
+    //[SerializeField] private Boss _boss;
     [SerializeField] private int _levelsNumber;
     [SerializeField] private bool _isStartApp = false;
     [SerializeField] private bool _isTestLevel = false;
@@ -48,7 +48,7 @@ public class LevelsLoader : MonoBehaviour
 
         AmplitudeHandler.SetLevelStart(_levelsNumber);
 
-        _boss.BossWon += OnLevelDone;
+        //_boss.BossWon += OnLevelDone;
     }
 
     private void OnDisable()
@@ -56,7 +56,7 @@ public class LevelsLoader : MonoBehaviour
         if (_isStartApp)
             return;
 
-        _boss.BossWon -= OnLevelDone;
+        //_boss.BossWon -= OnLevelDone;
     }
 
     private void OnLevelDone()

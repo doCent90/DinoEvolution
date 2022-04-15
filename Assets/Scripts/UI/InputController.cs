@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InputController : MonoBehaviour
@@ -5,6 +6,8 @@ public class InputController : MonoBehaviour
     private float _axisX;
 
     private const string MouseX = "Mouse X";
+
+    public event Action Clicked;
 
     public float GetSlideValue()
     {
@@ -14,5 +17,11 @@ public class InputController : MonoBehaviour
         }
 
         return _axisX;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+            Clicked?.Invoke();
     }
 }
