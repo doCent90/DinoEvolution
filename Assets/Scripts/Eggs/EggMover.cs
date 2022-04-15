@@ -10,9 +10,9 @@ public class EggMover : MonoBehaviour
     private EggMover _previousEgg;
     private EggMover _nextEgg;
 
-    private float _power;
-    private float _step;
     private bool _hasStack = false;
+    private readonly float _power = 23f;
+    private readonly float _step = 0.7f;
 
     private const float SPEED = 20f;
     private const float DELAY = 0.05f;
@@ -62,12 +62,10 @@ public class EggMover : MonoBehaviour
         PlayerHand = playerHand;
     }
 
-    public void OnTaked(PlayerHand playerHand, EggMover followEgg, float step, float power)
+    public void OnTaked(PlayerHand playerHand, EggMover followEgg)
     {
         transform.parent = null;
         PlayerHand = playerHand;
-        _step = step;
-        _power = power;
         _hasStack = Egg.HasInStack;
         SetPreviousEgg(followEgg);
         Animate();
@@ -119,7 +117,7 @@ public class EggMover : MonoBehaviour
         Vector3 position;
         Vector3 targetPosition = new Vector3(_previousEgg.transform.position.x, _previousEgg.transform.position.y, _previousEgg.transform.position.z + _step);
 
-        position = Vector3.Lerp(transform.position, targetPosition, _power);
+        position = Vector3.Lerp(transform.position, targetPosition, _power * Time.deltaTime);
         transform.position = position;
     }
 }

@@ -10,7 +10,7 @@ public class CellDestroy : MonoBehaviour
     private Rigidbody _rigidbody;
     private MeshCollider _collider;
 
-    private const float DELAY = 4f;
+    private const float DELAY = 2f;
     private const float POWER = 10f;
 
     public void Destroy(Transform parent)
@@ -37,23 +37,21 @@ public class CellDestroy : MonoBehaviour
     {
         var waitForSeconds = new WaitForSeconds(DELAY);
         yield return waitForSeconds;        
-        transform.DOScale(0.2f, DELAY / 2);
-        yield return waitForSeconds;        
         gameObject.SetActive(false);
     }
 
     private void Move(float range)
     {
-        float x;
-        float z;
-        float y;
+        //float x;
+        //float z;
+        //float y;
 
-        x = Random.Range(-range, range);
-        z = Random.Range(range, range);
-        y = Random.Range(0, range);
+        //x = Random.Range(-range, range);
+        //z = Random.Range(range, range);
+        //y = Random.Range(0, range);
 
         _collider.isTrigger = false;
         _rigidbody.isKinematic = false;
-        _rigidbody.AddForce(new Vector3(x, y, z), ForceMode.Force);
+        //_rigidbody.AddForce(new Vector3(x, y, z), ForceMode.Force);
     }
 }

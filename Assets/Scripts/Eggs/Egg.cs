@@ -14,8 +14,6 @@ public class Egg : MonoBehaviour
 
     private float _health;
     private float _damage;
-    private readonly float _power = 0.4f;
-    private readonly float _eggStackStep = 0.8f;
 
     private EggModel _eggModel;
     private MeshRenderer _cleanEgg;
@@ -60,7 +58,7 @@ public class Egg : MonoBehaviour
     {
         HasInStack = true;
         PlayerHand = playerHand;
-        _eggMover.OnTaked(PlayerHand, follwerEgg, _eggStackStep, _power);
+        _eggMover.OnTaked(PlayerHand, follwerEgg);
     }
 
     public void Animate()
