@@ -12,18 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a316957c751630545a64968c4564d83e, type: 3}
   m_Name: Egg_Lvl_Settings
   m_EditorClassIdentifier: 
-  _eggModelTypeLevel1: {fileID: 5327234473167632361, guid: 4e262a018a2874743b944093a0e011b7, type: 3}
-  _damageLevel1: 2
-  _healthLevel1: 10
-  _eggModelTypeLevel2: {fileID: 8473939482032130097, guid: 8589a98dd328b5146ab6042915e0c208, type: 3}
-  _damageLevel2: 4
-  _healthLevel2: 20
-  _eggModelTypeLevel3: {fileID: 2058422925919755206, guid: b56b956de9eccf74090eba99b5bd77fc, type: 3}
-  _damageLevel3: 6
-  _healthLevel3: 30
-  _eggModelTypeLevel4: {fileID: 8297108511440115145, guid: 146d50fc4b2257b4297f8260b6a363cd, type: 3}
-  _damageLevel4: 8
-  _healthLevel4: 40
-  _eggModelTypeLevel5: {fileID: 3482704969100230111, guid: 861e7b64fbf53f4439c14daf49cb3f0d, type: 3}
-  _damageLevel5: 10
-  _healthLevel5: 50
+  _level1:
+    _eggModelType: {fileID: 5327234473167632361, guid: 4e262a018a2874743b944093a0e011b7, type: 3}
+    _damage: 2
+    _health: 10
+  _level2:
+    _eggModelType: {fileID: 8473939482032130097, guid: 8589a98dd328b5146ab6042915e0c208, type: 3}
+    _damage: 4
+    _health: 20
+  _level3:
+    _eggModelType: {fileID: 2058422925919755206, guid: b56b956de9eccf74090eba99b5bd77fc, type: 3}
+    _damage: 6
+    _health: 30
+  _level4:
+    _eggModelType: {fileID: 8297108511440115145, guid: 146d50fc4b2257b4297f8260b6a363cd, type: 3}
+    _damage: 8
+    _health: 40
+  _level5:
+    _eggModelType: {fileID: 3482704969100230111, guid: 861e7b64fbf53f4439c14daf49cb3f0d, type: 3}
+    _damage: 10
+    _health: 50

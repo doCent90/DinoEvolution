@@ -5,19 +5,21 @@ using DG.Tweening;
 [RequireComponent(typeof(SphereCollider))]
 public class Egg : MonoBehaviour
 {
-    [SerializeField] private EggLevel _eggLevel;
+    [SerializeField] private EggLevel level;
     [SerializeField] private EggType _eggType;
     [SerializeField] private EggMover _eggMover;
     [SerializeField] private Transform _eggParent;
     [SerializeField] private EggAnimator _eggAnimator;
+    [Header("Meshes")]
     [SerializeField] private MeshRenderer _dino;
     [SerializeField] private MeshRenderer _nest;
+    [SerializeField] private MeshRenderer _dirt;
 
     private float _health;
     private float _damage;
-    private int _upgradeCount;
 
     private EggModel _eggModel;
+    private RoadParent _roadParent;
     private MeshRenderer _cleanEgg;
 
     public EggMover EggMover => _eggMover;
@@ -32,7 +34,8 @@ public class Egg : MonoBehaviour
 
     private void OnEnable()
     {
-        Init();
+        InitType();
+        _roadParent = GetComponentInParent<RoadParent>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -58,17 +61,10 @@ public class Egg : MonoBehaviour
         _eggMover.Disable(parent);
     }
 
-    public void TakeDamage(float damage)
+    public void Destroy()
     {
-        Animate();
-
-        if(_health < damage)
-            Die();
-        else
-            _health -= damage;
-
-        if(_health <= 0)
-            Die();
+        _eggMover.Disable(_roadParent.transform);
+        Die();
     }
 
     public void OnHandTaked(PlayerHand playerHand)
@@ -90,13 +86,13 @@ public class Egg : MonoBehaviour
         _eggAnimator.ScaleAnimation();
     }
 
-    private void Init()
+    private void InitType()
     {
-        _eggType.Init(_eggLevel);
+        EggData data = _eggType.GetTypeData(level);
 
-        _health = _eggType.Health;
-        _damage = _eggType.Damage;
-        var model = _eggType.EggModelType;
+        _health = data.Health;
+        _damage = data.Damage;
+        var model = data.EggModelType;
 
         _eggModel = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
         _cleanEgg = _eggModel.GetComponent<MeshRenderer>();
@@ -104,25 +100,17 @@ public class Egg : MonoBehaviour
 
     private void ToGrinder()
     {
-        if(WasWashed && WasLightsHeated && HaveNest)
-        {
-            _dino.enabled = true;
-            _nest.enabled = false;
-            _cleanEgg.enabled = false;
-            _eggModel.DestroyCells();
-        }
-        else
-        {
-            Die();
-            Animate();
-        }
+        _dino.enabled = true;
+        _nest.enabled = false;
+        _cleanEgg.enabled = false;
+        _eggModel.DestroyCells();
     }
 
     private void TypeUpgrade()
     {
-        _eggLevel++;
+        level++;
         Destroy(_eggModel.gameObject);
-        Init();
+        InitType();
         Animate();
     }
 
@@ -149,6 +137,11 @@ public class Egg : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject, 0.2f);
+        _nest.enabled = false;
+        _dirt.enabled = false;
+        _cleanEgg.enabled = false;
+        _eggModel.DestroyCells();
+
+        Destroy(gameObject, 3f);
     }
 }

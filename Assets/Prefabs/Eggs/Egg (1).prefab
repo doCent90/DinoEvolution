@@ -822,12 +822,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f0f5a4249e01a49af79ea46ea477b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   _eggType: {fileID: 11400000, guid: 9763ecf4575a8894d8c12ed9d2ce282f, type: 2}
   _eggMover: {fileID: 5304125320110239483}
   _eggParent: {fileID: 5304125320087246484}
   _eggAnimator: {fileID: 5304125320110239482}
   _dino: {fileID: 5304125320686997120}
   _nest: {fileID: 578339927094968686}
+  _dirt: {fileID: 6151075166306256154}
 --- !u!114 &5304125320110239482
 MonoBehaviour:
   m_ObjectHideFlags: 0

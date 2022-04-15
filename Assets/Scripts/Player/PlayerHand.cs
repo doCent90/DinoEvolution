@@ -10,7 +10,6 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] private Transform _eggStackPosition;
 
     private bool _isBusy = false;
-    private Stack<Egg> _eggs = new Stack<Egg>();
 
     public EggMover LastInStack { get; private set; }
     public Transform EggStackPosition => _eggStackPosition;
@@ -18,7 +17,6 @@ public class PlayerHand : MonoBehaviour
     public void SetLastEgg(EggMover eggMover)
     {
         LastInStack = eggMover;
-        _eggs.Push(LastInStack.Egg);
     }
 
     public void OnEggAdded()

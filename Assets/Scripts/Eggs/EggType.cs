@@ -1,66 +1,50 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Egg", menuName = "Eggs/Create Egg", order = 51)]
 public class EggType : ScriptableObject
 {
     [Header("Level 1")]
-    [SerializeField] private EggModel _eggModelTypeLevel1;
-    [SerializeField] private int _damageLevel1;
-    [SerializeField] private int _healthLevel1;
+    [SerializeField] private EggData _level1;
     [Header("Level 2")]
-    [SerializeField] private EggModel _eggModelTypeLevel2;
-    [SerializeField] private int _damageLevel2;
-    [SerializeField] private int _healthLevel2;
+    [SerializeField] private EggData _level2;
     [Header("Level 3")]
-    [SerializeField] private EggModel _eggModelTypeLevel3;
-    [SerializeField] private int _damageLevel3;
-    [SerializeField] private int _healthLevel3;
+    [SerializeField] private EggData _level3;
     [Header("Level 4")]
-    [SerializeField] private EggModel _eggModelTypeLevel4;
-    [SerializeField] private int _damageLevel4;
-    [SerializeField] private int _healthLevel4;
+    [SerializeField] private EggData _level4;
     [Header("Level 5")]
-    [SerializeField] private EggModel _eggModelTypeLevel5;
-    [SerializeField] private int _damageLevel5;
-    [SerializeField] private int _healthLevel5;
+    [SerializeField] private EggData _level5;
 
-    public EggModel EggModelType { get; private set; }
-    public float Damage { get; private set; }
-    public int Health  { get; private set; }
-
-    public EggType Init(EggLevel eggLevel)
+    public EggData GetTypeData(EggLevel eggLevel)
     {
         switch ((int)eggLevel)
         {
             case 0:
-                SetValues(_eggModelTypeLevel1, _damageLevel1, _healthLevel1);
-                break;
+                return _level1;
             case 1:
-                SetValues(_eggModelTypeLevel2, _damageLevel2, _healthLevel2);
-                break;
+                return _level2;
             case 2:
-                SetValues(_eggModelTypeLevel3, _damageLevel3, _healthLevel3);
-                break;
+                return _level3;
             case 3:
-                SetValues(_eggModelTypeLevel4, _damageLevel4, _healthLevel4);
-                break;
+                return _level4;
             case 4:
-                SetValues(_eggModelTypeLevel5, _damageLevel5, _healthLevel5);
-                break;
+                return _level5;
             default:
-                SetValues(_eggModelTypeLevel5, _damageLevel5, _healthLevel5);
-                break;
+                return _level5;
         }
-        return this;
     }
+}
 
-    private void SetValues(EggModel eggModel, int damage, int health)
-    {
-        EggModelType = eggModel;
-        Damage = damage;
-        Health = health;
-    }
+[Serializable]
+public class EggData
+{
+    [SerializeField] private EggModel _eggModelType;
+    [SerializeField] private int _damage;
+    [SerializeField] private int _health;
+
+    public EggModel EggModelType => _eggModelType;
+    public int Damage => _damage;
+    public int Health => _health;
 }
 
 public enum EggLevel

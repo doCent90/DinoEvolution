@@ -353,6 +353,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 46.55
       objectReference: {fileID: 0}
+    - target: {fileID: 3021342309528300095, guid: 406b887c0e0b5894e8e7dca2432fe2c2, type: 3}
+      propertyPath: _roadMover
+      value: 
+      objectReference: {fileID: 153313991}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 406b887c0e0b5894e8e7dca2432fe2c2, type: 3}
 --- !u!4 &101617705 stripped
@@ -367,6 +371,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1931262948}
     m_Modifications:
+    - target: {fileID: 5304125320110239481, guid: 35ef53aa672532448abe04fd25cf606d, type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5304125320110239481, guid: 35ef53aa672532448abe04fd25cf606d, type: 3}
       propertyPath: _eggLevel
       value: 1
@@ -437,6 +445,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1931262948}
     m_Modifications:
+    - target: {fileID: 5304125320110239481, guid: 35ef53aa672532448abe04fd25cf606d, type: 3}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5304125320110239481, guid: 35ef53aa672532448abe04fd25cf606d, type: 3}
       propertyPath: _eggLevel
       value: 2
@@ -555,6 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 153313990}
   - component: {fileID: 153313991}
+  - component: {fileID: 153313987}
   m_Layer: 0
   m_Name: Road
   m_TagString: Untagged
@@ -562,6 +575,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &153313987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153313986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bdfbd7a4246c6945a45aa8fa7c1c137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &153313990
 Transform:
   m_ObjectHideFlags: 0
@@ -11077,6 +11102,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1931262948}
     m_Modifications:
+    - target: {fileID: 5304125320110239481, guid: 35ef53aa672532448abe04fd25cf606d, type: 3}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5304125320110239481, guid: 35ef53aa672532448abe04fd25cf606d, type: 3}
       propertyPath: _eggLevel
       value: 3
@@ -26002,6 +26031,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1931262948}
     m_Modifications:
     - target: {fileID: 5304125320110239481, guid: 35ef53aa672532448abe04fd25cf606d, type: 3}
+      propertyPath: level
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304125320110239481, guid: 35ef53aa672532448abe04fd25cf606d, type: 3}
       propertyPath: _eggLevel
       value: 4
       objectReference: {fileID: 0}
@@ -26269,7 +26302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dbbd784bad66241a0e9b0a895eb826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eggTypes: []
 --- !u!23 &1558122986
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26418,6 +26450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saw (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3021342309528300092, guid: 406b887c0e0b5894e8e7dca2432fe2c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3021342309528300093, guid: 406b887c0e0b5894e8e7dca2432fe2c2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -26434,6 +26470,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 30.86
       objectReference: {fileID: 0}
+    - target: {fileID: 3021342309528300095, guid: 406b887c0e0b5894e8e7dca2432fe2c2, type: 3}
+      propertyPath: _roadMover
+      value: 
+      objectReference: {fileID: 153313991}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 406b887c0e0b5894e8e7dca2432fe2c2, type: 3}
 --- !u!4 &1595584252 stripped
@@ -26676,6 +26716,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 12.208
       objectReference: {fileID: 0}
+    - target: {fileID: 3021342309528300095, guid: 406b887c0e0b5894e8e7dca2432fe2c2, type: 3}
+      propertyPath: _roadMover
+      value: 
+      objectReference: {fileID: 153313991}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 406b887c0e0b5894e8e7dca2432fe2c2, type: 3}
 --- !u!4 &1811511336 stripped

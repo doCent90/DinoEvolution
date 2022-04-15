@@ -22,6 +22,9 @@ public class EggMover : MonoBehaviour
 
     public void Disable(Transform parent)
     {
+        if(this == PlayerHand.LastInStack)
+            PlayerHand.SetLastEgg(_previousEgg);
+
         if (_nextEgg != null && _previousEgg != null)
         {
             _previousEgg.SetNextEgg(_nextEgg);

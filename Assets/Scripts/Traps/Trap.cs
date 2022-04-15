@@ -3,12 +3,14 @@ using UnityEngine;
 public class Trap : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    [Range(1, 5)]
-    [SerializeField] private int _damage;
+    [SerializeField] private RoadMover _roadMover;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent(out Egg egg))
-            egg.TakeDamage(_damage);
+        {
+            _roadMover.OnTrapDone();
+            egg.Destroy();
+        }
     }
 }
