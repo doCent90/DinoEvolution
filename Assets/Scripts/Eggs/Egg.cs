@@ -31,9 +31,9 @@ public class Egg : MonoBehaviour
 
     public event Action<FinalPlace> BossAreaReached;
 
-    public void ResetEgg()
+    public void Sort(Transform parent)
     {
-        _eggMover.Disable();
+        _eggMover.Disable(parent);
     }
 
     public void TakeDamage(float damage)

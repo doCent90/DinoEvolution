@@ -6,9 +6,8 @@ using UnityEngine;
 public class EggMover : MonoBehaviour
 {
     private SphereCollider _collider;
-    private Transform _origParent;
     private EggAnimator _eggAnimator;
-    private EggMover _leaderEgg;
+    private EggMover _previousEgg;
     private EggMover _nextEgg;
 
     private float _power;
@@ -21,21 +20,41 @@ public class EggMover : MonoBehaviour
     public Egg Egg { get; private set; }
     public PlayerHand PlayerHand { get; private set; }
 
-    public void Disable()
+    public void Disable(Transform parent)
     {
-        _collider.enabled = false;
-        ResetFollow();
-    }
+        if (_nextEgg != null && _previousEgg != null)
+        {
+            _previousEgg.SetNextEgg(_nextEgg);
+            _nextEgg.SetPreviousEgg(_previousEgg);
+        }
 
-    public void ResetFollow()
-    {
-        transform.parent = _origParent;
-        _leaderEgg = null;
+        if(_nextEgg != null && _previousEgg == null)
+        {
+            _nextEgg.SetPreviousEgg(null);
+            _nextEgg.transform.parent = PlayerHand.EggStackPosition;
+            _nextEgg.transform.position = PlayerHand.EggStackPosition.position;
+        }
+
+        if(_nextEgg == null && _previousEgg != null)
+            _previousEgg.SetNextEgg(null);
+
+        _collider.enabled = false;
+        transform.parent = parent;
+
+        _nextEgg = null;
+        _previousEgg = null;
+
+        enabled = false;
     }
 
     public void SetNextEgg(EggMover egg)
     {
         _nextEgg = egg;
+    }
+
+    public void SetPreviousEgg(EggMover previousEgg)
+    {
+        _previousEgg = previousEgg;
     }
 
     public void OnTakedHand(PlayerHand playerHand)
@@ -49,8 +68,8 @@ public class EggMover : MonoBehaviour
         PlayerHand = playerHand;
         _step = step;
         _power = power;
-        _leaderEgg = followEgg;
         _hasStack = Egg.HasInStack;
+        SetPreviousEgg(followEgg);
         Animate();
     }
 
@@ -62,8 +81,8 @@ public class EggMover : MonoBehaviour
 
     public void AnimateLeaderEgg()
     {
-        if(_leaderEgg != null)
-            _leaderEgg.Animate();
+        if(_previousEgg != null)
+            _previousEgg.Animate();
     }
 
     private void OnEnable()
@@ -71,8 +90,6 @@ public class EggMover : MonoBehaviour
         Egg = GetComponent<Egg>();
         _collider = GetComponent<SphereCollider>();
         _eggAnimator = GetComponent<EggAnimator>();
-
-        _origParent = transform.parent;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -96,11 +113,11 @@ public class EggMover : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_hasStack == false || _leaderEgg == null)
+        if (_hasStack == false || _previousEgg == null)
             return;
 
         Vector3 position;
-        Vector3 targetPosition = new Vector3(_leaderEgg.transform.position.x, _leaderEgg.transform.position.y, _leaderEgg.transform.position.z + _step);
+        Vector3 targetPosition = new Vector3(_previousEgg.transform.position.x, _previousEgg.transform.position.y, _previousEgg.transform.position.z + _step);
 
         position = Vector3.Lerp(transform.position, targetPosition, _power);
         transform.position = position;

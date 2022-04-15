@@ -17,11 +17,8 @@ public class SortGate : MonoBehaviour
     {
         if(egg.WasLightsHeated == false || egg.WasWashed == false || egg.HaveNest == false)
         {
-            //egg.PlayerHand.DeleteNotCompleteEgg(egg);
-
-            //egg.transform.parent = transform;
-            //egg.GetComponent<EggMover>().enabled = false;
-            //egg.transform.DOMove(_point.position, DURATION);
+            egg.Sort(transform);
+            egg.transform.DOMove(_point.position, DURATION);
         }
     }
 }

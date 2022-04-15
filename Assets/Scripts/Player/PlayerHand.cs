@@ -13,6 +13,7 @@ public class PlayerHand : MonoBehaviour
     private Stack<Egg> _eggs = new Stack<Egg>();
 
     public EggMover LastInStack { get; private set; }
+    public Transform EggStackPosition => _eggStackPosition;
 
     public void SetLastEgg(EggMover eggMover)
     {
