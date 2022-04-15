@@ -5,6 +5,7 @@ using DG.Tweening;
 [RequireComponent(typeof(SphereCollider))]
 public class Egg : MonoBehaviour
 {
+    [SerializeField] private EggLevel _eggLevel;
     [SerializeField] private EggType _eggType;
     [SerializeField] private EggMover _eggMover;
     [SerializeField] private Transform _eggParent;
@@ -14,10 +15,10 @@ public class Egg : MonoBehaviour
 
     private float _health;
     private float _damage;
+    private int _upgradeCount;
 
     private EggModel _eggModel;
     private MeshRenderer _cleanEgg;
-    private SphereCollider _sphereCollider;
 
     public EggMover EggMover => _eggMover;
     public PlayerHand PlayerHand { get; private set; }
@@ -28,6 +29,29 @@ public class Egg : MonoBehaviour
     public bool WasLightsHeated { get; private set; } = false;
 
     public event Action<FinalPlace> BossAreaReached;
+
+    private void OnEnable()
+    {
+        Init();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent(out WashGate washer))
+            Wash();
+
+        if(other.TryGetComponent(out UVLamp uFLamp))
+            UVLampHeating();
+
+        if(other.TryGetComponent(out Grinder grinder))
+            ToGrinder();
+
+        if (other.TryGetComponent(out NestGate nestGate))
+            TakeNest();
+
+        if (other.TryGetComponent(out ColorChangeGate colorChangeGate))
+            TypeUpgrade();
+    }
 
     public void Sort(Transform parent)
     {
@@ -66,22 +90,16 @@ public class Egg : MonoBehaviour
         _eggAnimator.ScaleAnimation();
     }
 
-    private void OnEnable()
-    {
-        _sphereCollider = GetComponent<SphereCollider>();
-        Init();
-    }
-
     private void Init()
     {
+        _eggType.Init(_eggLevel);
+
         _health = _eggType.Health;
         _damage = _eggType.Damage;
+        var model = _eggType.EggModelType;
 
-        var model = _eggType.Init();
-        var egg = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
-
-        _eggModel = egg;
-        _cleanEgg = egg.GetComponent<MeshRenderer>();
+        _eggModel = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
+        _cleanEgg = _eggModel.GetComponent<MeshRenderer>();
     }
 
     private void ToGrinder()
@@ -98,6 +116,14 @@ public class Egg : MonoBehaviour
             Die();
             Animate();
         }
+    }
+
+    private void TypeUpgrade()
+    {
+        _eggLevel++;
+        Destroy(_eggModel.gameObject);
+        Init();
+        Animate();
     }
 
     private void UVLampHeating()
@@ -124,20 +150,5 @@ public class Egg : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject, 0.2f);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.TryGetComponent(out WashGate washer))
-            Wash();
-
-        if(other.TryGetComponent(out UVLamp uFLamp))
-            UVLampHeating();
-
-        if(other.TryGetComponent(out Grinder grinder))
-            ToGrinder();
-
-        if (other.TryGetComponent(out NestGate nestGate))
-            TakeNest();
     }
 }
