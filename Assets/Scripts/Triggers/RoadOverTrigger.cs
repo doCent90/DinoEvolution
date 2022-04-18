@@ -7,7 +7,7 @@ public class RoadOverTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out HandTrigger handTrigger))
+        if (other.TryGetComponent(out Player player))
             RoadOver?.Invoke();
     }
 }

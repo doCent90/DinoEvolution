@@ -9,6 +9,12 @@ public class InputController : MonoBehaviour
 
     public event Action Clicked;
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+            Clicked?.Invoke();
+    }
+
     public float GetSlideValue()
     {
         if (Input.GetMouseButton(0))
@@ -17,11 +23,5 @@ public class InputController : MonoBehaviour
         }
 
         return _axisX;
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-            Clicked?.Invoke();
     }
 }

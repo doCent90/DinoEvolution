@@ -5,46 +5,44 @@ using System.Collections;
 public class CameraSwitcher : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _gameCamera;
-    [SerializeField] private CinemachineVirtualCamera _roadOverCamera;
     [SerializeField] private CinemachineVirtualCamera _bossAreaCamera;
+    [SerializeField] private CinemachineVirtualCamera _bossFightCamera;
     [Header("Triggers")]
-    [SerializeField] private RoadOverTrigger _roadOverTrigger;
-    [SerializeField] private BossAreaTrigger _BossAreaTrigger;
+    [SerializeField] private BossAreaTrigger _bossAreaTrigger;
+    [SerializeField] private UI _uI;
 
     private CinemachineVirtualCamera[] _cameras;
 
-    private const float DELAY = 2f;
     private const int MIN_PRIORITET = 1;
     private const int MAX_PRIORITET = 2;
 
     private void OnEnable()
     {
         _cameras = GetComponentsInChildren<CinemachineVirtualCamera>();
-
-        _roadOverTrigger.RoadOver += OnRoadOver;
-        _BossAreaTrigger.NestsReached += OnBossAreaReached;
+        _uI.TapToFightClicked += OnFightEnable;
+        _bossAreaTrigger.BossAreaReached += OnBossAreaReached;
     }
 
     private void OnDisable()
     {
-        _roadOverTrigger.RoadOver -= OnRoadOver;
-        _BossAreaTrigger.NestsReached -= OnBossAreaReached;        
+        _uI.TapToFightClicked -= OnFightEnable;
+        _bossAreaTrigger.BossAreaReached -= OnBossAreaReached;        
     }
 
-    private void OnRoadOver()
+    private void OnFightEnable()
     {
-        SetPriority(MAX_PRIORITET, _roadOverCamera);
+        EnableCamera(_bossFightCamera);
     }
 
     private void OnBossAreaReached()
     {
-        SetPriority(MAX_PRIORITET, _bossAreaCamera);
+        EnableCamera( _bossAreaCamera);
     }
 
-    private void SetPriority(int prioritet, CinemachineVirtualCamera mainCamera)
+    private void EnableCamera(CinemachineVirtualCamera mainCamera)
     {
         ResetPriority();
-        mainCamera.Priority = prioritet;
+        mainCamera.Priority = MAX_PRIORITET;
     }
 
     private void ResetPriority()
@@ -53,14 +51,5 @@ public class CameraSwitcher : MonoBehaviour
         {
             camera.Priority = MIN_PRIORITET;
         }
-    }
-
-    private IEnumerator TimerToSwitch(CinemachineVirtualCamera camera)
-    {
-        var waitForSeconds = new WaitForSeconds(DELAY);
-        yield return waitForSeconds;
-        SetPriority(MAX_PRIORITET, camera);
-        yield return waitForSeconds;
-        camera.LookAt = null;
     }
 }

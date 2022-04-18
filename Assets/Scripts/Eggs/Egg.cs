@@ -11,14 +11,11 @@ public class Egg : MonoBehaviour
     [SerializeField] private Transform _eggParent;
     [SerializeField] private EggAnimator _eggAnimator;
     [Header("Meshes")]
-    [SerializeField] private MeshRenderer _dino;
     [SerializeField] private MeshRenderer _nest;
     [SerializeField] private MeshRenderer _dirt;
 
-    private float _health;
-    private float _damage;
-
-    private EggModel _eggModel;
+    private EggData _data;
+    private EggModel _model;
     private RoadParent _roadParent;
     private MeshRenderer _cleanEgg;
 
@@ -29,8 +26,6 @@ public class Egg : MonoBehaviour
     public bool HaveNest { get; private set; } = false;
     public bool WasWashed { get; private set; } = false;
     public bool WasLightsHeated { get; private set; } = false;
-
-    public event Action<FinalPlace> BossAreaReached;
 
     private void OnEnable()
     {
@@ -74,11 +69,11 @@ public class Egg : MonoBehaviour
         _eggMover.OnTakedHand(playerHand);
     }
 
-    public void OnNextTaked(EggMover follwerEgg, PlayerHand playerHand)
+    public void OnNextTaked(EggMover follwerEgg, PlayerHand playerHand, Transform parent)
     {
         HasInStack = true;
         PlayerHand = playerHand;
-        _eggMover.OnTaked(PlayerHand, follwerEgg);
+        _eggMover.OnTaked(PlayerHand, follwerEgg, parent);
     }
 
     public void Animate()
@@ -88,28 +83,31 @@ public class Egg : MonoBehaviour
 
     private void InitType()
     {
-        EggData data = _eggType.GetTypeData(level);
+        _data = _eggType.GetTypeData(level);
+        var model = _data.EggModelType;
 
-        _health = data.Health;
-        _damage = data.Damage;
-        var model = data.EggModelType;
+        _model = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
+        _cleanEgg = _model.GetComponent<MeshRenderer>();
+    }
 
-        _eggModel = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
-        _cleanEgg = _eggModel.GetComponent<MeshRenderer>();
+    private void SpawnDino()
+    {
+        var dino = Instantiate(_data.Dino, transform.position, Quaternion.identity);
+        dino.Init(PlayerHand.BossArea, _data.Health, _data.Damage);
     }
 
     private void ToGrinder()
     {
-        _dino.enabled = true;
+        SpawnDino();
         _nest.enabled = false;
         _cleanEgg.enabled = false;
-        _eggModel.DestroyCells();
+        _model.DestroyCells();
     }
 
     private void TypeUpgrade()
     {
         level++;
-        Destroy(_eggModel.gameObject);
+        Destroy(_model.gameObject);
         InitType();
         Animate();
     }
@@ -118,7 +116,7 @@ public class Egg : MonoBehaviour
     {
         WasLightsHeated = true;
         _cleanEgg.enabled = false;
-        _eggModel.EnableCleanCells();
+        _model.EnableCleanCells();
         Animate();
     }
 
@@ -140,7 +138,7 @@ public class Egg : MonoBehaviour
         _nest.enabled = false;
         _dirt.enabled = false;
         _cleanEgg.enabled = false;
-        _eggModel.DestroyCells();
+        _model.DestroyCells();
 
         Destroy(gameObject, 3f);
     }

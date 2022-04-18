@@ -5,8 +5,11 @@ public class RoadMover : MonoBehaviour
 {
     [SerializeField] private RoadOverTrigger _roadEndTrigger;
     [SerializeField] private float _speed;
+    [Header("Moveable objects")]
+    [SerializeField] private RoadTrigger _road;
 
-    private readonly float _baackUpSpeed = -20f;
+    private readonly float _backUpSpeed = -20f;
+    private readonly float _disableTime = 2f;
     private float _currentSpeed;
     private float _spentTime;
 
@@ -26,17 +29,26 @@ public class RoadMover : MonoBehaviour
             _spentTime += Time.deltaTime / 3;
 
         _currentSpeed = Mathf.Lerp(_currentSpeed, _speed, _spentTime);
-        transform.Translate(Vector3.back * _currentSpeed * Time.deltaTime);
-    }
 
+        transform.Translate(Vector3.forward * _currentSpeed * Time.deltaTime);
+        _road.transform.Translate(Vector3.back * _currentSpeed * Time.deltaTime);
+    }
 
     public void OnTrapDone()
     {
-        _currentSpeed = _baackUpSpeed;
+        _currentSpeed = _backUpSpeed;
         _spentTime = 0;
     }
 
     private void OnRoadOver()
+    {
+        _currentSpeed = 0;
+        _speed = _currentSpeed;
+
+        Invoke(nameof(Disable), _disableTime);
+    }
+
+    private void Disable()
     {
         enabled = false;
     }

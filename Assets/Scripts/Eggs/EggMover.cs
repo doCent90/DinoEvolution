@@ -65,9 +65,9 @@ public class EggMover : MonoBehaviour
         PlayerHand = playerHand;
     }
 
-    public void OnTaked(PlayerHand playerHand, EggMover followEgg)
+    public void OnTaked(PlayerHand playerHand, EggMover followEgg, Transform parent)
     {
-        transform.parent = null;
+        transform.parent = parent;
         PlayerHand = playerHand;
         _hasStack = Egg.HasInStack;
         SetPreviousEgg(followEgg);
@@ -100,13 +100,13 @@ public class EggMover : MonoBehaviour
             if (egg.HasInStack == false && this == PlayerHand.LastInStack)
             {
                 SetNextEgg(egg.EggMover);
-                egg.OnNextTaked(this, PlayerHand);
+                egg.OnNextTaked(this, PlayerHand, PlayerHand.EggStackParent);
                 PlayerHand.SetLastEgg(egg.EggMover);
             }
             else if (egg.HasInStack == false && this != PlayerHand.LastInStack)
             {
                 PlayerHand.LastInStack.SetNextEgg(egg.EggMover);
-                egg.OnNextTaked(PlayerHand.LastInStack, PlayerHand);
+                egg.OnNextTaked(PlayerHand.LastInStack, PlayerHand, PlayerHand.EggStackParent);
                 PlayerHand.SetLastEgg(egg.EggMover);
             }
         }
@@ -121,6 +121,6 @@ public class EggMover : MonoBehaviour
         Vector3 targetPosition = new Vector3(_previousEgg.transform.position.x, _previousEgg.transform.position.y, _previousEgg.transform.position.z + _step);
 
         position = Vector3.Lerp(transform.position, targetPosition, _power * Time.deltaTime);
-        transform.position = position;
+        transform.position = new Vector3(position.x, targetPosition.y, targetPosition.z);
     }
 }

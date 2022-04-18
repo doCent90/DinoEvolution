@@ -39,10 +39,12 @@ public class EggType : ScriptableObject
 public class EggData
 {
     [SerializeField] private EggModel _eggModelType;
+    [SerializeField] private Dino _dino;
     [SerializeField] private int _damage;
     [SerializeField] private int _health;
 
     public EggModel EggModelType => _eggModelType;
+    public Dino Dino => _dino;
     public int Damage => _damage;
     public int Health => _health;
 }

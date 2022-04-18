@@ -6,12 +6,16 @@ using System.Collections.Generic;
 [RequireComponent(typeof(BoxCollider))]
 public class PlayerHand : MonoBehaviour
 {
+    [SerializeField] private BossArea _bossArea;
     [SerializeField] private PlayerAnimator _animator;
+    [SerializeField] private Transform _eggStackParent;
     [SerializeField] private Transform _eggStackPosition;
 
     private bool _isBusy = false;
 
     public EggMover LastInStack { get; private set; }
+    public BossArea BossArea => _bossArea;
+    public Transform EggStackParent => _eggStackParent;
     public Transform EggStackPosition => _eggStackPosition;
 
     public void SetLastEgg(EggMover eggMover)
