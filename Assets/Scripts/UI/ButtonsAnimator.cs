@@ -15,21 +15,19 @@ public class ButtonsAnimator : MonoBehaviour
 
     private UI _uI;
 
-    private readonly float _delay = 2f;
+    private readonly float _delay = 3f;
     private readonly float _delayTap = 0.35f;
 
     private void OnEnable()
     {
         _uI = GetComponent<UI>();
         _uI.FightClicked += DisableTapsText;
-        _uI.TapToFightClicked += DisableTapToFight;
         _bossAreaTrigger.BossAreaReached += OnBossAreaTrigged;
     }
 
     private void OnDisable()
     {
         _uI.FightClicked -= DisableTapsText;
-        _uI.TapToFightClicked -= DisableTapToFight;        
         _bossAreaTrigger.BossAreaReached -= OnBossAreaTrigged;
     }
 
@@ -50,23 +48,12 @@ public class ButtonsAnimator : MonoBehaviour
 
     private void OnBossAreaTrigged()
     {
-        Invoke(nameof(EnableTapToFight), _delay);
-    }
-
-    private void EnableTapToFight()
-    {
-        EnableCanvas(_tapToFightButton);
-        _healthBar.Show();
-    }
-
-    private void DisableTapToFight()
-    {
-        DisableCanvas(_tapToFightButton);
         Invoke(nameof(EnableFightButton), _delay);
     }
 
     private void EnableFightButton()
     {
+        _healthBar.Show();
         EnableCanvas(_fightButton);
         EnableTapsText();
     }

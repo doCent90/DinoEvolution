@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    [SerializeField] private UI _uI;
     [SerializeField] private Transform _regDoll;
     [SerializeField] private Animator _animator;
     [SerializeField] private RegDollKicker _regDollKicker;
+    [SerializeField] private BossAreaTrigger _bossAreaTrigger;
 
     private List<Dino> _dinos = new List<Dino>();
 
-    private readonly float _delay = 4f;
-
+    private const float DELAY = 4f;
     private const string WIN = "Win";
     private const string ATTACK = "Attack";
 
@@ -27,12 +26,12 @@ public class Boss : MonoBehaviour
 
     private void OnEnable()
     {
-        _uI.TapToFightClicked += OnTapToFightClicked;
+        _bossAreaTrigger.BossAreaReached += Init;
     }
 
     private void OnDisable()
     {
-        _uI.TapToFightClicked -= OnTapToFightClicked;        
+        _bossAreaTrigger.BossAreaReached -= Init;        
     }
 
     public void AddDinos(Dino dino)
@@ -81,11 +80,11 @@ public class Boss : MonoBehaviour
         Damage = _dinos.Sum(dino => dino.Health) / _dinos.Count;
     }
 
-    private void OnTapToFightClicked()
+    private void Init()
     {
         SetHealth();
         SetDamage();
-        Invoke(nameof(PlayAttackAnimation), _delay);
+        Invoke(nameof(PlayAttackAnimation), DELAY);
     }
 
     private void PlayAttackAnimation()

@@ -12,6 +12,8 @@ public class Dino : MonoBehaviour
     private DinoAnimator _dinoAnimator;
     private NavMeshAgent _navMeshAgent;
 
+    private const float DELAY = 5f;
+
     public UI UI { get; private set; }
     public float Health {get; private set;}
     public float Damage {get; private set;}
@@ -27,7 +29,6 @@ public class Dino : MonoBehaviour
     {
         _boss.Died -= Win;
         UI.FightClicked -= PlayAttackAnimation;
-        UI.TapToFightClicked -= GoToBoss;
     }
 
     public void Init(BossArea bossArea, float health, float damage)
@@ -43,7 +44,6 @@ public class Dino : MonoBehaviour
         _boss.AddDinos(this);
 
         _boss.Died += Win;
-        UI.TapToFightClicked += GoToBoss;
         UI.FightClicked += PlayAttackAnimation;
     }
 
@@ -90,6 +90,8 @@ public class Dino : MonoBehaviour
     {
         Transform target = _bossArea.GetPosition();
         GoToPosition(target);
+
+        Invoke(nameof(GoToBoss), DELAY);
     }
 
     private void GoToBoss()

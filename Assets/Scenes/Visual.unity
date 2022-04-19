@@ -460,7 +460,7 @@ Transform:
   - {fileID: 543450652931895593}
   - {fileID: 543450652307190297}
   m_Father: {fileID: 153313990}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &101617704
 PrefabInstance:
@@ -784,7 +784,6 @@ Transform:
   - {fileID: 1471169953}
   - {fileID: 1959683046}
   - {fileID: 1931262948}
-  - {fileID: 1170371131}
   - {fileID: 201461397}
   - {fileID: 101144476}
   - {fileID: 2113403559}
@@ -1021,7 +1020,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 153313990}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &201461398
 MonoBehaviour:
@@ -17466,11 +17465,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003165846}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 106.7}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -5.009995, y: 0, z: 0.09999943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1170371131}
+  m_Father: {fileID: 1581655369}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1003165848
@@ -17651,6 +17650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f083754ec66ec16448ac01f3830aa3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBoss: 1
 --- !u!1 &1100608382
 GameObject:
   m_ObjectHideFlags: 0
@@ -27523,38 +27523,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162394331}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1170371130
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1170371131}
-  m_Layer: 0
-  m_Name: Triggers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1170371131
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170371130}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1920092270}
-  - {fileID: 1003165847}
-  m_Father: {fileID: 153313990}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1195805859
 GameObject:
   m_ObjectHideFlags: 0
@@ -28327,7 +28295,7 @@ GameObject:
   - component: {fileID: 1581655371}
   - component: {fileID: 1581655370}
   m_Layer: 0
-  m_Name: Grinder_Gate
+  m_Name: Grinder_Gate_Triggers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28344,6 +28312,8 @@ Transform:
   m_LocalPosition: {x: -0.1, y: 0, z: 101.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1920092270}
+  - {fileID: 1003165847}
   - {fileID: 2056023049}
   m_Father: {fileID: 1471169953}
   m_RootOrder: 5
@@ -34040,11 +34010,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920092269}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 107.76}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -6.069993, y: 0, z: 0.09999895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1170371131}
+  m_Father: {fileID: 1581655369}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1920092271
@@ -39189,7 +39159,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4841753850410342894, guid: d476cc516ba6d8745a1317d3f7e4b598, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4841753850410342894, guid: d476cc516ba6d8745a1317d3f7e4b598, type: 3}
       propertyPath: m_LocalScale.x
@@ -39382,7 +39352,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 153313990}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2125737656
 GameObject:
@@ -40588,10 +40558,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2f3a1087f04ca4aa0cfc754b97ac0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uI: {fileID: 5457640671325501858}
   _regDoll: {fileID: 1036154526}
   _animator: {fileID: 1036154527}
   _regDollKicker: {fileID: 1036154529}
+  _bossAreaTrigger: {fileID: 1003165848}
 --- !u!1 &919132149085334962
 GameObject:
   m_ObjectHideFlags: 0
@@ -59935,7 +59905,6 @@ MonoBehaviour:
   _retry: {fileID: 5457640671780673070}
   _restart: {fileID: 5457640671489995928}
   _fightTap: {fileID: 331229086}
-  _tapToFight: {fileID: 2032565458}
 --- !u!1 &5457640671325501860
 GameObject:
   m_ObjectHideFlags: 0
@@ -61055,7 +61024,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000007906173, y: 1.8105551, z: 0.13577342}
+  m_ConnectedAnchor: {x: 0.000007906172, y: 1.8105551, z: 0.13577366}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:

@@ -18,12 +18,10 @@ public class UI : MonoBehaviour
     [SerializeField] private Button _retry;
     [SerializeField] private Button _restart;
     [SerializeField] private Button _fightTap;
-    [SerializeField] private Button _tapToFight;
 
     private const float DURATION = 0.5f;
 
     public event Action FightClicked;
-    public event Action TapToFightClicked;
 
     private void OnEnable()
     {
@@ -34,7 +32,6 @@ public class UI : MonoBehaviour
         _retry.onClick.AddListener(Restart);
         _restart.onClick.AddListener(Restart);
         _fightTap.onClick.AddListener(OnFightCliked);
-        _tapToFight.onClick.AddListener(OnTapToFightCliked);
     }
 
     private void OnDisable()
@@ -46,7 +43,6 @@ public class UI : MonoBehaviour
         _retry.onClick.RemoveListener(Restart);
         _restart.onClick.RemoveListener(Restart);
         _fightTap.onClick.RemoveListener(OnFightCliked);
-        _tapToFight.onClick.RemoveListener(OnTapToFightCliked);
     }
 
     private void StartGame()
@@ -61,14 +57,9 @@ public class UI : MonoBehaviour
         _levelsLoader.Restart();
     }
 
-    private void OnTapToFightCliked()
-    {
-        _inputController.enabled = false;
-        TapToFightClicked?.Invoke();
-    }
-
     private void OnFightCliked()
     {
+        _inputController.enabled = false;
         FightClicked?.Invoke();
     }
 

@@ -1,6 +1,5 @@
 using UnityEngine;
 using Cinemachine;
-using System.Collections;
 
 public class CameraSwitcher : MonoBehaviour
 {
@@ -13,19 +12,19 @@ public class CameraSwitcher : MonoBehaviour
 
     private CinemachineVirtualCamera[] _cameras;
 
+    private const float DELAY = 1f;
+
     private const int MIN_PRIORITET = 1;
     private const int MAX_PRIORITET = 2;
 
     private void OnEnable()
     {
         _cameras = GetComponentsInChildren<CinemachineVirtualCamera>();
-        _uI.TapToFightClicked += OnFightEnable;
         _bossAreaTrigger.BossAreaReached += OnBossAreaReached;
     }
 
     private void OnDisable()
     {
-        _uI.TapToFightClicked -= OnFightEnable;
         _bossAreaTrigger.BossAreaReached -= OnBossAreaReached;        
     }
 
@@ -37,6 +36,7 @@ public class CameraSwitcher : MonoBehaviour
     private void OnBossAreaReached()
     {
         EnableCamera( _bossAreaCamera);
+        Invoke(nameof(OnFightEnable), DELAY);
     }
 
     private void EnableCamera(CinemachineVirtualCamera mainCamera)
