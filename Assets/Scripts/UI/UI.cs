@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,9 +15,12 @@ public class UI : MonoBehaviour
     [SerializeField] private CanvasGroup _winPanel;
     [SerializeField] private CanvasGroup _losePanel;
     [Header("Buttons")]
+    [SerializeField] private Button _retry;
     [SerializeField] private Button _restart;
     [SerializeField] private Button _fightTap;
     [SerializeField] private Button _tapToFight;
+
+    private const float DURATION = 0.5f;
 
     public event Action FightClicked;
     public event Action TapToFightClicked;
@@ -27,6 +31,7 @@ public class UI : MonoBehaviour
         _boss.Died += OnBossDied;
         _inputController.Clicked += StartGame;
 
+        _retry.onClick.AddListener(Restart);
         _restart.onClick.AddListener(Restart);
         _fightTap.onClick.AddListener(OnFightCliked);
         _tapToFight.onClick.AddListener(OnTapToFightCliked);
@@ -38,6 +43,7 @@ public class UI : MonoBehaviour
         _boss.Died -= OnBossDied;
         _inputController.Clicked -= StartGame;
 
+        _retry.onClick.RemoveListener(Restart);
         _restart.onClick.RemoveListener(Restart);
         _fightTap.onClick.RemoveListener(OnFightCliked);
         _tapToFight.onClick.RemoveListener(OnTapToFightCliked);
@@ -80,14 +86,14 @@ public class UI : MonoBehaviour
 
     private void EnableCanvas(CanvasGroup canvasGroup)
     {
-        canvasGroup.alpha = 1;
+        canvasGroup.DOFade(1, DURATION);
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
     }
 
     private void DisableCanvas(CanvasGroup canvasGroup)
     {
-        canvasGroup.alpha = 0;
+        canvasGroup.DOFade(0, DURATION);
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
     }

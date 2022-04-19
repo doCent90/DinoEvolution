@@ -6,6 +6,7 @@ using UnityEngine;
 public class ButtonsAnimator : MonoBehaviour
 {
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
+    [SerializeField] private DinoHealthBar _healthBar;
     [SerializeField] private CanvasGroup _tapToFightButton;
     [SerializeField] private CanvasGroup _fightButton;
     [SerializeField] private CanvasGroup _tapsCanvas;
@@ -55,6 +56,7 @@ public class ButtonsAnimator : MonoBehaviour
     private void EnableTapToFight()
     {
         EnableCanvas(_tapToFightButton);
+        _healthBar.Show();
     }
 
     private void DisableTapToFight()

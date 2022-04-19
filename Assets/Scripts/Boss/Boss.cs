@@ -3,12 +3,13 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class Boss : MonoBehaviour
 {
     [SerializeField] private UI _uI;
+    [SerializeField] private Transform _regDoll;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private RegDollKicker _regDollKicker;
 
-    private Animator _animator;
     private List<Dino> _dinos = new List<Dino>();
 
     private readonly float _delay = 4f;
@@ -17,14 +18,15 @@ public class Boss : MonoBehaviour
     private const string ATTACK = "Attack";
 
     public float Health { get; private set; }
+    public float HealthMax { get; private set; }
     public float Damage { get; private set; }
 
     public event Action Won;
     public event Action Died;
+    public event Action HealthChanged;
 
     private void OnEnable()
     {
-        _animator = GetComponent<Animator>();
         _uI.TapToFightClicked += OnTapToFightClicked;
     }
 
@@ -47,11 +49,31 @@ public class Boss : MonoBehaviour
 
         if(Health <= 0)
             Die();
+
+        HealthChanged?.Invoke();
+    }
+
+    public void Attack()
+    {
+        var isWon = _dinos.Any(dino => dino.IsAlive);
+
+        if (isWon == false)
+        {
+            Win();
+            return;
+        }
+
+        var target = _dinos.OrderByDescending(dino => dino.Health).FirstOrDefault(dino => dino.IsAlive);
+        target.TakeDamage(Damage);
+
+        Vector3 lookPosition = new Vector3(_regDoll.position.x, target.transform.position.y, _regDoll.position.z);
+        _regDoll.LookAt(lookPosition);
     }
 
     private void SetHealth()
     {
         Health = _dinos.Sum(dino => dino.Damage) * 3;
+        HealthMax = Health;
     }
 
     private void SetDamage()
@@ -71,23 +93,6 @@ public class Boss : MonoBehaviour
         _animator.SetTrigger(ATTACK);
     }
 
-    private void Attack() // Invoke from animation clip.
-    {
-        var isWon = _dinos.Any(dino => dino.IsAlive);
-
-        if (isWon == false)
-        {
-            Win();
-            return;
-        }
-
-        var target = _dinos.OrderByDescending(dino => dino.Health).FirstOrDefault(dino => dino.IsAlive);
-        target.TakeDamage(Damage);
-
-        Vector3 lookPosition = new Vector3(transform.position.x, target.transform.position.y, transform.position.z);
-        transform.LookAt(lookPosition);
-    }
-
     private void Win()
     {
         _animator.SetTrigger(WIN);
@@ -98,6 +103,7 @@ public class Boss : MonoBehaviour
     {
         _animator.enabled = false;
         enabled = false;
+        _regDollKicker.Kick();
         Died?.Invoke();
     }
 }

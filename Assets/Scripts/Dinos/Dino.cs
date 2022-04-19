@@ -5,6 +5,8 @@ using UnityEngine.AI;
 [RequireComponent (typeof(DinoAnimator))]
 public class Dino : MonoBehaviour
 {
+    [SerializeField] private RegDollKicker _regDollKicker;
+
     private Boss _boss;
     private BossArea _bossArea;
     private DinoAnimator _dinoAnimator;
@@ -76,6 +78,7 @@ public class Dino : MonoBehaviour
         IsAlive = false;
         _dinoAnimator.enabled = false;
         enabled = false;
+        _regDollKicker.Kick();
     }
 
     private void Win()
