@@ -2970,7 +2970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6772451980638839165}
   m_Layer: 0
-  m_Name: Dino
+  m_Name: Dino_Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

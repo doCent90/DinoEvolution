@@ -67,7 +67,7 @@ public class Dino : MonoBehaviour
         _dinoAnimator.PlayAttack();
     }
 
-    private void Attack() // Invoke from animation clip.
+    public void Attack()
     {
         if(IsAlive)
             _boss.TakeDamage(Damage);

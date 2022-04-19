@@ -5,11 +5,14 @@ public class RegDollKicker : MonoBehaviour
     [SerializeField] private bool _isBoss;
 
     private Rigidbody[] _rigidbodies;
-    private readonly float _range = 6f;
+    private readonly float _range = 4f;
 
     private void OnEnable()
     {
         _rigidbodies = GetComponentsInChildren<Rigidbody>();
+
+        foreach (var dino in _rigidbodies)
+            dino.isKinematic = true;
     }
 
     public void Kick()

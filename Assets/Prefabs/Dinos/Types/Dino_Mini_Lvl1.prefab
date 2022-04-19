@@ -620,6 +620,7 @@ GameObject:
   - component: {fileID: 8479186240712796042}
   - component: {fileID: 7636936893259968095}
   - component: {fileID: 58128916889574897}
+  - component: {fileID: 1385826341472060426}
   m_Layer: 0
   m_Name: Dino_Mini_Lvl1
   m_TagString: Untagged
@@ -653,7 +654,7 @@ Animator:
   m_GameObject: {fileID: 1508519255652494475}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 35fcf5e207be36e4abb02f11b96ac2e6, type: 2}
+  m_Controller: {fileID: 9100000, guid: c0d3f63b78276b0459e89f92e887f8b0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -696,6 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 859ae292e09994b438c832c61f2f4547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 1508519255652494472}
 --- !u!114 &7636936893259968095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,6 +723,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f083754ec66ec16448ac01f3830aa3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBoss: 0
+--- !u!114 &1385826341472060426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508519255652494475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea608b99d80deb42a534a6fb1fd976e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dino: {fileID: 7636936893259968095}
 --- !u!1 &1564767702034091205
 GameObject:
   m_ObjectHideFlags: 0

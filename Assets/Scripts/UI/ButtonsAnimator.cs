@@ -5,8 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(UI))]
 public class ButtonsAnimator : MonoBehaviour
 {
-    [SerializeField] private BossAreaTrigger _bossAreaTrigger;
+    [SerializeField] private Boss _boss;
     [SerializeField] private DinoHealthBar _healthBar;
+    [SerializeField] private BossAreaTrigger _bossAreaTrigger;
     [SerializeField] private CanvasGroup _tapToFightButton;
     [SerializeField] private CanvasGroup _fightButton;
     [SerializeField] private CanvasGroup _tapsCanvas;
@@ -21,12 +22,14 @@ public class ButtonsAnimator : MonoBehaviour
     private void OnEnable()
     {
         _uI = GetComponent<UI>();
+        _boss.Died += HideRestart;
         _uI.FightClicked += DisableTapsText;
         _bossAreaTrigger.BossAreaReached += OnBossAreaTrigged;
     }
 
     private void OnDisable()
     {
+        _boss.Died -= HideRestart;
         _uI.FightClicked -= DisableTapsText;
         _bossAreaTrigger.BossAreaReached -= OnBossAreaTrigged;
     }
@@ -54,8 +57,13 @@ public class ButtonsAnimator : MonoBehaviour
     private void EnableFightButton()
     {
         _healthBar.Show();
-        EnableCanvas(_fightButton);
         EnableTapsText();
+        EnableCanvas(_fightButton);
+    }
+
+    private void HideRestart()
+    {
+        DisableCanvas(_fightButton);
     }
 
     private void EnableTapsText()
