@@ -14,7 +14,9 @@ public class Boss : Dinosaur
 
     private List<DinoMini> _dinos = new List<DinoMini>();
     private bool _isReadyToAttack = false;
+    private int _typeAttack;
 
+    private const int SUPER_ATTACK = 2;
     private const float DELAY = 5f;
     private const string WIN = "Win";
     private const string ATTACK = "Attack";
@@ -67,19 +69,19 @@ public class Boss : Dinosaur
 
     public void Attack()
     {
-        var isWon = _dinos.Any(dino => dino.IsAlive);
-
-        if (isWon == false)
+        if(_typeAttack == SUPER_ATTACK)
         {
-            Win();
-            return;
+            var targets = _dinos.Where(dino => dino.IsAlive).ToList();
+            targets.ForEach(dino => dino.TakeDamage(Damage / 2));
         }
+        else
+        {
+            var target = _dinos.OrderByDescending(dino => dino.Health).FirstOrDefault(dino => dino.IsAlive);
+            target.TakeDamage(Damage);
 
-        var target = _dinos.OrderByDescending(dino => dino.Health).FirstOrDefault(dino => dino.IsAlive);
-        target.TakeDamage(Damage);
-
-        Vector3 lookPosition = new Vector3(_regDoll.position.x, target.transform.position.y, _regDoll.position.z);
-        _regDoll.LookAt(lookPosition);
+            Vector3 lookPosition = new Vector3(_regDoll.position.x, target.transform.position.y, _regDoll.position.z);
+            _regDoll.LookAt(lookPosition);
+        }
     }
 
     private void SetHealth()
@@ -108,7 +110,16 @@ public class Boss : Dinosaur
 
     private void PlayAttackAnimation()
     {
-        int random = Random.Range(1, 3);
+        var isWon = _dinos.Any(dino => dino.IsAlive);
+
+        if (isWon == false)
+        {
+            Win();
+            return;
+        }
+
+        int random = Random.Range(0, 3);
+        _typeAttack = random;
 
         _animator.SetTrigger(ATTACK);
         _animator.SetFloat(ATTACKS_TYPE, random);

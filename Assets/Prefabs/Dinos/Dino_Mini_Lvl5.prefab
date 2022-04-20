@@ -566,6 +566,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1315807797352126762}
+  _renderer: {fileID: 2197767849497135812}
+  _blinkMaterial: {fileID: 2100000, guid: f269f6dd485be89418f79998f24c9ed5, type: 2}
   _particleSystem: {fileID: 7321136524271206244}
 --- !u!114 &7636936893259968095
 MonoBehaviour:
