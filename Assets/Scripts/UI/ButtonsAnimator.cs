@@ -16,7 +16,7 @@ public class ButtonsAnimator : MonoBehaviour
 
     private UI _uI;
 
-    private readonly float _delay = 3f;
+    private readonly float _delay = 4f;
     private readonly float _delayTap = 0.35f;
 
     private void OnEnable()

@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _level1:
     _eggModelType: {fileID: 5327234473167632361, guid: 4e262a018a2874743b944093a0e011b7, type: 3}
-    _dino: {fileID: 7636936893259968095, guid: c7e5900bb6630ae4d977d3d9255fcd05, type: 3}
+    _dino: {fileID: 7636936893259968095, guid: 430161a056533c340a2d5bb032767a2f, type: 3}
     _damage: 2
     _health: 10
   _level2:
     _eggModelType: {fileID: 8473939482032130097, guid: 8589a98dd328b5146ab6042915e0c208, type: 3}
-    _dino: {fileID: 7636936893259968095, guid: 782738d0f74b46547b2ae9d66383c7ec, type: 3}
+    _dino: {fileID: 7636936893259968095, guid: 430161a056533c340a2d5bb032767a2f, type: 3}
     _damage: 4
     _health: 20
   _level3:
     _eggModelType: {fileID: 2058422925919755206, guid: b56b956de9eccf74090eba99b5bd77fc, type: 3}
-    _dino: {fileID: 7636936893259968095, guid: c7e5900bb6630ae4d977d3d9255fcd05, type: 3}
+    _dino: {fileID: 7636936893259968095, guid: 430161a056533c340a2d5bb032767a2f, type: 3}
     _damage: 6
     _health: 30
   _level4:

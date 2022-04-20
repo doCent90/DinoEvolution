@@ -12,7 +12,7 @@ public class NestGate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Egg egg))
+        if (other.TryGetComponent(out Egg egg) && egg.HaveNest == false)
             _nestGateAnimator.DeleteCurrentNest();
     }
 }

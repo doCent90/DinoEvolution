@@ -11,9 +11,7 @@ public class DinoHealthBar : MonoBehaviour
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private float _speed = 0.008f;
 
-    private readonly float _delay = 0.6f;
-
-    private const float DURATION = 1f;
+    private const float DURATION = 0.3f;
 
     private void OnEnable()
     {
@@ -37,12 +35,7 @@ public class DinoHealthBar : MonoBehaviour
 
     private void Hide()
     {
-        Invoke(nameof(DisableCanvas), _delay);
-    }
-
-    private void DisableCanvas()
-    {
-        _canvasGroup.alpha = 0;
+        _canvasGroup.DOFade(0, DURATION);
     }
 
     private void OnHealthChanged()
@@ -54,7 +47,7 @@ public class DinoHealthBar : MonoBehaviour
 
     private IEnumerator ShowFillBack(float health)
     {
-        var waitForSeconds = new WaitForSeconds(_delay);
+        var waitForSeconds = new WaitForSeconds(DURATION);
         var waitForFixedUpdate = new WaitForFixedUpdate();
         yield return waitForSeconds;
 

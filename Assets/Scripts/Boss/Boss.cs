@@ -1,24 +1,26 @@
 using System;
 using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
-public class Boss : MonoBehaviour
+public class Boss : Dinosaur
 {
     [SerializeField] private Transform _regDoll;
     [SerializeField] private Animator _animator;
-    [SerializeField] private RegDollKicker _regDollKicker;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
+    [SerializeField] private float _delayBetwenAttack = 1f;
 
-    private List<Dino> _dinos = new List<Dino>();
+    private List<DinoMini> _dinos = new List<DinoMini>();
+    private bool _isReadyToAttack = false;
 
-    private const float DELAY = 4f;
+    private const float DELAY = 5f;
     private const string WIN = "Win";
     private const string ATTACK = "Attack";
+    private const string ATTACKS_TYPE = "AttacksType";
 
-    public float Health { get; private set; }
     public float HealthMax { get; private set; }
-    public float Damage { get; private set; }
 
     public event Action Won;
     public event Action Died;
@@ -34,7 +36,18 @@ public class Boss : MonoBehaviour
         _bossAreaTrigger.BossAreaReached -= Init;        
     }
 
-    public void AddDinos(Dino dino)
+    private IEnumerator AttackRepeat()
+    {
+        var waitForSeconds = new WaitForSeconds(_delayBetwenAttack);
+
+        while (_isReadyToAttack)
+        {
+            PlayAttackAnimation();
+            yield return waitForSeconds;
+        }        
+    }
+
+    public void AddDinos(DinoMini dino)
     {
         _dinos.Add(dino);
     }
@@ -84,25 +97,36 @@ public class Boss : MonoBehaviour
     {
         SetHealth();
         SetDamage();
-        Invoke(nameof(PlayAttackAnimation), DELAY);
+        Invoke(nameof(StartAttackAnimation), DELAY);
+    }
+
+    private void StartAttackAnimation()
+    {
+        _isReadyToAttack = true;
+        StartCoroutine(AttackRepeat());
     }
 
     private void PlayAttackAnimation()
     {
+        int random = Random.Range(1, 3);
+
         _animator.SetTrigger(ATTACK);
+        _animator.SetFloat(ATTACKS_TYPE, random);
     }
 
     private void Win()
     {
+        _isReadyToAttack = false;
         _animator.SetTrigger(WIN);
         Won?.Invoke();
     }
 
     private void Die()
     {
+        OnDied();
+        _isReadyToAttack = false;
         _animator.enabled = false;
         enabled = false;
-        _regDollKicker.Kick();
         Died?.Invoke();
     }
 }

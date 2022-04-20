@@ -4,25 +4,24 @@ using UnityEngine.AI;
 public class DinoAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
+    [SerializeField] private ParticleSystem _particleSystem;
+
     private NavMeshAgent _navMeshAgent;
 
     private float _spentTime;
     private bool _isReadyToAttack = false;
-    private string[] _attcakAnimations = new string[2];
 
-    private float _delayBetwinAttcak = 2f;
+    private readonly float _delayBetwinAttcak = 2f;
     private readonly float _minSpeed = 0.5f;
 
     private const string RUN = "Run";
     private const string WIN = "Win";
-    private const string ATTACK1 = "Attack1";
-    private const string ATTACK2 = "Attack2";
+    private const string ATTACK = "Attack";
+    private const string ATTACKS_TYPE = "AttacksType";
 
     private void OnEnable()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _attcakAnimations[0] = ATTACK1;
-        _attcakAnimations[1] = ATTACK2;
     }
 
     private void OnDisable()
@@ -42,13 +41,20 @@ public class DinoAnimator : MonoBehaviour
             _isReadyToAttack = false;
     }
 
+    public void PlayHit()
+    {
+        _particleSystem.Play();
+    }
+
     public void PlayAttack()
     {
         if (_isReadyToAttack)
         {
             _spentTime = 0;
             int random = Random.Range(0, 2);
-            _animator.SetTrigger(_attcakAnimations[random]);
+
+            _animator.SetTrigger(ATTACK);
+            _animator.SetFloat(ATTACKS_TYPE, random);
         }
     }
 

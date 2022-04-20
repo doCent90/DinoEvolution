@@ -7,6 +7,7 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private Boss _boss;
     [SerializeField] private Player _player;
+    [SerializeField] private GameOver _gameOver;
     [SerializeField] private LevelsLoader _levelsLoader;
     [SerializeField] private InputController _inputController;
     [Header("Canvas")]
@@ -25,8 +26,9 @@ public class UI : MonoBehaviour
 
     private void OnEnable()
     {
-        _boss.Won += OnBossWon;
+        _boss.Won += OnGameLosed;
         _boss.Died += OnBossDied;
+        _gameOver.Losed += OnGameLosed;
         _inputController.Clicked += StartGame;
 
         _retry.onClick.AddListener(Restart);
@@ -36,8 +38,9 @@ public class UI : MonoBehaviour
 
     private void OnDisable()
     {
-        _boss.Won -= OnBossWon;
+        _boss.Won -= OnGameLosed;
         _boss.Died -= OnBossDied;
+        _gameOver.Losed -= OnGameLosed;
         _inputController.Clicked -= StartGame;
 
         _retry.onClick.RemoveListener(Restart);
@@ -69,7 +72,7 @@ public class UI : MonoBehaviour
         EnableCanvas(_winPanel);
     }
 
-    private void OnBossWon()
+    private void OnGameLosed()
     {
         _fightTap.enabled = false;
         EnableCanvas(_losePanel);        

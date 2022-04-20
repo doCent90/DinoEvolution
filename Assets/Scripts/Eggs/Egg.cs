@@ -25,7 +25,7 @@ public class Egg : MonoBehaviour
     public bool HasInStack { get; private set; } = false;
     public bool HaveNest { get; private set; } = false;
     public bool WasWashed { get; private set; } = false;
-    public bool WasLightsHeated { get; private set; } = false;
+    public bool WasUVLightsHeated { get; private set; } = false;
 
     private void OnEnable()
     {
@@ -114,23 +114,32 @@ public class Egg : MonoBehaviour
 
     private void UVLampHeating()
     {
-        WasLightsHeated = true;
-        _cleanEgg.enabled = false;
-        _model.EnableCleanCells();
-        Animate();
+        if (WasUVLightsHeated == false)
+        {
+            WasUVLightsHeated = true;
+            _cleanEgg.enabled = false;
+            _model.EnableCleanCells();
+            Animate();
+        }
     }
 
     private void Wash()
     {
-        WasWashed = true;
-        _eggAnimator.Wash();
+        if(WasWashed == false)
+        {
+            WasWashed = true;
+            _eggAnimator.Wash();
+        }
     }
 
     private void TakeNest()
     {
-        HaveNest = true;
-        _nest.enabled = true;
-        _eggAnimator.TakeNest();
+        if(HaveNest == false)
+        {
+            HaveNest = true;
+            _nest.enabled = true;
+            _eggAnimator.TakeNest();
+        }
     }
 
     private void Die()
