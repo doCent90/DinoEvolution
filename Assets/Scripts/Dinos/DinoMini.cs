@@ -65,7 +65,7 @@ public class DinoMini : Dinosaur
 
     public void PlayAttackAnimation()
     {
-        _dinoAnimator.PlayAttack();
+        _dinoAnimator.OnAttack();
     }
 
     public void Attack()

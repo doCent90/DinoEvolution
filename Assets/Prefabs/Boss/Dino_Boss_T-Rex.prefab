@@ -1331,7 +1331,6 @@ MonoBehaviour:
   _regDoll: {fileID: 3097773392802832920}
   _animator: {fileID: 3097773392802832921}
   _bossAreaTrigger: {fileID: 0}
-  _delayBetwenAttack: 2
 --- !u!1 &2837060614215261547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,7 +1919,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3097773392802832923}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: e9ae2e0e25ea6de42bc2a2b1ea6efe13, type: 3}
   m_Controller: {fileID: 9100000, guid: 27d7c8f4ae6f48b48a7f70d4bf334723, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
