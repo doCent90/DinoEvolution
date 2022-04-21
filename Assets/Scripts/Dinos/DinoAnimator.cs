@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
-
+using DG.Tweening;
 public class DinoAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
@@ -14,14 +14,14 @@ public class DinoAnimator : MonoBehaviour
     private float _spentTime;
     private bool _isReadyToAttack = false;
 
-    private readonly float _minSpeed = 0.5f;
-
-    private readonly float DELAY = 0.2f;
-    private readonly float DELAY_BETWEN_ATTACK = 2f;
+    private const float DURATION = 0.1f;
+    private const float MIN_SPEED = 0.6f;
+    private const float DELAY_BETWEN_ATTACK = 2f;
     private const string RUN = "Run";
     private const string WIN = "Win";
     private const string ATTACK = "Attack";
     private const string ATTACKS_TYPE = "AttacksType";
+    private const string TEXTURE_IMPACT = "_TextureImpact";
 
     private void OnEnable()
     {
@@ -73,7 +73,7 @@ public class DinoAnimator : MonoBehaviour
     {
         float speed = velocity.magnitude;
 
-        if(speed > _minSpeed)
+        if(speed > MIN_SPEED)
             _animator.SetBool(RUN, true);
         else
             _animator.SetBool(RUN, false);
@@ -81,12 +81,12 @@ public class DinoAnimator : MonoBehaviour
 
     private void Blink()
     {
-        _renderer.material = _blinkMaterial;
-        Invoke(nameof(SetOriginalMaterial), DELAY);
+        var tween = _originalMaterial.DOFloat(0, TEXTURE_IMPACT, DURATION);
+        tween.OnComplete(SetOriginalTextureImpact);
     }
 
-    private void SetOriginalMaterial()
+    private void SetOriginalTextureImpact()
     {
-        _renderer.material = _originalMaterial;
+        _originalMaterial.DOFloat(1, TEXTURE_IMPACT, DURATION);
     }
 }

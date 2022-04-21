@@ -10,12 +10,12 @@ public class Boss : Dinosaur
     [SerializeField] private Transform _regDoll;
     [SerializeField] private Animator _animator;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
-    [SerializeField] private float _delayBetwenAttack = 1f;
 
     private List<DinoMini> _dinos = new List<DinoMini>();
     private bool _isReadyToAttack = false;
     private int _typeAttack;
 
+    private const float DELAY_BETWEN_ATTACK = 2f;
     private const int SUPER_ATTACK = 2;
     private const float DELAY = 5f;
     private const string WIN = "Win";
@@ -40,7 +40,7 @@ public class Boss : Dinosaur
 
     private IEnumerator AttackRepeat()
     {
-        var waitForSeconds = new WaitForSeconds(_delayBetwenAttack);
+        var waitForSeconds = new WaitForSeconds(DELAY_BETWEN_ATTACK);
 
         while (_isReadyToAttack)
         {
@@ -72,7 +72,7 @@ public class Boss : Dinosaur
         if(_typeAttack == SUPER_ATTACK)
         {
             var targets = _dinos.Where(dino => dino.IsAlive).ToList();
-            targets.ForEach(dino => dino.TakeDamage(Damage / 2));
+            targets.ForEach(dino => dino.TakeDamage(Damage / 4));
         }
         else
         {

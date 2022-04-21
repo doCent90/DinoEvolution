@@ -47,7 +47,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8945691123924629249, guid: e9ae2e0e25ea6de42bc2a2b1ea6efe13, type: 3}
+  m_Motion: {fileID: -8945691123924629249, guid: 99b8b2bb3b8f55d4ca26dbbef9ad7da1, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -98,7 +98,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 303515906423872831, guid: e9ae2e0e25ea6de42bc2a2b1ea6efe13, type: 3}
+  m_Motion: {fileID: 303515906423872831, guid: 99b8b2bb3b8f55d4ca26dbbef9ad7da1, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -141,7 +141,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -981627260550935958, guid: e9ae2e0e25ea6de42bc2a2b1ea6efe13, type: 3}
+    m_Motion: {fileID: -981627260550935958, guid: 99b8b2bb3b8f55d4ca26dbbef9ad7da1, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -149,7 +149,7 @@ BlendTree:
     m_DirectBlendParameter: Attacks
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -2145144372462087935, guid: e9ae2e0e25ea6de42bc2a2b1ea6efe13, type: 3}
+    m_Motion: {fileID: -2145144372462087935, guid: 99b8b2bb3b8f55d4ca26dbbef9ad7da1, type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -157,7 +157,7 @@ BlendTree:
     m_DirectBlendParameter: Attacks
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -3644391539682100857, guid: e9ae2e0e25ea6de42bc2a2b1ea6efe13, type: 3}
+    m_Motion: {fileID: -3644391539682100857, guid: 99b8b2bb3b8f55d4ca26dbbef9ad7da1, type: 3}
     m_Threshold: 2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -204,7 +204,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Run
-  m_Speed: 1.3
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3794531669499902366}
@@ -218,7 +218,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -7551964380084998518, guid: e9ae2e0e25ea6de42bc2a2b1ea6efe13, type: 3}
+  m_Motion: {fileID: -7551964380084998518, guid: 99b8b2bb3b8f55d4ca26dbbef9ad7da1, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -230,7 +230,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: T-Rex
+  m_Name: Cero
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Attack
