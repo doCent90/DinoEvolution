@@ -14,11 +14,12 @@ public class DinoAnimator : MonoBehaviour
     private float _spentTime;
     private bool _isReadyToAttack = false;
 
-    private const float ScaleDuration = 0.5f;
+    private const float Power = 0.5f;
     private const float MinScale = 0.1f;
     private const float MinSpeed = 0.6f;
+    private const float ScaleDuration = 0.5f;
     private const float DelayBetwenAttack = 1f;
-    private const float DelayBeforeAttack = 1f;
+    private const float DelayBeforeAttack = 2f;
     private const string Run = "Run";
     private const string Win = "Win";
     private const string Attack = "Attack";
@@ -51,6 +52,7 @@ public class DinoAnimator : MonoBehaviour
     public void PlayHit()
     {
         Blink();
+        Push();
         _particleSystem.Play();
     }
 
@@ -75,6 +77,12 @@ public class DinoAnimator : MonoBehaviour
             _animator.SetTrigger(Attack);
             _animator.SetFloat(AttacksType, random);
         }
+    }
+
+    private void Push()
+    {
+        float power = transform.position.z - Power;
+        transform.DOMoveZ(power, ScaleDuration).SetEase(Ease.OutBack);
     }
 
     private void SetRun(Vector3 velocity)

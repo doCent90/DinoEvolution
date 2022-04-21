@@ -4,7 +4,6 @@ using Cinemachine;
 public class CameraSwitcher : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _gameCamera;
-    [SerializeField] private CinemachineVirtualCamera _bossAreaCamera;
     [SerializeField] private CinemachineVirtualCamera _bossFightCamera;
     [Header("Triggers")]
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
@@ -35,7 +34,6 @@ public class CameraSwitcher : MonoBehaviour
 
     private void OnBossAreaReached()
     {
-        EnableCamera( _bossAreaCamera);
         Invoke(nameof(OnFightEnable), DELAY);
     }
 

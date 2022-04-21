@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class Boss : Dinosaur
 {
+    [SerializeField] private UI _uI;
     [SerializeField] private Transform _regDoll;
     [SerializeField] private Animator _animator;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
@@ -17,7 +18,6 @@ public class Boss : Dinosaur
 
     private const float DELAY_BETWEN_ATTACK = 2f;
     private const int SUPER_ATTACK = 2;
-    private const float DELAY = 5f;
     private const string WIN = "Win";
     private const string ATTACK = "Attack";
     private const string ATTACKS_TYPE = "AttacksType";
@@ -30,11 +30,13 @@ public class Boss : Dinosaur
 
     private void OnEnable()
     {
+        _uI.FightClicked += StartAttackAnimation;
         _bossAreaTrigger.BossAreaReached += Init;
     }
 
     private void OnDisable()
     {
+        _uI.FightClicked -= StartAttackAnimation;
         _bossAreaTrigger.BossAreaReached -= Init;        
     }
 
@@ -99,7 +101,6 @@ public class Boss : Dinosaur
     {
         SetHealth();
         SetDamage();
-        Invoke(nameof(StartAttackAnimation), DELAY);
     }
 
     private void StartAttackAnimation()

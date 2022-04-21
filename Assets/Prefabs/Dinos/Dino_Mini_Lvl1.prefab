@@ -786,9 +786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 859ae292e09994b438c832c61f2f4547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blinkTime: 0.05
   _animator: {fileID: 322105946427190522}
   _renderer: {fileID: 7429443658723655092}
-  _blinkMaterial: {fileID: 2100000, guid: f269f6dd485be89418f79998f24c9ed5, type: 2}
   _particleSystem: {fileID: 7321136524271206244}
 --- !u!114 &7636936893259968095
 MonoBehaviour:
