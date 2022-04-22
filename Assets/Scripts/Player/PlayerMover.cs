@@ -9,13 +9,13 @@ public class PlayerMover : MonoBehaviour
 
     private float _slideDirection;
 
-    private const float TRESHOLD = 1f;
+    private const float Treshold = 1f;
 
     private void Move()
     {
         _slideDirection = _inputController.GetSlideValue() * _sensitivity;
 
-        var position = Mathf.Clamp(_slideDirection, -TRESHOLD, TRESHOLD);
+        var position = Mathf.Clamp(_slideDirection, -Treshold, Treshold);
         transform.position = new Vector3(position, transform.position.y, transform.position.z);
     }
 

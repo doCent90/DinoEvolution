@@ -12,18 +12,18 @@ public class EggAnimator : MonoBehaviour
     private RoadParent _roadParent;
     private float _targetScale = 1.6f;
 
-    private const string NEST = "Nest";
-    private const float DURATION = 0.07f;
-    private const float DURATION_WASH = 1f;
+    private const string NestAnimation = "Nest";
+    private const float Duration = 0.07f;
+    private const float DurationWash = 1f;
 
     public void TakeNest()
     {
-        _animator.SetTrigger(NEST);
+        _animator.SetTrigger(NestAnimation);
     }
 
     public void Wash()
     {
-        _dirtyEgg.transform.DOScale(0, DURATION_WASH);
+        _dirtyEgg.transform.DOScale(0, DurationWash);
 
         foreach (var item in _cellsDirt)
             item.Destroy(_roadParent.transform);
@@ -33,8 +33,8 @@ public class EggAnimator : MonoBehaviour
 
     public void ScaleAnimation()
     {
-        var tween1 = _model.DOScale(_targetScale, DURATION);
-        var tween2 = _model.DOScale(1, DURATION).SetDelay(DURATION);
+        var tween1 = _model.DOScale(_targetScale, Duration);
+        var tween2 = _model.DOScale(1, Duration).SetDelay(Duration);
     }
 
     private void OnEnable()

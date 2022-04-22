@@ -4,16 +4,16 @@ public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
 
-    private const string MOVE = "Move";
-    private const string TAKE = "Take";
+    private const string MoveAnimation = "Move";
+    private const string TakeAnimation = "Take";
 
     public void Move()
     {
-        _animator.SetTrigger(MOVE);
+        _animator.SetTrigger(MoveAnimation);
     }
 
     public void Take()
     {
-        _animator.SetTrigger(TAKE);
+        _animator.SetTrigger(TakeAnimation);
     }
 }

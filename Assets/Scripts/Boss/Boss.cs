@@ -16,11 +16,13 @@ public class Boss : Dinosaur
     private bool _isReadyToAttack = false;
     private int _typeAttack;
 
-    private const float DELAY_BETWEN_ATTACK = 2f;
-    private const int SUPER_ATTACK = 2;
-    private const string WIN = "Win";
-    private const string ATTACK = "Attack";
-    private const string ATTACKS_TYPE = "AttacksType";
+    private const float SuperAttackPower = 0.25f;
+    private const float DelayBetwenAttack = 2f;
+    private const int SuperAttack = 2;
+    private const int HeatlthMultiply = 4;
+    private const string WinAnimation = "Win";
+    private const string AttackAnimation = "Attack";
+    private const string AttackAnimationsType = "AttacksType";
 
     public float HealthMax { get; private set; }
 
@@ -41,7 +43,7 @@ public class Boss : Dinosaur
 
     private IEnumerator AttackRepeat()
     {
-        var waitForSeconds = new WaitForSeconds(DELAY_BETWEN_ATTACK);
+        var waitForSeconds = new WaitForSeconds(DelayBetwenAttack);
 
         while (_isReadyToAttack)
         {
@@ -70,14 +72,14 @@ public class Boss : Dinosaur
 
     public void Attack()
     {
-        if(_typeAttack == SUPER_ATTACK)
+        if(_typeAttack == SuperAttack)
         {
             var targets = _dinos.Where(dino => dino.IsAlive).ToList();
-            targets.ForEach(dino => dino.TakeDamage(Damage / 4));
+            targets.ForEach(dino => dino.TakeDamage(Damage * SuperAttackPower));
         }
         else
         {
-            var target = _dinos.OrderByDescending(dino => dino.Health).FirstOrDefault(dino => dino.IsAlive);
+            DinoMini target = _dinos.OrderByDescending(dino => dino.Health).FirstOrDefault(dino => dino.IsAlive);
             target.TakeDamage(Damage);
 
             Vector3 lookPosition = new Vector3(_regDoll.position.x, target.transform.position.y, _regDoll.position.z);
@@ -87,7 +89,7 @@ public class Boss : Dinosaur
 
     private void SetHealth()
     {
-        Health = _dinos.Sum(dino => dino.Damage) * 3;
+        Health = _dinos.Sum(dino => dino.Damage) * HeatlthMultiply;
         HealthMax = Health;
     }
 
@@ -122,14 +124,14 @@ public class Boss : Dinosaur
         int random = Random.Range(0, 3);
         _typeAttack = random;
 
-        _animator.SetTrigger(ATTACK);
-        _animator.SetFloat(ATTACKS_TYPE, random);
+        _animator.SetTrigger(AttackAnimation);
+        _animator.SetFloat(AttackAnimationsType, random);
     }
 
     private void Win()
     {
         _isReadyToAttack = false;
-        _animator.SetTrigger(WIN);
+        _animator.SetTrigger(WinAnimation);
         Won?.Invoke();
     }
 

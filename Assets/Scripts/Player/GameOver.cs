@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] private RoadMover _roadMover;
     [SerializeField] private InputController _inputController;
 
-    private const float DELAY = 1f;
+    private const float Delay = 1f;
 
     public event Action Losed;
 
@@ -26,7 +26,7 @@ public class GameOver : MonoBehaviour
         _roadMover.enabled = false;
         _inputController.enabled = false;
 
-        Invoke(nameof(Lose), DELAY);
+        Invoke(nameof(Lose), Delay);
     }
 
     private void Lose()

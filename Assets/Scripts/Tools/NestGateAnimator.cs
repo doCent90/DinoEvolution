@@ -8,7 +8,7 @@ public class NestGateAnimator : MonoBehaviour
     private readonly float _distance = -0.8f;
     private int _count;
 
-    private const float DURATION = 0.1f;
+    private const float Duration = 0.1f;
 
     public void DeleteCurrentNest()
     {
@@ -19,7 +19,7 @@ public class NestGateAnimator : MonoBehaviour
         {
             Vector3 currentNest = nest.transform.localPosition;
             Vector3 target = new Vector3(currentNest.x + _distance, currentNest.y, currentNest.z);
-            nest.transform.DOLocalMove(target, DURATION);
+            nest.transform.DOLocalMove(target, Duration);
         }
     }
 }

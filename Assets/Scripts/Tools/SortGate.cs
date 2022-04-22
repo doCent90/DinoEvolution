@@ -8,7 +8,7 @@ public class SortGate : MonoBehaviour
 
     private int _count;
 
-    private const float DURATION = 1f;
+    private const float Duration = 1f;
 
     public event Action EggStackEmpty;
 
@@ -28,7 +28,7 @@ public class SortGate : MonoBehaviour
         {
             _count--;
             egg.Sort(transform);
-            egg.transform.DOMove(_point.position, DURATION);
+            egg.transform.DOMove(_point.position, Duration);
         }
     }
 }

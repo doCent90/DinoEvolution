@@ -8,10 +8,11 @@ public class RoadMover : MonoBehaviour
     [Header("Moveable objects")]
     [SerializeField] private RoadTrigger _road;
 
-    private readonly float _backUpSpeed = -20f;
-    private readonly float _disableTime = 2f;
     private float _currentSpeed;
     private float _spentTime;
+
+    private const float BackUpSpeed = -20f;
+    private const float DisableTime = 2f;
 
     private void OnEnable()
     {
@@ -36,7 +37,7 @@ public class RoadMover : MonoBehaviour
 
     public void OnTrapDone()
     {
-        _currentSpeed = _backUpSpeed;
+        _currentSpeed = BackUpSpeed;
         _spentTime = 0;
     }
 
@@ -45,7 +46,7 @@ public class RoadMover : MonoBehaviour
         _currentSpeed = 0;
         _speed = _currentSpeed;
 
-        Invoke(nameof(Disable), _disableTime);
+        Invoke(nameof(Disable), DisableTime);
     }
 
     private void Disable()

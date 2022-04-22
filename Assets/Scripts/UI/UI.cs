@@ -20,7 +20,7 @@ public class UI : MonoBehaviour
     [SerializeField] private Button _restart;
     [SerializeField] private Button _fightTap;
 
-    private const float DURATION = 0.5f;
+    private const float Duration = 0.5f;
 
     public event Action FightClicked;
 
@@ -82,14 +82,14 @@ public class UI : MonoBehaviour
 
     private void EnableCanvas(CanvasGroup canvasGroup)
     {
-        canvasGroup.DOFade(1, DURATION);
+        canvasGroup.DOFade(1, Duration);
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
     }
 
     private void DisableCanvas(CanvasGroup canvasGroup)
     {
-        canvasGroup.DOFade(0, DURATION);
+        canvasGroup.DOFade(0, Duration);
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
     }

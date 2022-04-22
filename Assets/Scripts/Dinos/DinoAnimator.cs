@@ -14,7 +14,7 @@ public class DinoAnimator : MonoBehaviour
     private float _spentTime;
     private bool _isReadyToAttack = false;
 
-    private const float Power = 0.5f;
+    private const float Power = 0.2f;
     private const float MinScale = 0.1f;
     private const float MinSpeed = 0.6f;
     private const float ScaleDuration = 0.5f;
@@ -49,10 +49,10 @@ public class DinoAnimator : MonoBehaviour
             _isReadyToAttack = false;
     }
 
-    public void PlayHit()
+    public void PlayHit(Boss boss)
     {
         Blink();
-        Push();
+        Push(boss);
         _particleSystem.Play();
     }
 
@@ -79,10 +79,11 @@ public class DinoAnimator : MonoBehaviour
         }
     }
 
-    private void Push()
+    private void Push(Boss boss)
     {
-        float power = transform.position.z - Power;
-        transform.DOMoveZ(power, ScaleDuration).SetEase(Ease.OutBack);
+        Vector3 pushDirection = (transform.position - boss.transform.position);
+        Vector3 resultDirection = new Vector3(pushDirection.x, transform.position.y, transform.position.z + (pushDirection.z * Power));
+        transform.DOMove(resultDirection, ScaleDuration).SetEase(Ease.OutBack);
     }
 
     private void SetRun(Vector3 velocity)

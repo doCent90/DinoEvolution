@@ -11,7 +11,7 @@ public class DinoMini : Dinosaur
     private DinoAnimator _dinoAnimator;
     private NavMeshAgent _navMeshAgent;
 
-    private const float DELAY = 5f;
+    private const float Delay = 5f;
 
     public UI UI { get; private set; }
     public bool IsAlive { get; private set; } = true;
@@ -60,7 +60,7 @@ public class DinoMini : Dinosaur
                 Die();
         }
 
-        _dinoAnimator.PlayHit();
+        _dinoAnimator.PlayHit(_boss);
     }
 
     public void PlayAttackAnimation()
@@ -94,7 +94,7 @@ public class DinoMini : Dinosaur
         Transform target = _bossArea.GetPosition();
         GoToPosition(target);
 
-        Invoke(nameof(GoToBoss), DELAY);
+        Invoke(nameof(GoToBoss), Delay);
     }
 
     private void GoToBoss()

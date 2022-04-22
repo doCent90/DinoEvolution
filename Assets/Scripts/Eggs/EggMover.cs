@@ -14,8 +14,8 @@ public class EggMover : MonoBehaviour
     private readonly float _power = 23f;
     private readonly float _step = 0.7f;
 
-    private const float SPEED = 20f;
-    private const float DELAY = 0.05f;
+    private const float Speed = 20f;
+    private const float Delay = 0.05f;
 
     public Egg Egg { get; private set; }
     public PlayerHand PlayerHand { get; private set; }
@@ -77,7 +77,7 @@ public class EggMover : MonoBehaviour
     public void Animate()
     {
         _eggAnimator.ScaleAnimation();
-        Invoke(nameof(AnimateLeaderEgg), DELAY);
+        Invoke(nameof(AnimateLeaderEgg), Delay);
     }
 
     public void AnimateLeaderEgg()
