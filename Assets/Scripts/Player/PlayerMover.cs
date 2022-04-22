@@ -4,7 +4,7 @@ public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private InputController _inputController;
     [Header("Settings")]
-    [Range(0f, 1f)]
+    [Range(0f, 0.1f)]
     [SerializeField] private float _sensitivity = 0.08f;
 
     private float _slideDirection;

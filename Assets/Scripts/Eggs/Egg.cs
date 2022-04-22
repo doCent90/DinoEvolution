@@ -45,7 +45,7 @@ public class Egg : MonoBehaviour
             ToGrinder();
 
         if (other.TryGetComponent(out NestGate nestGate))
-            TakeNest();
+            TakeNest(nestGate);
 
         if (other.TryGetComponent(out ColorChangeGate colorChangeGate))
             TypeUpgrade();
@@ -132,10 +132,11 @@ public class Egg : MonoBehaviour
         }
     }
 
-    private void TakeNest()
+    private void TakeNest(NestGate nestGate)
     {
         if(HaveNest == false)
         {
+            nestGate.GiveNest();
             HaveNest = true;
             _nest.enabled = true;
             _eggAnimator.TakeNest();

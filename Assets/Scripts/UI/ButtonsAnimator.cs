@@ -1,6 +1,7 @@
-using System.Collections;
 using TMPro;
+using DG.Tweening;
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(UI))]
 public class ButtonsAnimator : MonoBehaviour
@@ -8,7 +9,6 @@ public class ButtonsAnimator : MonoBehaviour
     [SerializeField] private Boss _boss;
     [SerializeField] private DinoHealthBar _healthBar;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
-    [SerializeField] private CanvasGroup _tapToFightButton;
     [SerializeField] private CanvasGroup _fightButton;
     [SerializeField] private CanvasGroup _tapsCanvas;
     [Header("Taps text")]
@@ -16,8 +16,9 @@ public class ButtonsAnimator : MonoBehaviour
 
     private UI _uI;
 
-    private readonly float _delay = 4f;
-    private readonly float _delayTap = 0.35f;
+    private const float Delay = 4f;
+    private const float Scale = 1.3f;
+    private const float DelayTap = 0.35f;
 
     private void OnEnable()
     {
@@ -36,22 +37,24 @@ public class ButtonsAnimator : MonoBehaviour
 
     private IEnumerator TapsAnimator()
     {
-        var waitForSecond = new WaitForSeconds(_delayTap);
+        var waitForSecond = new WaitForSeconds(DelayTap);
 
         while (true)
         {
             foreach (var tap in _tapsText)
             {
                 tap.enabled = true;
+                tap.transform.DOScale(Scale, DelayTap);
                 yield return waitForSecond;
                 tap.enabled = false;
+                tap.transform.localScale = new Vector3(1, 1, 1);
             }
         }        
     }
 
     private void OnBossAreaTrigged()
     {
-        Invoke(nameof(EnableFightButton), _delay);
+        Invoke(nameof(EnableFightButton), Delay);
     }
 
     private void EnableFightButton()

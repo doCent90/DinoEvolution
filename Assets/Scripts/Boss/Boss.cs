@@ -36,7 +36,6 @@ public class Boss : Dinosaur
 
     private void OnDisable()
     {
-        _uI.FightClicked -= StartAttackAnimation;
         _bossAreaTrigger.BossAreaReached -= Init;        
     }
 
@@ -107,6 +106,7 @@ public class Boss : Dinosaur
     {
         _isReadyToAttack = true;
         StartCoroutine(AttackRepeat());
+        _uI.FightClicked -= StartAttackAnimation;
     }
 
     private void PlayAttackAnimation()

@@ -5,14 +5,13 @@ public class NestGate : MonoBehaviour
 {
     private NestGateAnimator _nestGateAnimator;
 
+    public void GiveNest()
+    {
+        _nestGateAnimator.DeleteCurrentNest();
+    }
+
     private void OnEnable()
     {
         _nestGateAnimator = GetComponent<NestGateAnimator>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Egg egg) && egg.HaveNest == false)
-            _nestGateAnimator.DeleteCurrentNest();
     }
 }

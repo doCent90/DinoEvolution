@@ -70,12 +70,14 @@ public class UI : MonoBehaviour
     {
         _fightTap.enabled = false;
         EnableCanvas(_winPanel);
+        DisableCanvas(_gamePanel);
     }
 
     private void OnGameLosed()
     {
         _fightTap.enabled = false;
-        EnableCanvas(_losePanel);        
+        EnableCanvas(_losePanel);
+        DisableCanvas(_gamePanel);
     }
 
     private void EnableCanvas(CanvasGroup canvasGroup)

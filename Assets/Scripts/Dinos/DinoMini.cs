@@ -76,10 +76,11 @@ public class DinoMini : Dinosaur
 
     private void Die()
     {
-        OnDied();
-        IsAlive = false;
+        _navMeshAgent.enabled = false;
         _dinoAnimator.enabled = false;
+        IsAlive = false;
         enabled = false;
+        OnDied();
         Died?.Invoke();
     }
 

@@ -88,7 +88,7 @@ public class LevelsLoader : MonoBehaviour
         switch (number)
         {
             case 0:
-                Visual.Load();
+                Visual2.Load();
                 break;
             default:
                 RandomLevel();
