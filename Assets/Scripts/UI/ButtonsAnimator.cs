@@ -17,8 +17,6 @@ public class ButtonsAnimator : MonoBehaviour
     private UI _uI;
 
     private const float Delay = 4f;
-    private const float Scale = 1.3f;
-    private const float DelayTap = 0.35f;
 
     private void OnEnable()
     {
@@ -33,23 +31,6 @@ public class ButtonsAnimator : MonoBehaviour
         _boss.Died -= HideRestart;
         _uI.FightClicked -= DisableTapsText;
         _bossAreaTrigger.BossAreaReached -= OnBossAreaTrigged;
-    }
-
-    private IEnumerator TapsAnimator()
-    {
-        var waitForSecond = new WaitForSeconds(DelayTap);
-
-        while (true)
-        {
-            foreach (var tap in _tapsText)
-            {
-                tap.enabled = true;
-                tap.transform.DOScale(Scale, DelayTap);
-                yield return waitForSecond;
-                tap.enabled = false;
-                tap.transform.localScale = new Vector3(1, 1, 1);
-            }
-        }        
     }
 
     private void OnBossAreaTrigged()
@@ -72,13 +53,11 @@ public class ButtonsAnimator : MonoBehaviour
     private void EnableTapsText()
     {
         EnableCanvas(_tapsCanvas);
-        StartCoroutine(TapsAnimator());
     }
 
     private void DisableTapsText()
     {
         DisableCanvas(_tapsCanvas);
-        StopCoroutine(TapsAnimator());
     }
 
     private void EnableCanvas(CanvasGroup canvasGroup)
