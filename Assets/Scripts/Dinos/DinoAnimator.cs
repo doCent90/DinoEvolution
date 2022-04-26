@@ -1,22 +1,24 @@
 using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
+
 public class DinoAnimator : MonoBehaviour
 {
-    [Range(0f, 0.1f)]
-    [SerializeField] private float _blinkTime = 0.05f;
+    [SerializeField] private Projector _shadow;
     [SerializeField] private Animator _animator;
     [SerializeField] private Renderer _renderer;
-    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private ParticleSystem _particleHit;
+    [SerializeField] private ParticleSystem _particleAttack;
 
     private NavMeshAgent _navMeshAgent;
 
     private float _spentTime;
     private bool _isReadyToAttack = false;
 
-    private const float Power = 0.5f;
+    private const float Power = 0.2f;
     private const float MinScale = 0.1f;
     private const float MinSpeed = 0.6f;
+    private const float BlinkTime = 0.05f;
     private const float ScaleDuration = 0.5f;
     private const float DelayBetwenAttack = 1f;
     private const float DelayBeforeAttack = 2f;
@@ -49,11 +51,16 @@ public class DinoAnimator : MonoBehaviour
             _isReadyToAttack = false;
     }
 
-    public void PlayHit()
+    public void DisableShadow()
+    {
+        _shadow.enabled = false;
+    }
+
+    public void PlayHit(Boss boss)
     {
         Blink();
-        Push();
-        _particleSystem.Play();
+        Push(boss);
+        _particleHit.Play();
     }
 
     public void OnAttack()
@@ -76,13 +83,16 @@ public class DinoAnimator : MonoBehaviour
 
             _animator.SetTrigger(Attack);
             _animator.SetFloat(AttacksType, random);
+
+            _particleAttack.Play();
         }
     }
 
-    private void Push()
+    private void Push(Boss boss)
     {
-        float power = transform.position.z - Power;
-        transform.DOMoveZ(power, ScaleDuration).SetEase(Ease.OutBack);
+        Vector3 pushDirection = (transform.position - boss.transform.position);
+        Vector3 resultDirection = new Vector3(pushDirection.x, transform.position.y, transform.position.z + (pushDirection.z * Power));
+        transform.DOMove(resultDirection, ScaleDuration).SetEase(Ease.OutBack);
     }
 
     private void SetRun(Vector3 velocity)
@@ -104,9 +114,9 @@ public class DinoAnimator : MonoBehaviour
 
     private void Blink()
     {
-        var blinkFirstOn = _renderer.material.DOFloat(0.5f, TextureImpact, _blinkTime);
-        var blinkFirstOff = _renderer.material.DOFloat(1, TextureImpact, _blinkTime).SetDelay(_blinkTime);
-        var blinkSecondOn = _renderer.material.DOFloat(0.8f, TextureImpact, _blinkTime).SetDelay(_blinkTime*2);
-        var blinkSecondOff = _renderer.material.DOFloat(1, TextureImpact, _blinkTime).SetDelay(_blinkTime*4);
+        var blinkFirstOn = _renderer.material.DOFloat(0.5f, TextureImpact, BlinkTime);
+        var blinkFirstOff = _renderer.material.DOFloat(1, TextureImpact, BlinkTime).SetDelay(BlinkTime);
+        var blinkSecondOn = _renderer.material.DOFloat(0.8f, TextureImpact, BlinkTime).SetDelay(BlinkTime*2);
+        var blinkSecondOff = _renderer.material.DOFloat(1, TextureImpact, BlinkTime).SetDelay(BlinkTime*4);
     }
 }

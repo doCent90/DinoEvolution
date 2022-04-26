@@ -10,8 +10,8 @@ public class CellDestroy : MonoBehaviour
     private Rigidbody _rigidbody;
     private MeshCollider _collider;
 
-    private const float DELAY = 2f;
-    private const float POWER = 100f;
+    private const float Delay = 2f;
+    private const float Power = 100f;
 
     public void Destroy(Transform parent)
     {
@@ -20,7 +20,7 @@ public class CellDestroy : MonoBehaviour
         if(_renderer != null)
             _renderer.enabled = true;
 
-        Move(POWER);
+        Move(Power);
         StartCoroutine(TimeToDestroy());
     }
 
@@ -35,7 +35,7 @@ public class CellDestroy : MonoBehaviour
 
     private IEnumerator TimeToDestroy()
     {
-        var waitForSeconds = new WaitForSeconds(DELAY);
+        var waitForSeconds = new WaitForSeconds(Delay);
         yield return waitForSeconds;        
         gameObject.SetActive(false);
     }

@@ -6,29 +6,41 @@ public class SortGate : MonoBehaviour
 {
     [SerializeField] private Transform _point;
 
-    private int _count;
+    private bool _isPlayerMoverDisable = false;
 
-    private const float DURATION = 1f;
+    private const float Duration = 1f;
 
     public event Action EggStackEmpty;
+    public event Action SortGateReached;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent(out Egg egg))
             Sort(egg);
 
-        if (other.TryGetComponent(out Player player) && _count <= 0)
+        if (other.TryGetComponent(out PlayerHand playerHand) && playerHand.IsBusy == false)
             EggStackEmpty?.Invoke();        
     }
 
     private void Sort(Egg egg)
     {
-        _count++;
+        DisablePlayerMover(egg);
+
+        SortGateReached?.Invoke();
+
         if(egg.WasUVLightsHeated == false || egg.WasWashed == false || egg.HaveNest == false)
         {
-            _count--;
             egg.Sort(transform);
-            egg.transform.DOMove(_point.position, DURATION);
+            egg.transform.DOMove(_point.position, Duration);
+        }
+    }
+
+    private void DisablePlayerMover(Egg egg)
+    {
+        if (_isPlayerMoverDisable == false)
+        {
+            _isPlayerMoverDisable = true;
+            egg.PlayerHand.PlayerMover.SetDefaultPosition();
         }
     }
 }

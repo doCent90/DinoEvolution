@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] private Boss _boss;
     [SerializeField] private Player _player;
     [SerializeField] private GameOver _gameOver;
     [SerializeField] private LevelsLoader _levelsLoader;
+    [SerializeField] private BossAreaTrigger _bossAreaTrigger;
     [SerializeField] private InputController _inputController;
     [Header("Canvas")]
     [SerializeField] private CanvasGroup _gamePanel;
@@ -20,12 +20,17 @@ public class UI : MonoBehaviour
     [SerializeField] private Button _restart;
     [SerializeField] private Button _fightTap;
 
-    private const float DURATION = 0.5f;
+    private Boss _boss;
+
+    private const float Delay = 2f;
+    private const float Duration = 0.8f;
 
     public event Action FightClicked;
 
     private void OnEnable()
     {
+        _boss = _bossAreaTrigger.Boss;
+
         _boss.Won += OnGameLosed;
         _boss.Died += OnBossDied;
         _gameOver.Losed += OnGameLosed;
@@ -51,8 +56,7 @@ public class UI : MonoBehaviour
     private void StartGame()
     {
         _player.EnableMove();
-        EnableCanvas(_gamePanel);
-        DisableCanvas(_startPanel);
+        SwitchPanels(_gamePanel, _startPanel);
     }
 
     private void Restart()
@@ -69,27 +73,41 @@ public class UI : MonoBehaviour
     private void OnBossDied()
     {
         _fightTap.enabled = false;
-        EnableCanvas(_winPanel);
-        DisableCanvas(_gamePanel);
+        Invoke(nameof(EnableWinPanel), Delay);
     }
 
     private void OnGameLosed()
     {
         _fightTap.enabled = false;
-        EnableCanvas(_losePanel);
-        DisableCanvas(_gamePanel);
+        Invoke(nameof(EnableLosePanel), Delay);
+    }
+
+    private void EnableWinPanel()
+    {
+        SwitchPanels(_winPanel, _gamePanel);
+    }
+
+    private void EnableLosePanel()
+    {
+        SwitchPanels(_losePanel, _gamePanel);
+    }
+
+    private void SwitchPanels(CanvasGroup panelOn, CanvasGroup panelOff)
+    {
+        EnableCanvas(panelOn);
+        DisableCanvas(panelOff);
     }
 
     private void EnableCanvas(CanvasGroup canvasGroup)
     {
-        canvasGroup.DOFade(1, DURATION);
+        canvasGroup.DOFade(1, Duration);
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
     }
 
     private void DisableCanvas(CanvasGroup canvasGroup)
     {
-        canvasGroup.DOFade(0, DURATION);
+        canvasGroup.DOFade(0, Duration);
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
     }

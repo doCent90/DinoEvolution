@@ -1,55 +1,42 @@
 using TMPro;
-using DG.Tweening;
 using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(UI))]
 public class ButtonsAnimator : MonoBehaviour
 {
-    [SerializeField] private Boss _boss;
     [SerializeField] private DinoHealthBar _healthBar;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
     [SerializeField] private CanvasGroup _fightButton;
     [SerializeField] private CanvasGroup _tapsCanvas;
     [Header("Taps text")]
     [SerializeField] private TMP_Text[] _tapsText;
+    [SerializeField] private bool _tapsCanDisable = false;
 
+    private Boss _boss;
     private UI _uI;
 
     private const float Delay = 4f;
-    private const float Scale = 1.3f;
-    private const float DelayTap = 0.35f;
 
     private void OnEnable()
     {
-        _uI = GetComponent<UI>();
+        _boss = _bossAreaTrigger.Boss;
+
+        _boss.Won += HideRestart;
         _boss.Died += HideRestart;
-        _uI.FightClicked += DisableTapsText;
         _bossAreaTrigger.BossAreaReached += OnBossAreaTrigged;
+
+        if (_tapsCanDisable)
+        {
+            _uI = GetComponent<UI>();
+            _uI.FightClicked += DisableTapsText;
+        }
     }
 
     private void OnDisable()
     {
+        _boss.Won -= HideRestart;
         _boss.Died -= HideRestart;
-        _uI.FightClicked -= DisableTapsText;
         _bossAreaTrigger.BossAreaReached -= OnBossAreaTrigged;
-    }
-
-    private IEnumerator TapsAnimator()
-    {
-        var waitForSecond = new WaitForSeconds(DelayTap);
-
-        while (true)
-        {
-            foreach (var tap in _tapsText)
-            {
-                tap.enabled = true;
-                tap.transform.DOScale(Scale, DelayTap);
-                yield return waitForSecond;
-                tap.enabled = false;
-                tap.transform.localScale = new Vector3(1, 1, 1);
-            }
-        }        
     }
 
     private void OnBossAreaTrigged()
@@ -67,18 +54,18 @@ public class ButtonsAnimator : MonoBehaviour
     private void HideRestart()
     {
         DisableCanvas(_fightButton);
+        DisableCanvas(_tapsCanvas);
     }
 
     private void EnableTapsText()
     {
         EnableCanvas(_tapsCanvas);
-        StartCoroutine(TapsAnimator());
     }
 
     private void DisableTapsText()
     {
         DisableCanvas(_tapsCanvas);
-        StopCoroutine(TapsAnimator());
+        _uI.FightClicked -= DisableTapsText;
     }
 
     private void EnableCanvas(CanvasGroup canvasGroup)
