@@ -119,7 +119,7 @@ public class EggMover : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if (_hasStack == false || _previousEgg == null)
             return;
