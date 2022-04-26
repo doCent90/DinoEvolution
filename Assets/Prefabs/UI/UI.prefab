@@ -2011,10 +2011,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fd7b04d63da964698797e3d18b28b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boss: {fileID: 0}
   _player: {fileID: 0}
   _gameOver: {fileID: 0}
   _levelsLoader: {fileID: 0}
+  _bossAreaTrigger: {fileID: 0}
   _inputController: {fileID: 5058267720323509098}
   _gamePanel: {fileID: 5058267720853000956}
   _startPanel: {fileID: 5058267720153291039}
@@ -2035,7 +2035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09d7833f940e3349ae2017e60b1da31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boss: {fileID: 0}
   _healthBar: {fileID: 977277782604829190}
   _bossAreaTrigger: {fileID: 0}
   _fightButton: {fileID: 977277783512167775}
@@ -2044,6 +2043,7 @@ MonoBehaviour:
   - {fileID: 977277783246142665}
   - {fileID: 977277784073134539}
   - {fileID: 977277783348835332}
+  _tapsCanDisable: 0
 --- !u!1 &5058267720431646506
 GameObject:
   m_ObjectHideFlags: 0

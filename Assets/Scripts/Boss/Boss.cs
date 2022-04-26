@@ -29,6 +29,7 @@ public class Boss : Dinosaur
     public event Action Won;
     public event Action Died;
     public event Action HealthChanged;
+    public event Action SuperAttacked;
 
     private void OnEnable()
     {
@@ -76,6 +77,7 @@ public class Boss : Dinosaur
         {
             var targets = _dinos.Where(dino => dino.IsAlive).ToList();
             targets.ForEach(dino => dino.TakeDamage(Damage * SuperAttackPower));
+            SuperAttacked?.Invoke();
         }
         else
         {

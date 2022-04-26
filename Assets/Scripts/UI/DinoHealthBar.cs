@@ -9,7 +9,7 @@ public class DinoHealthBar : MonoBehaviour
     [SerializeField] private Image _fillBack;
     [SerializeField] private Image _fillFront;
     [SerializeField] private CanvasGroup _canvasGroup;
-    [SerializeField] private float _speed = 0.008f;
+    [SerializeField] private float _speed = 0.005f;
 
     private const float Duration = 0.3f;
 
@@ -40,12 +40,12 @@ public class DinoHealthBar : MonoBehaviour
 
     private void OnHealthChanged()
     {
-        var currentHealth = Mathf.InverseLerp(0, _boss.HealthMax, _boss.Health);
+        float currentHealth = Mathf.InverseLerp(0, _boss.HealthMax, _boss.Health);
         _fillFront.fillAmount = currentHealth;
-        StartCoroutine(ShowFillBack(currentHealth));
+        StartCoroutine(ShowFillBack());
     }
 
-    private IEnumerator ShowFillBack(float health)
+    private IEnumerator ShowFillBack()
     {
         var waitForSeconds = new WaitForSeconds(Duration);
         var waitForFixedUpdate = new WaitForFixedUpdate();

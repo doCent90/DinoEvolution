@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] private Boss _boss;
     [SerializeField] private Player _player;
     [SerializeField] private GameOver _gameOver;
     [SerializeField] private LevelsLoader _levelsLoader;
+    [SerializeField] private BossAreaTrigger _bossAreaTrigger;
     [SerializeField] private InputController _inputController;
     [Header("Canvas")]
     [SerializeField] private CanvasGroup _gamePanel;
@@ -20,12 +20,16 @@ public class UI : MonoBehaviour
     [SerializeField] private Button _restart;
     [SerializeField] private Button _fightTap;
 
+    private Boss _boss;
+
     private const float Duration = 0.5f;
 
     public event Action FightClicked;
 
     private void OnEnable()
     {
+        _boss = _bossAreaTrigger.Boss;
+
         _boss.Won += OnGameLosed;
         _boss.Died += OnBossDied;
         _gameOver.Losed += OnGameLosed;

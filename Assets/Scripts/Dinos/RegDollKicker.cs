@@ -25,7 +25,7 @@ public class RegDollKicker : MonoBehaviour
 
     private void Kick()
     {
-        foreach (var rigidbody in _rigidbodies)
+        foreach (Rigidbody rigidbody in _rigidbodies)
             Move(rigidbody, _range);
     }
 
@@ -33,14 +33,11 @@ public class RegDollKicker : MonoBehaviour
     {
         float x = Random.Range(-range, range) / 2;
         float y = Random.Range(0, range);
-        float z;
-
-        if(_dinosaur is Boss)
-            z = range;
-        else
-            z = -range;
+        float z = -range;
 
         rigidbody.isKinematic = false;
-        rigidbody.AddForce(new Vector3(x, y, z), ForceMode.VelocityChange);
+
+        if (_dinosaur is DinoMini)
+            rigidbody.AddForce(new Vector3(x, y, z), ForceMode.VelocityChange);
     }
 }

@@ -3,20 +3,24 @@ using UnityEngine;
 
 public class RoadMover : MonoBehaviour
 {
+    [SerializeField] private SortGate _sortGate;
     [SerializeField] private RoadOverTrigger _roadEndTrigger;
-    [SerializeField] private float _speed;
     [Header("Moveable objects")]
     [SerializeField] private RoadTrigger _road;
 
     private float _currentSpeed;
     private float _spentTime;
+    private float _speed = 6f;
 
+    private const float SortGateSpeed = 4f;
+    private const float Acceleration = 3;
     private const float BackUpSpeed = -20f;
     private const float DisableTime = 2f;
 
     private void OnEnable()
     {
         _roadEndTrigger.RoadOver += OnRoadOver;
+        _sortGate.SortGateReached += OnSortGateReached;
     }
 
     private void OnDisable()
@@ -27,18 +31,23 @@ public class RoadMover : MonoBehaviour
     private void Update()
     {
         if(_spentTime < 1)
-            _spentTime += Time.deltaTime / 3;
+            _spentTime += Time.deltaTime / Acceleration;
 
         _currentSpeed = Mathf.Lerp(_currentSpeed, _speed, _spentTime);
 
-        transform.Translate(Vector3.forward * _currentSpeed * Time.deltaTime);
-        _road.transform.Translate(Vector3.back * _currentSpeed * Time.deltaTime);
+        transform.Translate(_currentSpeed * Time.deltaTime * Vector3.forward);
+        _road.transform.Translate(_currentSpeed * Time.deltaTime * Vector3.back);
     }
 
-    public void OnTrapDone()
+    public void OnTrapWorked()
     {
-        _currentSpeed = BackUpSpeed;
-        _spentTime = 0;
+        SetSpeed(ref _currentSpeed, BackUpSpeed);
+    }
+
+    private void OnSortGateReached()
+    {
+        _sortGate.SortGateReached -= OnSortGateReached;
+        SetSpeed(ref _speed, SortGateSpeed);
     }
 
     private void OnRoadOver()
@@ -52,5 +61,11 @@ public class RoadMover : MonoBehaviour
     private void Disable()
     {
         enabled = false;
+    }
+
+    private void SetSpeed(ref float speed, float targetSpeed)
+    {
+        speed = targetSpeed;
+        _spentTime = 0;
     }
 }

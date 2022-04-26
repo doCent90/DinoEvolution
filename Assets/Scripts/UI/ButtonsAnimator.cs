@@ -1,19 +1,18 @@
 using TMPro;
-using DG.Tweening;
 using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(UI))]
 public class ButtonsAnimator : MonoBehaviour
 {
-    [SerializeField] private Boss _boss;
     [SerializeField] private DinoHealthBar _healthBar;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
     [SerializeField] private CanvasGroup _fightButton;
     [SerializeField] private CanvasGroup _tapsCanvas;
     [Header("Taps text")]
     [SerializeField] private TMP_Text[] _tapsText;
+    [SerializeField] private bool _tapsCanDisable = false;
 
+    private Boss _boss;
     private UI _uI;
 
     private const float Delay = 4f;
@@ -21,6 +20,8 @@ public class ButtonsAnimator : MonoBehaviour
     private void OnEnable()
     {
         _uI = GetComponent<UI>();
+        _boss = _bossAreaTrigger.Boss;
+
         _boss.Died += HideRestart;
         _uI.FightClicked += DisableTapsText;
         _bossAreaTrigger.BossAreaReached += OnBossAreaTrigged;
@@ -57,7 +58,8 @@ public class ButtonsAnimator : MonoBehaviour
 
     private void DisableTapsText()
     {
-        DisableCanvas(_tapsCanvas);
+        if(_tapsCanDisable)
+            DisableCanvas(_tapsCanvas);
     }
 
     private void EnableCanvas(CanvasGroup canvasGroup)

@@ -7,7 +7,8 @@ public class DinoAnimator : MonoBehaviour
     [SerializeField] private float _blinkTime = 0.05f;
     [SerializeField] private Animator _animator;
     [SerializeField] private Renderer _renderer;
-    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private ParticleSystem _particleHit;
+    [SerializeField] private ParticleSystem _particleAttack;
 
     private NavMeshAgent _navMeshAgent;
 
@@ -53,7 +54,7 @@ public class DinoAnimator : MonoBehaviour
     {
         Blink();
         Push(boss);
-        _particleSystem.Play();
+        _particleHit.Play();
     }
 
     public void OnAttack()
@@ -76,6 +77,8 @@ public class DinoAnimator : MonoBehaviour
 
             _animator.SetTrigger(Attack);
             _animator.SetFloat(AttacksType, random);
+
+            _particleAttack.Play();
         }
     }
 

@@ -11,7 +11,7 @@ public class EggMover : MonoBehaviour
     private EggMover _nextEgg;
 
     private bool _hasStack = false;
-    private readonly float _power = 23f;
+    private readonly float _power = 30f;
     private readonly float _step = 0.7f;
 
     private const float Speed = 20f;
@@ -25,12 +25,14 @@ public class EggMover : MonoBehaviour
         if(this == PlayerHand.LastInStack)
             PlayerHand.SetLastEgg(_previousEgg);
 
+        // If this egg in midlle stack
         if (_nextEgg != null && _previousEgg != null)
         {
             _previousEgg.SetNextEgg(_nextEgg);
             _nextEgg.SetPreviousEgg(_previousEgg);
         }
 
+        // If this egg is first in stack
         if(_nextEgg != null && _previousEgg == null)
         {
             _nextEgg.SetPreviousEgg(null);
@@ -38,8 +40,13 @@ public class EggMover : MonoBehaviour
             _nextEgg.transform.position = PlayerHand.EggStackPosition.position;
         }
 
+        // If this egg is last in stack
         if(_nextEgg == null && _previousEgg != null)
             _previousEgg.SetNextEgg(null);
+
+        // If this egg is single in stack
+        if (_nextEgg == null && _previousEgg == null)
+            PlayerHand.OnHandEmpty();
 
         _collider.enabled = false;
         transform.parent = parent;
@@ -118,9 +125,10 @@ public class EggMover : MonoBehaviour
             return;
 
         Vector3 position;
-        Vector3 targetPosition = new Vector3(_previousEgg.transform.position.x, _previousEgg.transform.position.y, _previousEgg.transform.position.z + _step);
+        Vector3 previuosEgg = _previousEgg.transform.position;
+        Vector3 targetPosition = new Vector3(previuosEgg.x, previuosEgg.y, previuosEgg.z + _step);
 
-        position = Vector3.Lerp(transform.position, targetPosition, _power * Time.deltaTime);
-        transform.position = new Vector3(position.x, targetPosition.y, targetPosition.z);
+        position = Vector3.Lerp(transform.position, targetPosition, Mathf.SmoothStep(0f, 1f, _power * Time.deltaTime));
+        transform.position = position;
     }
 }
