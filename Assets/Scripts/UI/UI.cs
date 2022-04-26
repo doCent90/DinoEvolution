@@ -22,7 +22,8 @@ public class UI : MonoBehaviour
 
     private Boss _boss;
 
-    private const float Duration = 0.5f;
+    private const float Delay = 2f;
+    private const float Duration = 0.8f;
 
     public event Action FightClicked;
 
@@ -55,8 +56,7 @@ public class UI : MonoBehaviour
     private void StartGame()
     {
         _player.EnableMove();
-        EnableCanvas(_gamePanel);
-        DisableCanvas(_startPanel);
+        SwitchPanels(_gamePanel, _startPanel);
     }
 
     private void Restart()
@@ -73,15 +73,29 @@ public class UI : MonoBehaviour
     private void OnBossDied()
     {
         _fightTap.enabled = false;
-        EnableCanvas(_winPanel);
-        DisableCanvas(_gamePanel);
+        Invoke(nameof(EnableWinPanel), Delay);
     }
 
     private void OnGameLosed()
     {
         _fightTap.enabled = false;
-        EnableCanvas(_losePanel);
-        DisableCanvas(_gamePanel);
+        Invoke(nameof(EnableLosePanel), Delay);
+    }
+
+    private void EnableWinPanel()
+    {
+        SwitchPanels(_winPanel, _gamePanel);
+    }
+
+    private void EnableLosePanel()
+    {
+        SwitchPanels(_losePanel, _gamePanel);
+    }
+
+    private void SwitchPanels(CanvasGroup panelOn, CanvasGroup panelOff)
+    {
+        EnableCanvas(panelOn);
+        DisableCanvas(panelOff);
     }
 
     private void EnableCanvas(CanvasGroup canvasGroup)

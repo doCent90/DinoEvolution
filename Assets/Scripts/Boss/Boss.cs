@@ -14,6 +14,7 @@ public class Boss : Dinosaur
 
     private List<DinoMini> _dinos = new List<DinoMini>();
     private bool _isReadyToAttack = false;
+    private bool _isAlive = true;
     private int _typeAttack;
 
     private const float SuperAttackPower = 0.25f;
@@ -60,10 +61,14 @@ public class Boss : Dinosaur
 
     public void TakeDamage(float damage)
     {
-        if(damage > Health)
+        if (_isAlive == false)
+            return;
+
+        if(damage > Health && Health > 0)
             Die();
 
-        Health -= damage;
+        if (Health > 0)
+            Health -= damage;
 
         if(Health <= 0)
             Die();
@@ -142,6 +147,7 @@ public class Boss : Dinosaur
         OnDied();
         _isReadyToAttack = false;
         _animator.enabled = false;
+        _isAlive = false;
         enabled = false;
         Died?.Invoke();
     }

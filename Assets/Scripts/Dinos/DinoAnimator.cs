@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
+
 public class DinoAnimator : MonoBehaviour
 {
-    [Range(0f, 0.1f)]
-    [SerializeField] private float _blinkTime = 0.05f;
+    [SerializeField] private Projector _shadow;
     [SerializeField] private Animator _animator;
     [SerializeField] private Renderer _renderer;
     [SerializeField] private ParticleSystem _particleHit;
@@ -18,6 +18,7 @@ public class DinoAnimator : MonoBehaviour
     private const float Power = 0.2f;
     private const float MinScale = 0.1f;
     private const float MinSpeed = 0.6f;
+    private const float BlinkTime = 0.05f;
     private const float ScaleDuration = 0.5f;
     private const float DelayBetwenAttack = 1f;
     private const float DelayBeforeAttack = 2f;
@@ -108,9 +109,9 @@ public class DinoAnimator : MonoBehaviour
 
     private void Blink()
     {
-        var blinkFirstOn = _renderer.material.DOFloat(0.5f, TextureImpact, _blinkTime);
-        var blinkFirstOff = _renderer.material.DOFloat(1, TextureImpact, _blinkTime).SetDelay(_blinkTime);
-        var blinkSecondOn = _renderer.material.DOFloat(0.8f, TextureImpact, _blinkTime).SetDelay(_blinkTime*2);
-        var blinkSecondOff = _renderer.material.DOFloat(1, TextureImpact, _blinkTime).SetDelay(_blinkTime*4);
+        var blinkFirstOn = _renderer.material.DOFloat(0.5f, TextureImpact, BlinkTime);
+        var blinkFirstOff = _renderer.material.DOFloat(1, TextureImpact, BlinkTime).SetDelay(BlinkTime);
+        var blinkSecondOn = _renderer.material.DOFloat(0.8f, TextureImpact, BlinkTime).SetDelay(BlinkTime*2);
+        var blinkSecondOff = _renderer.material.DOFloat(1, TextureImpact, BlinkTime).SetDelay(BlinkTime*4);
     }
 }

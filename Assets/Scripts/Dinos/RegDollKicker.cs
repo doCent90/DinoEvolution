@@ -3,7 +3,6 @@ using UnityEngine;
 public class RegDollKicker : MonoBehaviour
 {
     [SerializeField] private Dinosaur _dinosaur;
-    [SerializeField] private bool _isBoss;
 
     private Rigidbody[] _rigidbodies;
     private readonly float _range = 6f;
@@ -39,5 +38,7 @@ public class RegDollKicker : MonoBehaviour
 
         if (_dinosaur is DinoMini)
             rigidbody.AddForce(new Vector3(x, y, z), ForceMode.VelocityChange);
+        else
+            rigidbody.AddForce(new Vector3(0, y / 10, 0), ForceMode.VelocityChange);
     }
 }

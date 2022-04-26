@@ -148,22 +148,22 @@ CharacterJoint:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: 78.55824
+    limit: 83.48477
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 98.19048
+    limit: 91.32604
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 9.657091
+    limit: 3.1388097
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 10.152252
+    limit: 3
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
@@ -1601,7 +1601,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dinosaur: {fileID: 2755334001582629506}
-  _isBoss: 1
 --- !u!114 &6361814254519805291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4978,22 +4977,22 @@ CharacterJoint:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: 103.03806
+    limit: 82.19941
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 111.35721
+    limit: 86.61332
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 10.655679
+    limit: 3
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 6.845426
+    limit: 3
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0

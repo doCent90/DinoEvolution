@@ -568,6 +568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _blinkTime: 0.05
+  _shadow: {fileID: 2383655663172177177}
   _animator: {fileID: 1315807797352126762}
   _renderer: {fileID: 2197767849497135812}
   _particleHit: {fileID: 7321136524271206244}
@@ -597,7 +598,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dinosaur: {fileID: 7636936893259968095}
-  _isBoss: 0
 --- !u!1 &1595548354826757343
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,6 +5250,11 @@ PrefabInstance:
 --- !u!4 &2383655663177450491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 28a5e79925e3ce04a82856c16a572cbe, type: 3}
+  m_PrefabInstance: {fileID: 2383655663177587065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!119 &2383655663172177177 stripped
+Projector:
+  m_CorrespondingSourceObject: {fileID: 11900000, guid: 28a5e79925e3ce04a82856c16a572cbe, type: 3}
   m_PrefabInstance: {fileID: 2383655663177587065}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7321136524257166624

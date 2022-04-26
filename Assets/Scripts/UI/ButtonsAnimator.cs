@@ -19,18 +19,23 @@ public class ButtonsAnimator : MonoBehaviour
 
     private void OnEnable()
     {
-        _uI = GetComponent<UI>();
         _boss = _bossAreaTrigger.Boss;
 
+        _boss.Won += HideRestart;
         _boss.Died += HideRestart;
-        _uI.FightClicked += DisableTapsText;
         _bossAreaTrigger.BossAreaReached += OnBossAreaTrigged;
+
+        if (_tapsCanDisable)
+        {
+            _uI = GetComponent<UI>();
+            _uI.FightClicked += DisableTapsText;
+        }
     }
 
     private void OnDisable()
     {
+        _boss.Won -= HideRestart;
         _boss.Died -= HideRestart;
-        _uI.FightClicked -= DisableTapsText;
         _bossAreaTrigger.BossAreaReached -= OnBossAreaTrigged;
     }
 
@@ -49,6 +54,7 @@ public class ButtonsAnimator : MonoBehaviour
     private void HideRestart()
     {
         DisableCanvas(_fightButton);
+        DisableCanvas(_tapsCanvas);
     }
 
     private void EnableTapsText()
@@ -58,8 +64,8 @@ public class ButtonsAnimator : MonoBehaviour
 
     private void DisableTapsText()
     {
-        if(_tapsCanDisable)
-            DisableCanvas(_tapsCanvas);
+        DisableCanvas(_tapsCanvas);
+        _uI.FightClicked -= DisableTapsText;
     }
 
     private void EnableCanvas(CanvasGroup canvasGroup)
