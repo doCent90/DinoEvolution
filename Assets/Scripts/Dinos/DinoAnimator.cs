@@ -51,6 +51,11 @@ public class DinoAnimator : MonoBehaviour
             _isReadyToAttack = false;
     }
 
+    public void DisableShadow()
+    {
+        _shadow.enabled = false;
+    }
+
     public void PlayHit(Boss boss)
     {
         Blink();
