@@ -118,7 +118,7 @@ public class EggMover : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_hasStack == false || _previousEgg == null)
             return;
@@ -126,8 +126,11 @@ public class EggMover : MonoBehaviour
         Vector3 position;
         Vector3 previuosEgg = _previousEgg.transform.position;
 
-        Vector3 targetPosition = new Vector3(previuosEgg.x, previuosEgg.y, previuosEgg.z + Step);
-        position = Vector3.Lerp(transform.position, targetPosition, Mathf.SmoothStep(0f, 1f, Power * Time.deltaTime));
+        Vector3 targetPosition = new Vector3(previuosEgg.x,
+            previuosEgg.y, previuosEgg.z + Step);
+
+        position = Vector3.Lerp(transform.position, targetPosition,
+            Mathf.SmoothStep(0f, 1f, Power * Time.deltaTime));
 
         transform.position = position;
     }

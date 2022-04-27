@@ -9,7 +9,6 @@ public class PlayerMover : MonoBehaviour
     private float _offset;
     private bool _hasSortGate = false;
 
-    private const float Power = 25f;
     private const float Treshold = 1f;
     private const float Duration = 1f;
 
@@ -27,7 +26,7 @@ public class PlayerMover : MonoBehaviour
         float position = Mathf.Clamp(_offset, -Treshold, Treshold);
 
         Vector3 targetPosition = new Vector3(position, transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Power * Time.deltaTime);
+        transform.position = targetPosition;
 
         Position = transform.position;
     }
