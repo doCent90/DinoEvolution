@@ -9,7 +9,7 @@ public class PlayerMover : MonoBehaviour
     private float _offset;
     private bool _hasSortGate = false;
 
-    private const float Power = 15f;
+    private const float Power = 25f;
     private const float Treshold = 1f;
     private const float Duration = 1f;
 

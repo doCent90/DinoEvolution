@@ -11,10 +11,9 @@ public class EggMover : MonoBehaviour
     private EggMover _nextEgg;
 
     private bool _hasStack = false;
-    private readonly float _power = 30f;
-    private readonly float _step = 0.7f;
 
-    private const float Speed = 20f;
+    private const float Step = 0.7f;
+    private const float Power = 30f;
     private const float Delay = 0.05f;
 
     public Egg Egg { get; private set; }
@@ -126,9 +125,10 @@ public class EggMover : MonoBehaviour
 
         Vector3 position;
         Vector3 previuosEgg = _previousEgg.transform.position;
-        Vector3 targetPosition = new Vector3(previuosEgg.x, previuosEgg.y, previuosEgg.z + _step);
 
-        position = Vector3.Lerp(transform.position, targetPosition, Mathf.SmoothStep(0f, 1f, _power * Time.deltaTime));
+        Vector3 targetPosition = new Vector3(previuosEgg.x, previuosEgg.y, previuosEgg.z + Step);
+        position = Vector3.Lerp(transform.position, targetPosition, Mathf.SmoothStep(0f, 1f, Power * Time.deltaTime));
+
         transform.position = position;
     }
 }

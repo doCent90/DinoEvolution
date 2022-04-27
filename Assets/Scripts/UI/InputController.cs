@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    [Range(5f, 15f)]
+    [Range(0f, 10f)]
     [SerializeField] private float _sensitivity;
     [SerializeField] private PlayerMover _playerMover;
 

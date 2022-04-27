@@ -17,7 +17,8 @@ public class UI : MonoBehaviour
     [SerializeField] private CanvasGroup _losePanel;
     [Header("Buttons")]
     [SerializeField] private Button _retry;
-    [SerializeField] private Button _restart;
+    [SerializeField] private Button _restartGame;
+    [SerializeField] private Button _restartBoss;
     [SerializeField] private Button _fightTap;
 
     private Boss _boss;
@@ -37,7 +38,8 @@ public class UI : MonoBehaviour
         _inputController.Clicked += StartGame;
 
         _retry.onClick.AddListener(Restart);
-        _restart.onClick.AddListener(Restart);
+        _restartGame.onClick.AddListener(Restart);
+        _restartBoss.onClick.AddListener(Restart);
         _fightTap.onClick.AddListener(OnFightCliked);
     }
 
@@ -49,7 +51,8 @@ public class UI : MonoBehaviour
         _inputController.Clicked -= StartGame;
 
         _retry.onClick.RemoveListener(Restart);
-        _restart.onClick.RemoveListener(Restart);
+        _restartGame.onClick.RemoveListener(Restart);
+        _restartBoss.onClick.RemoveListener(Restart);
         _fightTap.onClick.RemoveListener(OnFightCliked);
     }
 
