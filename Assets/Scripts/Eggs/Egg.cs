@@ -47,7 +47,7 @@ public class Egg : MonoBehaviour
         if (other.TryGetComponent(out NestGate nestGate))
             TakeNest(nestGate);
 
-        if (other.TryGetComponent(out ColorChangeGate colorChangeGate))
+        if (other.TryGetComponent(out EggUpgradeGate colorChangeGate))
             TypeUpgrade();
     }
 

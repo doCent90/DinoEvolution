@@ -1,9 +1,7 @@
-using System.Collections;
 using UnityEngine;
 
 public class RoadMover : MonoBehaviour
 {
-    [SerializeField] private SortGate _sortGate;
     [SerializeField] private RoadOverTrigger _roadEndTrigger;
     [Header("Moveable objects")]
     [SerializeField] private RoadTrigger _road;
@@ -12,15 +10,15 @@ public class RoadMover : MonoBehaviour
     private float _spentTime;
     private float _speed = 6f;
 
-    private const float SortGateSpeed = 4f;
+    private const float ToolsSpeed = 4f;
+    private const float DisableTime = 2f;
     private const float Acceleration = 3;
     private const float BackUpSpeed = -20f;
-    private const float DisableTime = 2f;
+    private const float SortGateSpeed = 4f;
 
     private void OnEnable()
     {
         _roadEndTrigger.RoadOver += OnRoadOver;
-        _sortGate.SortGateReached += OnSortGateReached;
     }
 
     private void OnDisable()
@@ -44,9 +42,13 @@ public class RoadMover : MonoBehaviour
         SetSpeed(ref _currentSpeed, BackUpSpeed);
     }
 
-    private void OnSortGateReached()
+    public void OnToolsWorked()
     {
-        _sortGate.SortGateReached -= OnSortGateReached;
+        SetSpeed(ref _currentSpeed, ToolsSpeed);
+    }
+
+    public void OnSortGateReached()
+    {
         SetSpeed(ref _speed, SortGateSpeed);
     }
 

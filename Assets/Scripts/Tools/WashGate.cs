@@ -1,3 +1,1 @@
-using UnityEngine;
-
-public class WashGate : MonoBehaviour {}
+public class WashGate : Gate {}

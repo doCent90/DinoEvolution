@@ -16,6 +16,7 @@ public class UI : MonoBehaviour
     [SerializeField] private CanvasGroup _winPanel;
     [SerializeField] private CanvasGroup _losePanel;
     [Header("Buttons")]
+    [SerializeField] private Button _next;
     [SerializeField] private Button _retry;
     [SerializeField] private Button _restartGame;
     [SerializeField] private Button _restartBoss;
@@ -25,6 +26,8 @@ public class UI : MonoBehaviour
 
     private const float Delay = 2f;
     private const float Duration = 0.8f;
+
+    public BossAreaTrigger BossAreaTrigger => _bossAreaTrigger;
 
     public event Action FightClicked;
 
@@ -37,6 +40,7 @@ public class UI : MonoBehaviour
         _gameOver.Losed += OnGameLosed;
         _inputController.Clicked += StartGame;
 
+        _next.onClick.AddListener(Next);
         _retry.onClick.AddListener(Restart);
         _restartGame.onClick.AddListener(Restart);
         _restartBoss.onClick.AddListener(Restart);
@@ -50,6 +54,7 @@ public class UI : MonoBehaviour
         _gameOver.Losed -= OnGameLosed;
         _inputController.Clicked -= StartGame;
 
+        _next.onClick.RemoveListener(Next);
         _retry.onClick.RemoveListener(Restart);
         _restartGame.onClick.RemoveListener(Restart);
         _restartBoss.onClick.RemoveListener(Restart);
@@ -60,6 +65,11 @@ public class UI : MonoBehaviour
     {
         _player.EnableMove();
         SwitchPanels(_gamePanel, _startPanel);
+    }
+
+    private void Next()
+    {
+        _levelsLoader.Next();
     }
 
     private void Restart()

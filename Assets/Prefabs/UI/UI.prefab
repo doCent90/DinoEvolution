@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295c2ea2ce35c004c8df8b4fcedf833b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boss: {fileID: 0}
+  _uI: {fileID: 5058267720323509088}
   _fillBack: {fileID: 977277783503990272}
   _fillFront: {fileID: 977277782162244318}
   _canvasGroup: {fileID: 977277782604829185}
@@ -2099,6 +2099,7 @@ MonoBehaviour:
   _startPanel: {fileID: 5058267720153291039}
   _winPanel: {fileID: 5058267721662272200}
   _losePanel: {fileID: 5058267721354842083}
+  _next: {fileID: 5058267721576797448}
   _retry: {fileID: 5058267720975877356}
   _restartGame: {fileID: 5058267720198596186}
   _restartBoss: {fileID: 6565123951895145176}
@@ -2116,7 +2117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 977277782604829190}
-  _bossAreaTrigger: {fileID: 0}
   _fightButton: {fileID: 977277783512167775}
   _tapsCanvas: {fileID: 977277782524996791}
   _tapsText:

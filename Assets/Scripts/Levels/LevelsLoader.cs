@@ -3,14 +3,46 @@ using IJunior.TypedScenes;
 
 public class LevelsLoader : MonoBehaviour
 {
+    [SerializeField] private Boss _boss;
+    [Header("Settings")]
     [SerializeField] private int _levelsNumber;
     [SerializeField] private bool _isStartApp = false;
     [SerializeField] private bool _isTestLevel = false;
 
-    private readonly int _levelsAmount = 5;
+    private readonly int _levelsAmount = 15;
     private float _spentTime;
 
     public int Level => _levelsNumber;
+
+    private void OnEnable()
+    {
+        if(_isTestLevel)
+            Debug.Log("TEST LEVEL");
+
+        if (_isStartApp || _isTestLevel)
+            return;
+
+        string currentLevelName = AmplitudeHandler.LEVEL;
+        int currentLevel = PlayerPrefs.GetInt(currentLevelName);
+        _levelsNumber = currentLevel;
+
+        AmplitudeHandler.SetLevelStart(_levelsNumber);
+
+        _boss.Died += OnLevelDone;
+    }
+
+    private void OnDisable()
+    {
+        if (_isStartApp)
+            return;
+
+        _boss.Died -= OnLevelDone;
+    }
+
+    private void Update()
+    {
+        _spentTime += Time.deltaTime;
+    }
 
     public void LoadCurrentLevelOnStartApp()
     {
@@ -31,27 +63,6 @@ public class LevelsLoader : MonoBehaviour
         Load(_levelsNumber);
 
         AmplitudeHandler.SetRestartLevel(_levelsNumber);
-    }
-
-    private void OnEnable()
-    {
-        if(_isTestLevel)
-            Debug.Log("TEST LEVEL");
-
-        if (_isStartApp || _isTestLevel)
-            return;
-
-        string currentLevelName = AmplitudeHandler.LEVEL;
-        int currentLevel = PlayerPrefs.GetInt(currentLevelName);
-        _levelsNumber = currentLevel;
-
-        AmplitudeHandler.SetLevelStart(_levelsNumber);
-    }
-
-    private void OnDisable()
-    {
-        if (_isStartApp)
-            return;
     }
 
     private void OnLevelDone()
@@ -83,16 +94,17 @@ public class LevelsLoader : MonoBehaviour
         switch (number)
         {
             case 0:
-                Visual2.Load();
+                TEST.Load();
+                break;
+            case 1:
+                LVL_1.Load();
+                break;
+            case 2:
+                LVL_2.Load();
                 break;
             default:
                 RandomLevel();
                 break;
         }
-    }
-
-    private void Update()
-    {
-        _spentTime += Time.deltaTime;
     }
 }

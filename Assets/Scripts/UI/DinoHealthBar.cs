@@ -5,16 +5,22 @@ using System.Collections;
 
 public class DinoHealthBar : MonoBehaviour
 {
-    [SerializeField] private Boss _boss;
+    [SerializeField] private UI _uI;
     [SerializeField] private Image _fillBack;
     [SerializeField] private Image _fillFront;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private float _speed = 0.005f;
 
+    private Boss _boss;
+    private BossAreaTrigger _areaTrigger;
+
     private const float Duration = 0.3f;
 
     private void OnEnable()
     {
+        _areaTrigger = _uI.BossAreaTrigger;
+        _boss = _areaTrigger.Boss;
+
         _boss.Won += Hide;
         _boss.Died += Hide;
         _boss.HealthChanged += OnHealthChanged;
