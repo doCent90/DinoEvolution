@@ -5,14 +5,15 @@ public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private InputController _inputController;
     [Header("Settings")]
-    [Range(0f, 0.1f)]
-    [SerializeField] private float _sensitivity = 0.03f;
 
-    private float _slideDirection;
+    private float _offset;
     private bool _hasSortGate = false;
 
+    private const float Power = 15f;
     private const float Treshold = 1f;
     private const float Duration = 1f;
+
+    public Vector3 Position { get; private set; }
 
     public void SetDefaultPosition()
     {
@@ -22,10 +23,13 @@ public class PlayerMover : MonoBehaviour
 
     private void Move()
     {
-        _slideDirection = _inputController.GetSlideValue() * _sensitivity;
+        _offset = _inputController.CurrentOffset;
+        float position = Mathf.Clamp(_offset, -Treshold, Treshold);
 
-        float position = Mathf.Clamp(_slideDirection, -Treshold, Treshold);
-        transform.position = new Vector3(position, transform.position.y, transform.position.z);
+        Vector3 targetPosition = new Vector3(position, transform.position.y, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Power * Time.deltaTime);
+
+        Position = transform.position;
     }
 
     private void Update()

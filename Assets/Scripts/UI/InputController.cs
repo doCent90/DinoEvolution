@@ -3,25 +3,44 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
-    private float _axisX;
+    [Range(5f, 15f)]
+    [SerializeField] private float _sensitivity;
+    [SerializeField] private PlayerMover _playerMover;
 
-    private const string MouseX = "Mouse X";
+    private float _saveOffset;
+    private Vector3 _mousePosition;
+
+    private const float Multiply = 100f;
+
+    public float CurrentOffset { get; private set; }
 
     public event Action Clicked;
+
+    private void OnEnable()
+    {
+        _sensitivity *= Multiply;
+    }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
             Clicked?.Invoke();
+
+        GetOffsetValue();
     }
 
-    public float GetSlideValue()
+    public void GetOffsetValue()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            _axisX += Input.GetAxis(MouseX);
+            _saveOffset = _playerMover.Position.x;
+            _mousePosition = Input.mousePosition;
         }
 
-        return _axisX;
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 offset = Input.mousePosition - _mousePosition;
+            CurrentOffset = _saveOffset + offset.x / _sensitivity;
+        }
     }
 }

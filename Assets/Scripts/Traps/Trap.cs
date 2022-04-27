@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class Trap : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
     [SerializeField] private RoadMover _splineMover;
 
     private BoxCollider _boxCollider;
