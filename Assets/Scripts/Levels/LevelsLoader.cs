@@ -1,18 +1,20 @@
 using UnityEngine;
 using IJunior.TypedScenes;
+using System;
+using Random = UnityEngine.Random;
 
 public class LevelsLoader : MonoBehaviour
 {
     [SerializeField] private Boss _boss;
     [Header("Settings")]
-    [SerializeField] private int _levelsNumber;
+    [SerializeField] private int _levelNumber;
     [SerializeField] private bool _isStartApp = false;
     [SerializeField] private bool _isTestLevel = false;
 
     private readonly int _levelsAmount = 3;
     private float _spentTime;
 
-    public int Level => _levelsNumber;
+    public event Action<int> LevelChanged;
 
     private void OnEnable()
     {
@@ -24,10 +26,11 @@ public class LevelsLoader : MonoBehaviour
 
         string currentLevelName = AmplitudeHandler.LEVEL;
         int currentLevel = PlayerPrefs.GetInt(currentLevelName);
-        _levelsNumber = currentLevel;
+        _levelNumber = currentLevel;
 
-        AmplitudeHandler.SetLevelStart(_levelsNumber);
+        AmplitudeHandler.SetLevelStart(_levelNumber);
 
+        LevelChanged?.Invoke(currentLevel);
         _boss.Died += OnLevelDone;
     }
 
@@ -54,15 +57,15 @@ public class LevelsLoader : MonoBehaviour
 
     public void Next()
     {
-        int nextLevel = _levelsNumber + 1;
+        int nextLevel = _levelNumber + 1;
         Load(nextLevel);
     }
 
     public void Restart()
     {
-        Load(_levelsNumber);
+        Load(_levelNumber);
 
-        AmplitudeHandler.SetRestartLevel(_levelsNumber);
+        AmplitudeHandler.SetRestartLevel(_levelNumber);
     }
 
     private void OnLevelDone()
@@ -71,7 +74,7 @@ public class LevelsLoader : MonoBehaviour
 
         if (_isTestLevel == false)
         {
-            int nextLevel = _levelsNumber + 1;
+            int nextLevel = _levelNumber + 1;
             PlayerPrefs.SetInt(level, nextLevel);
         }
         else
@@ -79,12 +82,12 @@ public class LevelsLoader : MonoBehaviour
             Debug.Log("Test Level Done");
         }
 
-        AmplitudeHandler.SetLevelComplete(_levelsNumber, (int)_spentTime);
+        AmplitudeHandler.SetLevelComplete(_levelNumber, (int)_spentTime);
     }
 
     private void RandomLevel()
     {
-        int randomLevel = Random.Range(1, _levelsAmount + 1);
+        int randomLevel = Random.Range(2, _levelsAmount + 1);
         Load(randomLevel);
     }
 

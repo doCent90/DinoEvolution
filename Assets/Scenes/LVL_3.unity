@@ -47425,8 +47425,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8009463641568679460, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
+      propertyPath: _levelNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8009463641568679460, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
       propertyPath: _levelsNumber
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8009463641568679461, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
       propertyPath: m_RootOrder

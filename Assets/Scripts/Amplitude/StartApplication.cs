@@ -6,18 +6,18 @@ public class StartApplication : MonoBehaviour
 {
     private LevelsLoader _levelsLoader;
 
-    private const float DELAY = 1f;
-    private const string FIRST_DAY = "first_day";
+    private const float Delay = 0.5f;
+    private const string FirstDay = "first_day";
 
     private void OnEnable()
     {
         _levelsLoader = GetComponent<LevelsLoader>();
-        Invoke(nameof(StartGame), DELAY);
+        Invoke(nameof(StartGame), Delay);
 
-        if (PlayerPrefs.GetInt(FIRST_DAY) == 0)
+        if (PlayerPrefs.GetInt(FirstDay) == 0)
         {
             int firstDay = DateTime.Today.Day;
-            PlayerPrefs.SetInt(FIRST_DAY, firstDay);
+            PlayerPrefs.SetInt(FirstDay, firstDay);
         }
 
         if(PlayerPrefs.GetInt(AmplitudeHandler.LEVEL) == 0)
@@ -58,7 +58,7 @@ public class StartApplication : MonoBehaviour
             AmplitudeHandler.SetDaysInGame(1);
         }
 
-        if (currentDay != PlayerPrefs.GetInt(FIRST_DAY))
+        if (currentDay != PlayerPrefs.GetInt(FirstDay))
         {
             int days = PlayerPrefs.GetInt(daysInGame);
             days++;
