@@ -9,7 +9,7 @@ public class LevelsLoader : MonoBehaviour
     [SerializeField] private bool _isStartApp = false;
     [SerializeField] private bool _isTestLevel = false;
 
-    private readonly int _levelsAmount = 15;
+    private readonly int _levelsAmount = 3;
     private float _spentTime;
 
     public int Level => _levelsNumber;
@@ -82,10 +82,9 @@ public class LevelsLoader : MonoBehaviour
         AmplitudeHandler.SetLevelComplete(_levelsNumber, (int)_spentTime);
     }
 
-
     private void RandomLevel()
     {
-        int randomLevel = Random.Range(3, _levelsAmount + 1);
+        int randomLevel = Random.Range(1, _levelsAmount + 1);
         Load(randomLevel);
     }
 
@@ -103,7 +102,7 @@ public class LevelsLoader : MonoBehaviour
                 LVL_2.Load();
                 break;
             case 3:
-                LVL_2.Load();
+                LVL_3.Load();
                 break;
             default:
                 RandomLevel();

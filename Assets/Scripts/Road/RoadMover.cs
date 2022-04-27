@@ -14,7 +14,7 @@ public class RoadMover : MonoBehaviour
     private const float DisableTime = 2f;
     private const float Acceleration = 3;
     private const float BackUpSpeed = -20f;
-    private const float SortGateSpeed = 4f;
+    private const float SortGateSpeed = 3f;
 
     private void OnEnable()
     {

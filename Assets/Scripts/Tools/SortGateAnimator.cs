@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class SortGateAnimator : MonoBehaviour
+public class SortGateAnimator : Gate
 {
     [SerializeField] private Animator _animator;
 
