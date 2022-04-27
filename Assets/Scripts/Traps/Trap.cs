@@ -3,8 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class Trap : MonoBehaviour
 {
-    [SerializeField] private RoadMover _splineMover;
+    [SerializeField] private Tools _tools;
 
+    private RoadMover _splineMover;
     private BoxCollider _boxCollider;
 
     private const float Delay = 2f;
@@ -12,6 +13,7 @@ public class Trap : MonoBehaviour
     private void OnEnable()
     {
         _boxCollider = GetComponent<BoxCollider>();
+        _splineMover = _tools.RoadMover;
     }
 
     private void OnTriggerEnter(Collider other)

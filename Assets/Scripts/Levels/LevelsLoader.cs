@@ -102,6 +102,9 @@ public class LevelsLoader : MonoBehaviour
             case 2:
                 LVL_2.Load();
                 break;
+            case 3:
+                LVL_2.Load();
+                break;
             default:
                 RandomLevel();
                 break;

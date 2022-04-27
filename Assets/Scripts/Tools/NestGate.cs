@@ -5,7 +5,7 @@ public class NestGate : Gate
 {
     private NestGateAnimator _nestGateAnimator;
 
-    private void OnEnable()
+    private void Awake()
     {
         _nestGateAnimator = GetComponent<NestGateAnimator>();
     }

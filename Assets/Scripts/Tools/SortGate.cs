@@ -4,17 +4,25 @@ using System;
 
 public class SortGate : MonoBehaviour
 {
+    [SerializeField] private Tools _tools;
     [SerializeField] private Transform _point;
-    [SerializeField] private RoadMover _mover;
+    [Header("View")]
+    [SerializeField] private MeshRenderer _positive;
+    [SerializeField] private MeshRenderer _negative;
 
+    private RoadMover _mover;
     private bool _isPlayerMoverDisable = false;
-
     private bool _hasActivated = false;
 
-    private const float Duration = 1f;
+    private const float Duration = 3f;
 
     public event Action EggStackEmpty;
     public event Action SortGateReached;
+
+    private void OnEnable()
+    {
+        _mover = _tools.RoadMover;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,11 +41,16 @@ public class SortGate : MonoBehaviour
     private void Sort(Egg egg)
     {
         DisablePlayerMover(egg);
+        DisableView(_negative);
+        EnableView(_positive);
+
         _hasActivated = true;
         SortGateReached?.Invoke();
 
         if(egg.WasUVLightsHeated == false || egg.WasWashed == false || egg.HaveNest == false)
         {
+            DisableView(_positive);
+            EnableView(_negative);
             egg.Sort(transform);
             egg.transform.DOMove(_point.position, Duration);
         }
@@ -50,5 +63,15 @@ public class SortGate : MonoBehaviour
             _isPlayerMoverDisable = true;
             egg.PlayerHand.PlayerMover.SetDefaultPosition();
         }
+    }
+
+    private void EnableView(MeshRenderer mesh)
+    {
+        mesh.enabled = true;
+    }
+
+    private void DisableView(MeshRenderer mesh)
+    {
+        mesh.enabled = false;
     }
 }
