@@ -74,6 +74,7 @@ public class Egg : MonoBehaviour
     {
         HasInStack = true;
         PlayerHand = playerHand;
+        PlayerHand.OnEggAdded();
         _eggMover.OnTaked(PlayerHand, follwerEgg, parent);
     }
 

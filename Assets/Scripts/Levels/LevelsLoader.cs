@@ -29,12 +29,10 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
         if (_isStartApp == false && _isTestLevel == false)
         {
-            int currentLevel = PlayerPrefs.GetInt(Level);
-            _levelNumber = currentLevel;
+            _levelNumber = PlayerPrefs.GetInt(Level);
+            LevelLoaded?.Invoke(_levelNumber);
 
             AmplitudeHandler.SetLevelStart(_levelNumber);
-
-            LevelLoaded?.Invoke(currentLevel);
             _boss.Died += OnLevelDone;
         }
     }
