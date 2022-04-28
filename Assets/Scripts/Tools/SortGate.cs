@@ -11,12 +11,12 @@ public class SortGate : MonoBehaviour
     [SerializeField] private MeshRenderer _negative;
 
     private RoadMover _mover;
+
     private bool _isPlayerMoverDisable = false;
     private bool _hasActivated = false;
 
     private const float Duration = 3f;
 
-    public event Action EggStackEmpty;
     public event Action SortGateReached;
 
     private void OnEnable()
@@ -35,7 +35,7 @@ public class SortGate : MonoBehaviour
         }
 
         if (other.TryGetComponent(out PlayerHand playerHand) && playerHand.IsBusy == false)
-            EggStackEmpty?.Invoke();        
+            _tools.GameOver.StopGame();        
     }
 
     private void Sort(Egg egg)

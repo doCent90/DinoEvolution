@@ -8,6 +8,7 @@ public class DinoHealthBar : MonoBehaviour
     [SerializeField] private UI _uI;
     [SerializeField] private Image _fillBack;
     [SerializeField] private Image _fillFront;
+    [SerializeField] private GameOver _gameOver;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private float _speed = 0.005f;
 
@@ -21,15 +22,15 @@ public class DinoHealthBar : MonoBehaviour
         _areaTrigger = _uI.BossAreaTrigger;
         _boss = _areaTrigger.Boss;
 
-        _boss.Won += Hide;
-        _boss.Died += Hide;
+        _gameOver.Won += Hide;
+        _gameOver.Losed += Hide;
         _boss.HealthChanged += OnHealthChanged;
     }
 
     private void OnDisable()
     {
-        _boss.Won -= Hide;
-        _boss.Died -= Hide;
+        _gameOver.Won -= Hide;
+        _gameOver.Losed -= Hide;
         _boss.HealthChanged -= OnHealthChanged;        
     }
 

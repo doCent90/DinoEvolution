@@ -6,6 +6,7 @@ using DG.Tweening;
 public class Egg : MonoBehaviour
 {
     [SerializeField] private EggLevel level;
+    [SerializeField] private Tools _tools;
     [SerializeField] private EggType _eggType;
     [SerializeField] private EggMover _eggMover;
     [SerializeField] private Transform _eggParent;
@@ -16,6 +17,7 @@ public class Egg : MonoBehaviour
 
     private EggData _data;
     private EggModel _model;
+    private GameOver _gameOver;
     private RoadParent _roadParent;
     private MeshRenderer _cleanEgg;
 
@@ -31,6 +33,7 @@ public class Egg : MonoBehaviour
     {
         InitType();
         _roadParent = GetComponentInParent<RoadParent>();
+        _gameOver = _tools.GameOver;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -86,7 +89,7 @@ public class Egg : MonoBehaviour
     private void InitType()
     {
         _data = _eggType.GetTypeData(level);
-        var model = _data.EggModelType;
+        EggModel model = _data.EggModelType;
 
         _model = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
         _cleanEgg = _model.GetComponent<MeshRenderer>();
@@ -94,8 +97,8 @@ public class Egg : MonoBehaviour
 
     private void SpawnDino()
     {
-        var dino = Instantiate(_data.Dino, transform.position, Quaternion.identity);
-        dino.Init(PlayerHand.BossArea, _data.Health, _data.Damage);
+        DinoMini dino = Instantiate(_data.Dino, transform.position, Quaternion.identity);
+        dino.Init(_gameOver, PlayerHand.BossArea, _data.Health, _data.Damage);
     }
 
     private void ToGrinder()

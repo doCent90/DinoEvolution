@@ -10,7 +10,7 @@ public class PlayerMover : MonoBehaviour
     private bool _hasSortGate = false;
 
     private const float Treshold = 1f;
-    private const float Duration = 1f;
+    private const float Duration = 0.3f;
 
     public Vector3 Position { get; private set; }
 

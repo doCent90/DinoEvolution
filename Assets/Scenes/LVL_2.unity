@@ -15163,6 +15163,10 @@ PrefabInstance:
       propertyPath: _boss
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 977277782604829190, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 977277783576796908, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: m_text
       value: CERO
@@ -15295,6 +15299,10 @@ PrefabInstance:
       propertyPath: _boss
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5058267720323509099, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 5058267720323509099, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: _bossAreaTrigger
       value: 
@@ -20385,6 +20393,10 @@ PrefabInstance:
       propertyPath: _uI
       value: 
       objectReference: {fileID: 407141298}
+    - target: {fileID: 2755334001582629506, guid: 0f9d1df13e4f21a48a1dd9f487727290, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 2755334001582629506, guid: 0f9d1df13e4f21a48a1dd9f487727290, type: 3}
       propertyPath: _bossAreaTrigger
       value: 
@@ -45292,6 +45304,10 @@ PrefabInstance:
       propertyPath: _finishPoint
       value: 
       objectReference: {fileID: 945491537}
+    - target: {fileID: 6910804948814197676, guid: d8c57d9cb3ee9704a944a329453a0abd, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8c57d9cb3ee9704a944a329453a0abd, type: 3}
 --- !u!1001 &1618884643585558020
@@ -45563,6 +45579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road
       objectReference: {fileID: 0}
+    - target: {fileID: 3491632545534793635, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 3491632545534793638, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.137
@@ -45643,6 +45663,10 @@ PrefabInstance:
       propertyPath: level
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8784496114596955309, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 8784496115397051162, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.13
@@ -45655,14 +45679,30 @@ PrefabInstance:
       propertyPath: level
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8784496115397051167, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 8784496115403013600, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_LocalPosition.z
       value: -20.54
       objectReference: {fileID: 0}
+    - target: {fileID: 8784496115403013605, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
+    - target: {fileID: 8784496115689787201, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 8784496115689787205, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8784496115874855520, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 8784496115874855524, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -45671,6 +45711,10 @@ PrefabInstance:
       propertyPath: level
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8784496116391082834, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 8784496116391082839, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.11
@@ -45687,6 +45731,14 @@ PrefabInstance:
       propertyPath: level
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8784496116497156348, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
+    - target: {fileID: 8847185161471116533, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 8847185161471116533, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: _roadMover
       value: 
@@ -45714,6 +45766,10 @@ PrefabInstance:
       propertyPath: _boss
       value: 
       objectReference: {fileID: 1341019984}
+    - target: {fileID: 1222565904949555709, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 8009463641568679458, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
       propertyPath: m_Name
       value: Level_Data

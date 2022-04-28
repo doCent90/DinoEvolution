@@ -13,7 +13,7 @@ public class EggMover : MonoBehaviour
     private bool _hasStack = false;
 
     private const float Step = 0.9f;
-    private const float Power = 30f;
+    private const float Power = 40f;
     private const float Delay = 0.05f;
 
     public Egg Egg { get; private set; }

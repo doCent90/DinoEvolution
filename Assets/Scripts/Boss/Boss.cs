@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class Boss : Dinosaur
 {
     [SerializeField] private UI _uI;
+    [SerializeField] private GameOver _gameOver;
     [SerializeField] private Transform _regDoll;
     [SerializeField] private Animator _animator;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
@@ -27,8 +28,6 @@ public class Boss : Dinosaur
 
     public float HealthMax { get; private set; }
 
-    public event Action Won;
-    public event Action Died;
     public event Action HealthChanged;
     public event Action SuperAttacked;
 
@@ -80,7 +79,7 @@ public class Boss : Dinosaur
     {
         if(_typeAttack == SuperAttack)
         {
-            var targets = _dinos.Where(dino => dino.IsAlive).ToList();
+            List<DinoMini> targets = _dinos.Where(dino => dino.IsAlive).ToList();
             targets.ForEach(dino => dino.TakeDamage(Damage * SuperAttackPower));
             SuperAttacked?.Invoke();
         }
@@ -120,7 +119,7 @@ public class Boss : Dinosaur
 
     private void PlayAttackAnimation()
     {
-        var isWon = _dinos.Any(dino => dino.IsAlive);
+        bool isWon = _dinos.Any(dino => dino.IsAlive);
 
         if (isWon == false)
         {
@@ -139,16 +138,16 @@ public class Boss : Dinosaur
     {
         _isReadyToAttack = false;
         _animator.SetTrigger(WinAnimation);
-        Won?.Invoke();
+        _gameOver.OnBossWin();
     }
 
     private void Die()
     {
-        OnDied();
-        _isReadyToAttack = false;
         _animator.enabled = false;
+        _isReadyToAttack = false;
         _isAlive = false;
+        OnDied();
+        _gameOver.OnBossDied();
         enabled = false;
-        Died?.Invoke();
     }
 }

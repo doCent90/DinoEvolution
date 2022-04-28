@@ -8,10 +8,15 @@ public class StartApplication : MonoBehaviour
 
     private const float Delay = 0.5f;
     private const string FirstDay = "first_day";
+    private const string Level = "level";
 
     private void OnEnable()
     {
         _levelsLoader = GetComponent<LevelsLoader>();
+
+        if (PlayerPrefs.GetInt(Level) == 0)
+            PlayerPrefs.SetInt(Level, 1);
+
         Invoke(nameof(StartGame), Delay);
 
         if (PlayerPrefs.GetInt(FirstDay) == 0)

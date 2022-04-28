@@ -3,34 +3,29 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] private SortGate _sortGate;
     [SerializeField] private RoadMover _roadMover;
     [SerializeField] private InputController _inputController;
 
-    private const float Delay = 1f;
+    private const float Delay = 0.5f;
 
+    public event Action Won;
     public event Action Losed;
 
-    private void OnEnable()
+    public void OnBossDied()
     {
-        _sortGate.EggStackEmpty += StopGame;
+        Won?.Invoke();
     }
 
-    private void OnDisable()
+    public void OnBossWin()
     {
-        _sortGate.EggStackEmpty -= StopGame;        
+        Losed?.Invoke();
     }
 
-    private void StopGame()
+    public void StopGame()
     {
         _roadMover.enabled = false;
         _inputController.enabled = false;
 
-        Invoke(nameof(Lose), Delay);
-    }
-
-    private void Lose()
-    {
-        Losed?.Invoke();
+        Invoke(nameof(OnBossWin), Delay);
     }
 }

@@ -9,7 +9,6 @@ public class ButtonsAnimator : MonoBehaviour
     [SerializeField] private CanvasGroup _tapsCanvas;
     [Header("Taps text")]
     [SerializeField] private TMP_Text[] _tapsText;
-    [SerializeField] private bool _tapsCanDisable = false;
 
     private BossAreaTrigger _bossAreaTrigger;
     private Boss _boss;
@@ -23,19 +22,18 @@ public class ButtonsAnimator : MonoBehaviour
         _bossAreaTrigger = _uI.BossAreaTrigger;
         _boss = _bossAreaTrigger.Boss;
 
-        _boss.Won += HideRestart;
-        _boss.Died += HideRestart;
         _bossAreaTrigger.BossAreaReached += OnBossAreaTrigged;
-
-        if (_tapsCanDisable)
-            _uI.FightClicked += DisableTapsText;
     }
 
     private void OnDisable()
     {
-        _boss.Won -= HideRestart;
-        _boss.Died -= HideRestart;
         _bossAreaTrigger.BossAreaReached -= OnBossAreaTrigged;
+    }
+
+    public void HideRestart()
+    {
+        DisableCanvas(_fightButton);
+        DisableCanvas(_tapsCanvas);
     }
 
     private void OnBossAreaTrigged()
@@ -50,21 +48,9 @@ public class ButtonsAnimator : MonoBehaviour
         EnableCanvas(_fightButton);
     }
 
-    private void HideRestart()
-    {
-        DisableCanvas(_fightButton);
-        DisableCanvas(_tapsCanvas);
-    }
-
     private void EnableTapsText()
     {
         EnableCanvas(_tapsCanvas);
-    }
-
-    private void DisableTapsText()
-    {
-        DisableCanvas(_tapsCanvas);
-        _uI.FightClicked -= DisableTapsText;
     }
 
     private void EnableCanvas(CanvasGroup canvasGroup)

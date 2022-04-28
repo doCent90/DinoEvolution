@@ -233,14 +233,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.40591094
+      - time: 0.3232663
         functionName: PlayFx
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 9ea608b99d80deb42a534a6fb1fd976e, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.41914737
+      - time: 0.33650273
         functionName: Attack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: eef50f213d052c44596d989e7069df8e, type: 3}

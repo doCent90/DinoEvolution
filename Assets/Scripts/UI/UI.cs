@@ -7,9 +7,11 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private GameOver _gameOver;
+    [SerializeField] private LevelViewer _levelViewer;
     [SerializeField] private LevelsLoader _levelsLoader;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
     [SerializeField] private InputController _inputController;
+    [SerializeField] private ButtonsAnimator _buttonsAnimator;
     [Header("Canvas")]
     [SerializeField] private CanvasGroup _gamePanel;
     [SerializeField] private CanvasGroup _startPanel;
@@ -25,6 +27,7 @@ public class UI : MonoBehaviour
     private Boss _boss;
 
     private const float Delay = 2f;
+    private const float OnDelay = 0.2f;
     private const float Duration = 0.8f;
 
     public BossAreaTrigger BossAreaTrigger => _bossAreaTrigger;
@@ -35,8 +38,7 @@ public class UI : MonoBehaviour
     {
         _boss = _bossAreaTrigger.Boss;
 
-        _boss.Won += OnGameLosed;
-        _boss.Died += OnBossDied;
+        _gameOver.Won += OnGameWon;
         _gameOver.Losed += OnGameLosed;
         _inputController.Clicked += StartGame;
 
@@ -47,10 +49,14 @@ public class UI : MonoBehaviour
         _fightTap.onClick.AddListener(OnFightCliked);
     }
 
+    private void Awake()
+    {
+        Invoke(nameof(ShowLevel), OnDelay);
+    }
+
     private void OnDisable()
     {
-        _boss.Won -= OnGameLosed;
-        _boss.Died -= OnBossDied;
+        _gameOver.Won -= OnGameWon;
         _gameOver.Losed -= OnGameLosed;
         _inputController.Clicked -= StartGame;
 
@@ -59,6 +65,12 @@ public class UI : MonoBehaviour
         _restartGame.onClick.RemoveListener(Restart);
         _restartBoss.onClick.RemoveListener(Restart);
         _fightTap.onClick.RemoveListener(OnFightCliked);
+    }
+
+    private void ShowLevel()
+    {
+        int level = _levelsLoader.LevelNumber;
+        _levelViewer.Show(level);
     }
 
     private void StartGame()
@@ -83,9 +95,10 @@ public class UI : MonoBehaviour
         FightClicked?.Invoke();
     }
 
-    private void OnBossDied()
+    private void OnGameWon()
     {
         _fightTap.enabled = false;
+        _buttonsAnimator.HideRestart();
         Invoke(nameof(EnableWinPanel), Delay);
     }
 

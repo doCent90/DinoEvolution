@@ -1,40 +1,35 @@
 using UnityEngine;
 using IJunior.TypedScenes;
-using System;
 using Random = UnityEngine.Random;
 
 public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 {
-    [SerializeField] private Boss _boss;
+    [SerializeField] private GameOver _gameOver;
     [Header("Settings")]
     [SerializeField] private bool _isStartApp = false;
     [SerializeField] private bool _isTestLevel = false;
 
     private readonly int _levelsAmount = 3;
-    private int _levelNumber;
-    private int _levelIndex;
     private float _spentTime;
+    private int _levelIndex;
 
     private const string Level = "level";
 
-    public event Action<int> LevelLoaded;
+    public int LevelNumber { get; private set; }
 
     private void OnEnable()
     {
-        if(_isTestLevel)
-            Debug.Log("TEST LEVEL");
-
-        if (_isStartApp && PlayerPrefs.GetInt(Level) == 0)
-            PlayerPrefs.SetInt(Level, 1);
+        Application.targetFrameRate = 60;
 
         if (_isStartApp == false && _isTestLevel == false)
         {
-            _levelNumber = PlayerPrefs.GetInt(Level);
-            LevelLoaded?.Invoke(_levelNumber);
-
-            AmplitudeHandler.SetLevelStart(_levelNumber);
-            _boss.Died += OnLevelDone;
+            LevelNumber = PlayerPrefs.GetInt(Level);
+            _gameOver.Won += OnLevelDone;
+            AmplitudeHandler.SetLevelStart(LevelNumber);
         }
+
+        if(_isTestLevel)
+            Debug.Log("TEST LEVEL");
     }
 
     private void Update()
@@ -45,12 +40,13 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
     public void LoadCurrentLevelOnStartApp()
     {
         int level = PlayerPrefs.GetInt(Level);
+        LevelNumber = level;
         Load(level);
     }
 
     public void Next()
     {
-        int nextLevel = _levelNumber + 1;
+        int nextLevel = LevelNumber + 1;
         Load(nextLevel);
     }
 
@@ -58,29 +54,23 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
     {
         Load(_levelIndex);
         
-        AmplitudeHandler.SetRestartLevel(_levelNumber);
+        AmplitudeHandler.SetRestartLevel(LevelNumber);
     }
 
-    private void OnLevelDone()
+    public void OnLevelDone()
     {
-        _boss.Died -= OnLevelDone;
+        if (_isTestLevel)
+            return;
 
-        if (_isTestLevel == false)
-        {
-            int nextLevel = _levelNumber + 1;
-            PlayerPrefs.SetInt(Level, nextLevel);
-        }
-        else
-        {
-            Debug.Log("Test Level Done");
-        }
-
-        AmplitudeHandler.SetLevelComplete(_levelNumber, (int)_spentTime);
+        int nextLevel = LevelNumber + 1;
+        PlayerPrefs.SetInt(Level, nextLevel);
+        AmplitudeHandler.SetLevelComplete(LevelNumber, (int)_spentTime);
+        _gameOver.Won -= OnLevelDone;
     }
 
     private void RandomLevel()
     {
-        int randomLevel = Random.Range(1, _levelsAmount + 1);
+        int randomLevel = Random.Range(2, _levelsAmount + 1);
         Load(randomLevel);
     }
 

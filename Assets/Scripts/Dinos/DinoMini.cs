@@ -8,6 +8,7 @@ public class DinoMini : Dinosaur
 {
     private Boss _boss;
     private BossArea _bossArea;
+    private GameOver _gameOver;
     private DinoAnimator _dinoAnimator;
     private NavMeshAgent _navMeshAgent;
 
@@ -24,15 +25,16 @@ public class DinoMini : Dinosaur
 
     private void OnDisable()
     {
-        _boss.Died -= Win;
+        _gameOver.Won -= Win;
         UI.FightClicked -= GoToBoss;
         UI.FightClicked -= PlayAttackAnimation;
     }
 
-    public void Init(BossArea bossArea, float health, float damage)
+    public void Init(GameOver gameOver, BossArea bossArea, float health, float damage)
     {
         _bossArea = bossArea;
         UI = bossArea.UI;
+        _gameOver = gameOver;
 
         Health = health;
         Damage = damage;
@@ -41,7 +43,7 @@ public class DinoMini : Dinosaur
         _boss = bossArea.Boss;
         _boss.AddDinos(this);
 
-        _boss.Died += Win;
+        _gameOver.Won += Win;
         UI.FightClicked += GoToBoss;
         UI.FightClicked += PlayAttackAnimation;
     }
