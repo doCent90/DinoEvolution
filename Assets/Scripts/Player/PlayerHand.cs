@@ -32,7 +32,6 @@ public class PlayerHand : MonoBehaviour
             egg.transform.parent = transform;
             egg.transform.position = _eggStackPosition.position;
             egg.OnHandTaked(this);
-            OnEggAdded();
             IsBusy = true;
         }
     }

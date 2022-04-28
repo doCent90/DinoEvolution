@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 3be861ac6495b9d46ab9a5a080aec654, type: 2}
---- !u!114 &50013269 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8009463641568679460, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
-  m_PrefabInstance: {fileID: 8009463641615151729}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b10ea444fabbe43ad5b2aaeb337807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &50013270 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8009463641568679463, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
@@ -440,7 +429,7 @@ PrefabInstance:
     - target: {fileID: 5058267720323509088, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: _levelsLoader
       value: 
-      objectReference: {fileID: 50013269}
+      objectReference: {fileID: 8009463641615151730}
     - target: {fileID: 5058267720323509088, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: _bossAreaTrigger
       value: 
@@ -532,7 +521,7 @@ PrefabInstance:
     - target: {fileID: 5058267720323509091, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: _levelsLoader
       value: 
-      objectReference: {fileID: 50013269}
+      objectReference: {fileID: 8009463641615151730}
     - target: {fileID: 5058267720323509093, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1435,7 +1424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3491632545534793638, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.56
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3491632545534793638, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1538,6 +1527,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1222565904949555709, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
+      propertyPath: _boss
+      value: 
+      objectReference: {fileID: 1352198184}
     - target: {fileID: 8009463641568679458, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
       propertyPath: m_Name
       value: Level_Data
@@ -1616,3 +1609,14 @@ PrefabInstance:
       objectReference: {fileID: 407141299}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
+--- !u!114 &8009463641615151730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1222565904949555709, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
+  m_PrefabInstance: {fileID: 8009463641615151729}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5b10ea444fabbe43ad5b2aaeb337807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -19,6 +19,6 @@ public class LevelViewer : MonoBehaviour
 
     private void Show(int level)
     {
-        _level.text = level.ToString();
+        _level.text = PlayerPrefs.GetInt(AmplitudeHandler.LEVEL).ToString();
     }
 }

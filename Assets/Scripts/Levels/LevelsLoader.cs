@@ -3,15 +3,16 @@ using IJunior.TypedScenes;
 using System;
 using Random = UnityEngine.Random;
 
-public class LevelsLoader : MonoBehaviour
+public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 {
     [SerializeField] private Boss _boss;
     [Header("Settings")]
-    [SerializeField] private int _levelNumber;
     [SerializeField] private bool _isStartApp = false;
     [SerializeField] private bool _isTestLevel = false;
 
     private readonly int _levelsAmount = 3;
+    private int _levelNumber;
+    private int _levelIndex;
     private float _spentTime;
 
     public event Action<int> LevelChanged;
@@ -21,25 +22,23 @@ public class LevelsLoader : MonoBehaviour
         if(_isTestLevel)
             Debug.Log("TEST LEVEL");
 
-        if (_isStartApp || _isTestLevel)
-            return;
+        if (_isStartApp == false && _isTestLevel == false)
+        {
+            string currentLevelName = AmplitudeHandler.LEVEL;
+            int currentLevel = PlayerPrefs.GetInt(currentLevelName);
+            _levelNumber = currentLevel;
 
-        string currentLevelName = AmplitudeHandler.LEVEL;
-        int currentLevel = PlayerPrefs.GetInt(currentLevelName);
-        _levelNumber = currentLevel;
+            AmplitudeHandler.SetLevelStart(_levelNumber);
 
-        AmplitudeHandler.SetLevelStart(_levelNumber);
-
-        LevelChanged?.Invoke(currentLevel);
-        _boss.Died += OnLevelDone;
+            LevelChanged?.Invoke(currentLevel);
+            _boss.Died += OnLevelDone;
+        }
     }
 
     private void OnDisable()
     {
-        if (_isStartApp)
-            return;
-
-        _boss.Died -= OnLevelDone;
+        if (_isStartApp == false)
+            _boss.Died -= OnLevelDone;
     }
 
     private void Update()
@@ -63,8 +62,8 @@ public class LevelsLoader : MonoBehaviour
 
     public void Restart()
     {
-        Load(_levelNumber);
-
+        Load(_levelIndex);
+        
         AmplitudeHandler.SetRestartLevel(_levelNumber);
     }
 
@@ -87,7 +86,7 @@ public class LevelsLoader : MonoBehaviour
 
     private void RandomLevel()
     {
-        int randomLevel = Random.Range(2, _levelsAmount + 1);
+        int randomLevel = Random.Range(3, _levelsAmount + 1);
         Load(randomLevel);
     }
 
@@ -95,21 +94,23 @@ public class LevelsLoader : MonoBehaviour
     {
         switch (number)
         {
-            case 0:
-                TEST.Load();
-                break;
             case 1:
-                LVL_1.Load();
+                LVL_1.Load(number);
                 break;
             case 2:
-                LVL_2.Load();
+                LVL_2.Load(number);
                 break;
             case 3:
-                LVL_3.Load();
+                LVL_3.Load(number);
                 break;
             default:
                 RandomLevel();
                 break;
         }
+    }
+
+    public void OnSceneLoaded(int level)
+    {
+        _levelIndex = level;
     }
 }
