@@ -15,30 +15,28 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
     private int _levelIndex;
     private float _spentTime;
 
-    public event Action<int> LevelChanged;
+    private const string Level = "level";
+
+    public event Action<int> LevelLoaded;
 
     private void OnEnable()
     {
         if(_isTestLevel)
             Debug.Log("TEST LEVEL");
 
+        if (_isStartApp && PlayerPrefs.GetInt(Level) == 0)
+            PlayerPrefs.SetInt(Level, 1);
+
         if (_isStartApp == false && _isTestLevel == false)
         {
-            string currentLevelName = AmplitudeHandler.LEVEL;
-            int currentLevel = PlayerPrefs.GetInt(currentLevelName);
+            int currentLevel = PlayerPrefs.GetInt(Level);
             _levelNumber = currentLevel;
 
             AmplitudeHandler.SetLevelStart(_levelNumber);
 
-            LevelChanged?.Invoke(currentLevel);
+            LevelLoaded?.Invoke(currentLevel);
             _boss.Died += OnLevelDone;
         }
-    }
-
-    private void OnDisable()
-    {
-        if (_isStartApp == false)
-            _boss.Died -= OnLevelDone;
     }
 
     private void Update()
@@ -48,9 +46,7 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
     public void LoadCurrentLevelOnStartApp()
     {
-        string currentLevel = AmplitudeHandler.LEVEL;
-        int level = PlayerPrefs.GetInt(currentLevel);
-
+        int level = PlayerPrefs.GetInt(Level);
         Load(level);
     }
 
@@ -69,12 +65,12 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
     private void OnLevelDone()
     {
-        string level = AmplitudeHandler.LEVEL;
+        _boss.Died -= OnLevelDone;
 
         if (_isTestLevel == false)
         {
             int nextLevel = _levelNumber + 1;
-            PlayerPrefs.SetInt(level, nextLevel);
+            PlayerPrefs.SetInt(Level, nextLevel);
         }
         else
         {
@@ -86,7 +82,7 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
     private void RandomLevel()
     {
-        int randomLevel = Random.Range(3, _levelsAmount + 1);
+        int randomLevel = Random.Range(1, _levelsAmount + 1);
         Load(randomLevel);
     }
 

@@ -9,16 +9,16 @@ public class LevelViewer : MonoBehaviour
 
     private void OnEnable()
     {
-        _levelsLoader.LevelChanged += Show;
+        _levelsLoader.LevelLoaded += Show;
     }
 
     private void OnDisable()
     {
-        _levelsLoader.LevelChanged -= Show;        
+        _levelsLoader.LevelLoaded -= Show;        
     }
 
     private void Show(int level)
     {
-        _level.text = PlayerPrefs.GetInt(AmplitudeHandler.LEVEL).ToString();
+        _level.text = level.ToString();
     }
 }

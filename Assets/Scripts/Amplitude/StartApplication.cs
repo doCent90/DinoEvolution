@@ -20,9 +20,6 @@ public class StartApplication : MonoBehaviour
             PlayerPrefs.SetInt(FirstDay, firstDay);
         }
 
-        if(PlayerPrefs.GetInt(AmplitudeHandler.LEVEL) == 0)
-            PlayerPrefs.SetInt(AmplitudeHandler.LEVEL, 1);
-
         AmplitudeHandler.InitAmplitude();
         SetRegDay();
         SetDaysInGame();
