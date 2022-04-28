@@ -12,7 +12,6 @@ public class StartApplication : MonoBehaviour
     private void OnEnable()
     {
         _levelsLoader = GetComponent<LevelsLoader>();
-        Invoke(nameof(StartGame), Delay);
 
         if (PlayerPrefs.GetInt(FirstDay) == 0)
         {
@@ -25,11 +24,6 @@ public class StartApplication : MonoBehaviour
         SetDaysInGame();
         SetCountSessions();
 
-    }
-
-    private void StartGame()
-    {
-        _levelsLoader.LoadCurrentLevelOnStartApp();
     }
 
     private void SetCountSessions()

@@ -1,9 +1,9 @@
+using System;
 using UnityEngine;
 using IJunior.TypedScenes;
-using System;
 using Random = UnityEngine.Random;
 
-public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
+public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<LevelData>
 {
     [SerializeField] private Boss _boss;
     [Header("Settings")]
@@ -21,19 +21,20 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
     private void OnEnable()
     {
-        if(_isTestLevel)
-            Debug.Log("TEST LEVEL");
-
         if (_isStartApp && PlayerPrefs.GetInt(Level) == 0)
             PlayerPrefs.SetInt(Level, 1);
 
-        if (_isStartApp == false && _isTestLevel == false)
+        if (_isTestLevel)
+        {
+            Debug.Log("TEST LEVEL");
+        }
+        else
         {
             _levelNumber = PlayerPrefs.GetInt(Level);
             LevelLoaded?.Invoke(_levelNumber);
 
-            AmplitudeHandler.SetLevelStart(_levelNumber);
             _boss.Died += OnLevelDone;
+            AmplitudeHandler.SetLevelStart(_levelNumber);
         }
     }
 
@@ -50,8 +51,7 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
     public void Next()
     {
-        int nextLevel = _levelNumber + 1;
-        Load(nextLevel);
+        Load(_levelNumber);
     }
 
     public void Restart()
@@ -63,19 +63,18 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
     private void OnLevelDone()
     {
-        _boss.Died -= OnLevelDone;
-
         if (_isTestLevel == false)
         {
-            int nextLevel = _levelNumber + 1;
-            PlayerPrefs.SetInt(Level, nextLevel);
+            AmplitudeHandler.SetLevelComplete(_levelNumber, (int)_spentTime);
+            _levelNumber++;
+            PlayerPrefs.SetInt(Level, _levelNumber);
         }
         else
         {
             Debug.Log("Test Level Done");
         }
 
-        AmplitudeHandler.SetLevelComplete(_levelNumber, (int)_spentTime);
+        _boss.Died -= OnLevelDone;
     }
 
     private void RandomLevel()
@@ -86,16 +85,18 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
     private void Load(int number)
     {
+        LevelData levelData = new LevelData(number, _levelNumber);
+
         switch (number)
         {
             case 1:
-                LVL_1.Load(number);
+                LVL_1.Load(levelData);
                 break;
             case 2:
-                LVL_2.Load(number);
+                LVL_2.Load(levelData);
                 break;
             case 3:
-                LVL_3.Load(number);
+                LVL_3.Load(levelData);
                 break;
             default:
                 RandomLevel();
@@ -103,8 +104,21 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
         }
     }
 
-    public void OnSceneLoaded(int level)
+    public void OnSceneLoaded(LevelData levelData)
     {
-        _levelIndex = level;
+        _levelIndex = levelData.LevelIndex;
+        _levelNumber = levelData.LevelNumber;
+    }
+}
+
+public class LevelData
+{
+    public int LevelIndex;
+    public int LevelNumber;
+
+    public LevelData(int levelIndex, int levelNumber)
+    {
+        LevelIndex = levelIndex;
+        LevelNumber = levelNumber;
     }
 }
