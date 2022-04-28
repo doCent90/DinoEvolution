@@ -47481,15 +47481,11 @@ PrefabInstance:
       propertyPath: _inputController
       value: 
       objectReference: {fileID: 407141299}
-    - target: {fileID: 8486249110371265911, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
-      propertyPath: _boss
-      value: 
-      objectReference: {fileID: 310374790}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
 --- !u!114 &8009463641615151730 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8486249110371265911, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1222565904949555709, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
   m_PrefabInstance: {fileID: 8009463641615151729}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

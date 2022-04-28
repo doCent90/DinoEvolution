@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8009463641568679461}
   - component: {fileID: 8009463641568679463}
-  - component: {fileID: 8486249110371265911}
+  - component: {fileID: 1222565904949555709}
   m_Layer: 0
   m_Name: Level_Data
   m_TagString: Untagged
@@ -47,7 +47,7 @@ MonoBehaviour:
   _sortGate: {fileID: 0}
   _roadMover: {fileID: 0}
   _inputController: {fileID: 0}
---- !u!114 &8486249110371265911
+--- !u!114 &1222565904949555709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
