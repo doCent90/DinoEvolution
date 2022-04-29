@@ -90,6 +90,15 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
             case 4:
                 LVL_4.Load(number);
                 break;
+            case 5:
+                LVL_5.Load(number);
+                break;
+            case 6:
+                LVL_6.Load(number);
+                break;
+            case 7:
+                LVL_7.Load(number);
+                break;
             default:
                 RandomLevel();
                 break;

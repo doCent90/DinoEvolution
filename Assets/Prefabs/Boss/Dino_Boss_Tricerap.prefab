@@ -809,7 +809,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 2.41, y: 0.5, z: 2.41}
+  m_Extents: {x: 2.81, y: 0.5, z: 2.81}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
@@ -828,6 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uI: {fileID: 0}
+  _gameOver: {fileID: 0}
   _regDoll: {fileID: 3097773392802832920}
   _animator: {fileID: 3097773392802832921}
   _bossAreaTrigger: {fileID: 0}
@@ -959,7 +960,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dinosaur: {fileID: 2755334001582629506}
-  _isBoss: 1
 --- !u!114 &6361814254519805291
 MonoBehaviour:
   m_ObjectHideFlags: 0

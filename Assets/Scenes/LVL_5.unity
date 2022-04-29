@@ -285,6 +285,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4229178219623669048, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
+      propertyPath: _boss
+      value: 
+      objectReference: {fileID: 1341019984}
+    - target: {fileID: 4229178219623669048, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
+      propertyPath: _sortGate
+      value: 
+      objectReference: {fileID: 200684881}
+    - target: {fileID: 4229178219623669048, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
       propertyPath: _bossAreaTrigger
       value: 
       objectReference: {fileID: 1003165848}
@@ -313,6 +321,14 @@ PrefabInstance:
       value: -24.318071
       objectReference: {fileID: 0}
     - target: {fileID: 6525230391756204659, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 100809500}
+    - target: {fileID: 7213447701336819386, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -26.488071
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381448172039349390, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 100809500}
@@ -416,7 +432,7 @@ PrefabInstance:
     - target: {fileID: 977277782604829190, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: _boss
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1341019984}
     - target: {fileID: 977277782604829190, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: _gameOver
       value: 

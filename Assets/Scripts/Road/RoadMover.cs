@@ -10,7 +10,7 @@ public class RoadMover : MonoBehaviour
     private float _spentTime;
     private float _speed = 5f;
 
-    private const float ToolsSpeed = 4f;
+    private const float ToolsSpeed = 3f;
     private const float DisableTime = 2f;
     private const float Acceleration = 3;
     private const float BackUpSpeed = -30f;

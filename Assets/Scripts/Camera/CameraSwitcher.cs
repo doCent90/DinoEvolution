@@ -5,8 +5,11 @@ using System.Collections;
 public class CameraSwitcher : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _gameCamera;
+    [SerializeField] private CinemachineVirtualCamera _sortCamera;
     [SerializeField] private CinemachineVirtualCamera _bossFightCamera;
-    [Header("Triggers")]
+    [Header("BossArea")]
+    [SerializeField] private Boss _boss;
+    [SerializeField] private SortGate _sortGate;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
     [Header("Shake Settings")]
     [Range(0f, 1f)]
@@ -14,7 +17,6 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private float _time;
     [SerializeField] private int _gain;
 
-    private Boss _boss;
     private CinemachineVirtualCamera[] _cameras;
 
     private const float Delay = 1f;
@@ -24,15 +26,16 @@ public class CameraSwitcher : MonoBehaviour
     private void OnEnable()
     {
         _cameras = GetComponentsInChildren<CinemachineVirtualCamera>();
-        _boss = _bossAreaTrigger.Boss;
 
         _boss.SuperAttacked += OnSuperAttacked;
+        _sortGate.SortGateReached += OnSortEnable;
         _bossAreaTrigger.BossAreaReached += OnBossAreaReached;
     }
 
     private void OnDisable()
     {
         _boss.SuperAttacked -= OnSuperAttacked;
+        _sortGate.SortGateReached -= OnSortEnable;
         _bossAreaTrigger.BossAreaReached -= OnBossAreaReached;        
     }
 
@@ -44,6 +47,11 @@ public class CameraSwitcher : MonoBehaviour
     private void OnFightEnable()
     {
         EnableCamera(_bossFightCamera);
+    }
+
+    private void OnSortEnable()
+    {
+        EnableCamera(_sortCamera);
     }
 
     private void OnBossAreaReached()
@@ -59,7 +67,7 @@ public class CameraSwitcher : MonoBehaviour
 
     private void ResetPriority()
     {
-        foreach (var camera in _cameras)
+        foreach (CinemachineVirtualCamera camera in _cameras)
         {
             camera.Priority = MinPrioritet;
         }
