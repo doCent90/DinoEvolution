@@ -1790,6 +1790,10 @@ PrefabInstance:
       propertyPath: _splineMover
       value: 
       objectReference: {fileID: 1872184937}
+    - target: {fileID: 2188954543969780169, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 25.36
+      objectReference: {fileID: 0}
     - target: {fileID: 2820012280503595072, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1816,7 +1820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3491632544231402156, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3491632544231402156, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1856,7 +1860,7 @@ PrefabInstance:
       objectReference: {fileID: 310374790}
     - target: {fileID: 3491632545499134634, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3491632545499134634, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_LocalPosition.z
