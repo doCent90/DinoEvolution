@@ -399,6 +399,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 407141298}
     - target: {fileID: 2755334001582629506, guid: bab65f9afc7885e4b9697045ce1bc01e, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
+    - target: {fileID: 2755334001582629506, guid: bab65f9afc7885e4b9697045ce1bc01e, type: 3}
       propertyPath: _bossAreaTrigger
       value: 
       objectReference: {fileID: 1003165848}
@@ -734,6 +738,10 @@ PrefabInstance:
       propertyPath: _boss
       value: 
       objectReference: {fileID: 310374790}
+    - target: {fileID: 977277782604829190, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 977277783576796908, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: m_text
       value: T-REX
@@ -1299,6 +1307,10 @@ PrefabInstance:
       propertyPath: _finishPoint
       value: 
       objectReference: {fileID: 945491537}
+    - target: {fileID: 6910804948814197676, guid: d8c57d9cb3ee9704a944a329453a0abd, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8c57d9cb3ee9704a944a329453a0abd, type: 3}
 --- !u!1001 &1618884643585558020
@@ -1478,6 +1490,10 @@ PrefabInstance:
       propertyPath: _splineMover
       value: 
       objectReference: {fileID: 1872184937}
+    - target: {fileID: 2188954543969780169, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 26.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3491632543478952961, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 41.9
@@ -1495,12 +1511,16 @@ PrefabInstance:
       value: 80.98
       objectReference: {fileID: 0}
     - target: {fileID: 3491632544271703554, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491632544271703554, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 26.95
+      value: 55.8
       objectReference: {fileID: 0}
     - target: {fileID: 3491632544271703555, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3491632544271703564, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: _roadMover
@@ -1646,6 +1666,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8847185161471116533, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
+    - target: {fileID: 8847185161471116533, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: _roadMover
+      value: 
+      objectReference: {fileID: 1872184937}
+    - target: {fileID: 8937567133894483015, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8937567133894483015, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.85
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
 --- !u!1001 &8009463641615151729
@@ -1659,6 +1695,10 @@ PrefabInstance:
       propertyPath: _boss
       value: 
       objectReference: {fileID: 310374790}
+    - target: {fileID: 1222565904949555709, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
+      propertyPath: _gameOver
+      value: 
+      objectReference: {fileID: 50013270}
     - target: {fileID: 1222565904949555709, guid: e99c61338528e3642ad1f28d626a7abc, type: 3}
       propertyPath: _isTestLevel
       value: 1
