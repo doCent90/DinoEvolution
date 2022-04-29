@@ -70,7 +70,7 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
     private void RandomLevel()
     {
-        int randomLevel = Random.Range(2, _levelsAmount + 1);
+        int randomLevel = Random.Range(3, _levelsAmount + 1);
         Load(randomLevel);
     }
 
@@ -98,6 +98,12 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
                 break;
             case 7:
                 LVL_7.Load(number);
+                break;
+            case 8:
+                LVL_8.Load(number);
+                break;
+            case 9:
+                LVL_9.Load(number);
                 break;
             default:
                 RandomLevel();
