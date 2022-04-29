@@ -391,10 +391,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295c2ea2ce35c004c8df8b4fcedf833b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uI: {fileID: 5058267720323509088}
+  _boss: {fileID: 0}
   _fillBack: {fileID: 977277783503990272}
   _fillFront: {fileID: 977277782162244318}
-  _gameOver: {fileID: 0}
+  _levelBoss: {fileID: 977277783110197457}
   _canvasGroup: {fileID: 977277782604829185}
   _speed: 0.005
 --- !u!225 &977277782604829185
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '258
+  m_text: '95
 
 '
   m_isRightToLeft: 0
@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3764706}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2095,6 +2095,7 @@ MonoBehaviour:
   _gameOver: {fileID: 0}
   _levelViewer: {fileID: 5058267720323509091}
   _levelsLoader: {fileID: 0}
+  _dinoHealthBar: {fileID: 977277782604829190}
   _bossAreaTrigger: {fileID: 0}
   _inputController: {fileID: 5058267720323509098}
   _buttonsAnimator: {fileID: 5058267720323509099}
@@ -3983,7 +3984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3764706}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

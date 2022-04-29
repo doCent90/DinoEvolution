@@ -2,42 +2,48 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class DinoHealthBar : MonoBehaviour
 {
     [SerializeField] private Boss _boss;
     [SerializeField] private Image _fillBack;
     [SerializeField] private Image _fillFront;
-    [SerializeField] private GameOver _gameOver;
+    [SerializeField] private TMP_Text _levelBoss;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private float _speed = 0.005f;
 
-
+    private const int Number = 3; 
     private const float Duration = 0.3f;
+    private const string Level = "level";
 
     private void OnEnable()
     {
-        _gameOver.Won += Hide;
-        _gameOver.Losed += Hide;
         _boss.HealthChanged += OnHealthChanged;
     }
 
     private void OnDisable()
     {
-        _gameOver.Won -= Hide;
-        _gameOver.Losed -= Hide;
         _boss.HealthChanged -= OnHealthChanged;        
     }
 
     public void Show()
     {
+        SetRandomLevel();
         _canvasGroup.alpha = 1f;
         transform.DOScale(1, Duration);
     }
 
-    private void Hide()
+    public void Hide()
     {
         _canvasGroup.DOFade(0, Duration);
+    }
+
+    private void SetRandomLevel()
+    {
+        int multiply = PlayerPrefs.GetInt(Level);
+        int level = Number * multiply;
+        _levelBoss.text = level.ToString();
     }
 
     private void OnHealthChanged()

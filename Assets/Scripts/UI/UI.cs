@@ -9,6 +9,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameOver _gameOver;
     [SerializeField] private LevelViewer _levelViewer;
     [SerializeField] private LevelsLoader _levelsLoader;
+    [SerializeField] private DinoHealthBar _dinoHealthBar;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
     [SerializeField] private InputController _inputController;
     [SerializeField] private ButtonsAnimator _buttonsAnimator;
@@ -28,7 +29,7 @@ public class UI : MonoBehaviour
 
     private const float Delay = 2f;
     private const float OnDelay = 0.2f;
-    private const float Duration = 0.8f;
+    private const float Duration = 0.5f;
 
     public BossAreaTrigger BossAreaTrigger => _bossAreaTrigger;
 
@@ -97,14 +98,20 @@ public class UI : MonoBehaviour
 
     private void OnGameWon()
     {
+        _dinoHealthBar.Hide();
         _fightTap.enabled = false;
+        _restartGame.enabled = false;
+        _restartBoss.enabled = false;
         _buttonsAnimator.HideRestart();
         Invoke(nameof(EnableWinPanel), Delay);
     }
 
     private void OnGameLosed()
     {
+        _dinoHealthBar.Hide();
         _fightTap.enabled = false;
+        _restartGame.enabled = false;
+        _restartBoss.enabled = false;
         Invoke(nameof(EnableLosePanel), Delay);
     }
 
