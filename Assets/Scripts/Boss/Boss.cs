@@ -28,6 +28,7 @@ public class Boss : Dinosaur
 
     public float HealthMax { get; private set; }
 
+    public event Action Died;
     public event Action HealthChanged;
     public event Action SuperAttacked;
 
@@ -147,6 +148,7 @@ public class Boss : Dinosaur
         _isReadyToAttack = false;
         _isAlive = false;
         OnDied();
+        Died?.Invoke();
         _gameOver.OnBossDied();
         enabled = false;
     }

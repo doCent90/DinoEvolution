@@ -6,13 +6,13 @@ using UnityEngine.AI;
 [RequireComponent (typeof(DinoAnimator))]
 public class DinoMini : Dinosaur
 {
+    private UI _uI;
     private Boss _boss;
     private BossArea _bossArea;
     private GameOver _gameOver;
     private DinoAnimator _dinoAnimator;
     private NavMeshAgent _navMeshAgent;
 
-    public UI UI { get; private set; }
     public bool IsAlive { get; private set; } = true;
 
     public event Action Died;
@@ -25,27 +25,29 @@ public class DinoMini : Dinosaur
 
     private void OnDisable()
     {
+        _boss.Died -= Win;
         _gameOver.Won -= Win;
-        UI.FightClicked -= GoToBoss;
-        UI.FightClicked -= PlayAttackAnimation;
+        _uI.FightClicked -= GoToBoss;
+        _uI.FightClicked -= PlayAttackAnimation;
     }
 
     public void Init(GameOver gameOver, BossArea bossArea, float health, float damage)
     {
         _bossArea = bossArea;
-        UI = bossArea.UI;
+        _uI = bossArea.UI;
         _gameOver = gameOver;
+        _boss = bossArea.Boss;
 
         Health = health;
         Damage = damage;
 
         GoToBossArea();
-        _boss = bossArea.Boss;
         _boss.AddDinos(this);
 
+        _boss.Died += Win;
         _gameOver.Won += Win;
-        UI.FightClicked += GoToBoss;
-        UI.FightClicked += PlayAttackAnimation;
+        _uI.FightClicked += GoToBoss;
+        _uI.FightClicked += PlayAttackAnimation;
     }
 
     public void TakeDamage(float damage)

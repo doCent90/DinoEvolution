@@ -59,6 +59,11 @@ public class Egg : MonoBehaviour
         _eggMover.Disable(parent);
     }
 
+    public void Sell(Transform parent)
+    {
+        _eggMover.Disable(parent);
+    }
+
     public void Destroy()
     {
         _eggMover.Disable(_roadParent.transform);
