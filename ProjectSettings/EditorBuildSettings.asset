@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/TEST.unity
+    guid: f4a06bd827dd1a1498c93a98144719ba
   - enabled: 1
     path: Assets/Scenes/StartApp.unity
     guid: 05e1a86ff90041843b84e09f08f2cd80
@@ -24,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LVL_5.unity
     guid: 13c859f67bcaf42459be2db0408680df
   - enabled: 1
-    path: Assets/Scenes/LVL_6.unity
+    path: Assets/Scenes/LVL_12.unity
     guid: dffd5955f07ff624e8acb23ceea1aaf0
   - enabled: 1
     path: Assets/Scenes/LVL_7.unity
@@ -35,10 +38,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LVL_9.unity
     guid: ba54d5e8d5c1d64499b6ec339f1098d4
-  - enabled: 0
-    path: Assets/Scenes/TEST.unity
-    guid: f4a06bd827dd1a1498c93a98144719ba
   - enabled: 1
     path: Assets/Scenes/LVL_10.unity
     guid: 9cfcd2c96d81a5c4f85e9d220abd213a
+  - enabled: 1
+    path: Assets/Scenes/LVL_11.unity
+    guid: d73795394fcc7704eac8a0c850f5009c
+  - enabled: 1
+    path: Assets/Scenes/LVL_6.unity
+    guid: 2e4293b4df78c90469d23cd61f9a5887
+  - enabled: 1
+    path: Assets/Scenes/LVL_13.unity
+    guid: cb234aba5c296ab429f3099de6ddfcc0
+  - enabled: 1
+    path: Assets/Scenes/LVL_14.unity
+    guid: 7a3cb85e007e4d44b82daaf751a58785
+  - enabled: 1
+    path: Assets/Scenes/LVL_15.unity
+    guid: 10eb1cc7c42c82e4e984aa3b14e7244f
   m_configObjects: {}
