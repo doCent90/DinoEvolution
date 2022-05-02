@@ -27,8 +27,8 @@ EditorBuildSettings:
     path: Assets/Scenes/LVL_5.unity
     guid: 13c859f67bcaf42459be2db0408680df
   - enabled: 1
-    path: Assets/Scenes/LVL_12.unity
-    guid: dffd5955f07ff624e8acb23ceea1aaf0
+    path: Assets/Scenes/LVL_6.unity
+    guid: 2e4293b4df78c90469d23cd61f9a5887
   - enabled: 1
     path: Assets/Scenes/LVL_7.unity
     guid: 2d659929f4d5d694f93e333da2aec790
@@ -45,8 +45,8 @@ EditorBuildSettings:
     path: Assets/Scenes/LVL_11.unity
     guid: d73795394fcc7704eac8a0c850f5009c
   - enabled: 1
-    path: Assets/Scenes/LVL_6.unity
-    guid: 2e4293b4df78c90469d23cd61f9a5887
+    path: Assets/Scenes/LVL_12.unity
+    guid: dffd5955f07ff624e8acb23ceea1aaf0
   - enabled: 1
     path: Assets/Scenes/LVL_13.unity
     guid: cb234aba5c296ab429f3099de6ddfcc0
