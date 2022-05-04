@@ -8,7 +8,6 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
     [SerializeField] private bool _isStartApp = false;
     [SerializeField] private bool _isTestLevel = false;
 
-    private float _spentTime;
     private int _levelIndex;
 
     private const string Level = "level";
@@ -22,17 +21,14 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
         if (_isStartApp == false && _isTestLevel == false)
         {
             LevelNumber = PlayerPrefs.GetInt(Level);
+
             _gameOver.Won += OnLevelDone;
-            AmplitudeHandler.SetLevelStart(LevelNumber);
+            _gameOver.Losed += OnLevelFaled;
+            AppMetricaEvents.OnLevelStarted(LevelNumber);
         }
 
         if(_isTestLevel)
             Debug.Log("TEST LEVEL");
-    }
-
-    private void Update()
-    {
-        _spentTime += Time.deltaTime;
     }
 
     public void LoadCurrentLevelOnStartApp()
@@ -52,7 +48,7 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
     {
         Load(_levelIndex);
         
-        AmplitudeHandler.SetRestartLevel(LevelNumber);
+        AppMetricaEvents.OnLevelComplete(LevelNumber);
     }
 
     public void OnLevelDone()
@@ -62,8 +58,15 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
         int nextLevel = LevelNumber + 1;
         PlayerPrefs.SetInt(Level, nextLevel);
-        AmplitudeHandler.SetLevelComplete(LevelNumber, (int)_spentTime);
+        AppMetricaEvents.OnLevelComplete(LevelNumber);
+
         _gameOver.Won -= OnLevelDone;
+        _gameOver.Losed -= OnLevelFaled;
+    }
+
+    private void OnLevelFaled()
+    {
+        AppMetricaEvents.OnFail(LevelNumber, "Boss Won");
     }
 
     private void Load(int number)
