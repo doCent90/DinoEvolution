@@ -5,127 +5,35 @@ using DG.Tweening;
 [RequireComponent(typeof(SphereCollider))]
 public class Egg : MonoBehaviour
 {
+    [SerializeField] private EggLevel level;
+    [SerializeField] private Tools _tools;
     [SerializeField] private EggType _eggType;
     [SerializeField] private EggMover _eggMover;
     [SerializeField] private Transform _eggParent;
     [SerializeField] private EggAnimator _eggAnimator;
-    [SerializeField] private MeshRenderer _dino;
+    [Header("Meshes")]
     [SerializeField] private MeshRenderer _nest;
+    [SerializeField] private MeshRenderer _dirt;
 
-    private float _health;
-    private float _damage;
-    private readonly float _power = 0.4f;
-    private readonly float _eggStackStep = 0.8f;
-
-    private EggModel _eggModel;
-    private PlayerHand _playerHand;
+    private EggData _data;
+    private EggModel _model;
+    private GameOver _gameOver;
+    private RoadParent _roadParent;
     private MeshRenderer _cleanEgg;
-    private SphereCollider _sphereCollider;
 
-    public EggMover Mover => _eggMover;
+    public EggMover EggMover => _eggMover;
+    public PlayerHand PlayerHand { get; private set; }
 
     public bool HasInStack { get; private set; } = false;
     public bool HaveNest { get; private set; } = false;
     public bool WasWashed { get; private set; } = false;
-    public bool WasLightsHeated { get; private set; } = false;
-
-    public event Action<FinalPlace> BossAreaReached;
-
-    public void ResetEgg()
-    {
-        _eggMover.Disable();
-    }
-
-    public void TakeDamage(float damage)
-    {
-        Animate();
-
-        if(_health < damage)
-            Die();
-        else
-            _health -= damage;
-
-        if(_health <= 0)
-            Die();
-    }
-
-    public void OnHandTaked(PlayerHand playerHand)
-    {
-        HasInStack = true;
-        _playerHand = playerHand;
-        _eggMover.OnTakedHand(playerHand);
-    }
-
-    public void OnNextTaked(Transform follwer, PlayerHand playerHand)
-    {
-        HasInStack = true;
-        _playerHand = playerHand;
-        _eggMover.OnTaked(_playerHand, follwer, _eggStackStep, _power);
-    }
-
-    public void Animate()
-    {
-        _eggAnimator.ScaleAnimation();
-    }
+    public bool WasUVLightsHeated { get; private set; } = false;
 
     private void OnEnable()
     {
-        _sphereCollider = GetComponent<SphereCollider>();
-        Init();
-    }
-
-    private void Init()
-    {
-        _health = _eggType.Health;
-        _damage = _eggType.Damage;
-
-        var model = _eggType.Init();
-        var egg = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
-
-        _eggModel = egg;
-        _cleanEgg = egg.GetComponent<MeshRenderer>();
-    }
-
-    private void ToGrinder()
-    {
-        if(WasWashed && WasLightsHeated && HaveNest)
-        {
-            _dino.enabled = true;
-            _nest.enabled = false;
-            _cleanEgg.enabled = false;
-            _eggModel.DestroyCells();
-        }
-        else
-        {
-            Die();
-            Animate();
-        }
-    }
-
-    private void UVLampHeating()
-    {
-        WasLightsHeated = true;
-        _cleanEgg.enabled = false;
-        _eggModel.EnableCleanCells();
-        Animate();
-    }
-
-    private void Wash()
-    {
-        WasWashed = true;
-        _eggAnimator.Wash();
-    }
-
-    private void TakeNest()
-    {
-        HaveNest = true;
-        _nest.enabled = true;
-        _eggAnimator.TakeNest();
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject, 0.2f);
+        InitType();
+        _roadParent = GetComponentInParent<RoadParent>();
+        _gameOver = _tools.GameOver;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -140,6 +48,118 @@ public class Egg : MonoBehaviour
             ToGrinder();
 
         if (other.TryGetComponent(out NestGate nestGate))
-            TakeNest();
+            TakeNest(nestGate);
+
+        if (other.TryGetComponent(out EggUpgradeGate colorChangeGate))
+            TypeUpgrade();
+    }
+
+    public void Sort(Transform parent)
+    {
+        _eggMover.Disable(parent);
+    }
+
+    public void Sell(Transform parent)
+    {
+        _eggMover.Disable(parent);
+    }
+
+    public void Destroy()
+    {
+        _eggMover.Disable(_roadParent.transform);
+        Die();
+    }
+
+    public void OnHandTaked(PlayerHand playerHand)
+    {
+        HasInStack = true;
+        PlayerHand = playerHand;
+        PlayerHand.OnEggAdded();
+        _eggMover.OnTakedHand(playerHand);
+    }
+
+    public void OnNextTaked(EggMover follwerEgg, PlayerHand playerHand, Transform parent)
+    {
+        HasInStack = true;
+        PlayerHand = playerHand;
+        PlayerHand.OnEggAdded();
+        _eggMover.OnTaked(PlayerHand, follwerEgg, parent);
+    }
+
+    public void Animate()
+    {
+        _eggAnimator.ScaleAnimation();
+    }
+
+    private void InitType()
+    {
+        _data = _eggType.GetTypeData(level);
+        EggModel model = _data.EggModelType;
+
+        _model = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
+        _cleanEgg = _model.GetComponent<MeshRenderer>();
+    }
+
+    private void SpawnDino()
+    {
+        DinoMini dino = Instantiate(_data.Dino, transform.position, Quaternion.identity);
+        dino.Init(_gameOver, PlayerHand.BossArea, _data.Health, _data.Damage);
+    }
+
+    private void ToGrinder()
+    {
+        SpawnDino();
+        _nest.enabled = false;
+        _cleanEgg.enabled = false;
+        _model.DestroyCells();
+    }
+
+    private void TypeUpgrade()
+    {
+        level++;
+        Destroy(_model.gameObject);
+        InitType();
+        Animate();
+    }
+
+    private void UVLampHeating()
+    {
+        if (WasUVLightsHeated == false)
+        {
+            WasUVLightsHeated = true;
+            _cleanEgg.enabled = false;
+            _model.EnableCleanCells();
+            Animate();
+        }
+    }
+
+    private void Wash()
+    {
+        if(WasWashed == false)
+        {
+            WasWashed = true;
+            _eggAnimator.Wash();
+        }
+    }
+
+    private void TakeNest(NestGate nestGate)
+    {
+        if(HaveNest == false)
+        {
+            nestGate.GiveNest();
+            HaveNest = true;
+            _nest.enabled = true;
+            _eggAnimator.TakeNest();
+        }
+    }
+
+    private void Die()
+    {
+        _nest.enabled = false;
+        _dirt.enabled = false;
+        _cleanEgg.enabled = false;
+        _model.DestroyCells();
+
+        Destroy(gameObject, 3f);
     }
 }

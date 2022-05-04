@@ -3,17 +3,11 @@ using UnityEngine;
 
 public class LevelViewer : MonoBehaviour
 {
-    [SerializeField] private LevelsLoader _levelsLoader;
     [Header("Text")]
     [SerializeField] private TMP_Text _level;
 
-    public void DisableText()
+    public void Show(int level)
     {
-        _level.enabled = false;
-    }
-
-    private void OnEnable()
-    {
-        _level.text = _levelsLoader.Level.ToString();
+        _level.text = level.ToString();
     }
 }

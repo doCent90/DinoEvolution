@@ -1,103 +1,81 @@
 using UnityEngine;
 using IJunior.TypedScenes;
 
-public class LevelsLoader : MonoBehaviour
+public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 {
-    [SerializeField] private Boss _boss;
-    [SerializeField] private int _levelsNumber;
+    [SerializeField] private GameOver _gameOver;
+    [Header("Settings")]
     [SerializeField] private bool _isStartApp = false;
     [SerializeField] private bool _isTestLevel = false;
 
-    private readonly int _levelsAmount = 5;
-    private float _spentTime;
+    private int _levelIndex;
 
-    public int Level => _levelsNumber;
+    private const string Level = "level";
+
+    public int LevelNumber { get; private set; }
+
+    private void OnEnable()
+    {
+        Application.targetFrameRate = 60;
+
+        if (_isStartApp == false && _isTestLevel == false)
+        {
+            LevelNumber = PlayerPrefs.GetInt(Level);
+
+            _gameOver.Won += OnLevelDone;
+            _gameOver.Losed += OnLevelFaled;
+            AppMetricaEvents.OnLevelStarted(LevelNumber);
+        }
+
+        if(_isTestLevel)
+            Debug.Log("TEST LEVEL");
+    }
 
     public void LoadCurrentLevelOnStartApp()
     {
-        string currentLevel = AmplitudeHandler.LEVEL;
-        int level = PlayerPrefs.GetInt(currentLevel);
-
+        int level = PlayerPrefs.GetInt(Level);
+        LevelNumber = level;
         Load(level);
     }
 
     public void Next()
     {
-        int nextLevel = _levelsNumber + 1;
+        int nextLevel = LevelNumber + 1;
         Load(nextLevel);
     }
 
     public void Restart()
     {
-        Load(_levelsNumber);
-
-        AmplitudeHandler.SetRestartLevel(_levelsNumber);
+        Load(_levelIndex);
+        
+        AppMetricaEvents.OnLevelComplete(LevelNumber);
     }
 
-    private void OnEnable()
+    public void OnLevelDone()
     {
-        if(_isTestLevel)
-            Debug.Log("TEST LEVEL");
-
-        if (_isStartApp || _isTestLevel)
+        if (_isTestLevel)
             return;
 
-        string currentLevelName = AmplitudeHandler.LEVEL;
-        int currentLevel = PlayerPrefs.GetInt(currentLevelName);
-        _levelsNumber = currentLevel;
+        int nextLevel = LevelNumber + 1;
+        PlayerPrefs.SetInt(Level, nextLevel);
+        AppMetricaEvents.OnLevelComplete(LevelNumber);
 
-        AmplitudeHandler.SetLevelStart(_levelsNumber);
-
-        _boss.BossWon += OnLevelDone;
+        _gameOver.Won -= OnLevelDone;
+        _gameOver.Losed -= OnLevelFaled;
     }
 
-    private void OnDisable()
+    private void OnLevelFaled()
     {
-        if (_isStartApp)
-            return;
-
-        _boss.BossWon -= OnLevelDone;
-    }
-
-    private void OnLevelDone()
-    {
-        string level = AmplitudeHandler.LEVEL;
-
-        if (_isTestLevel == false)
-        {
-            int nextLevel = _levelsNumber + 1;
-            PlayerPrefs.SetInt(level, nextLevel);
-        }
-        else
-        {
-            Debug.Log("Test Level Done");
-        }
-
-        AmplitudeHandler.SetLevelComplete(_levelsNumber, (int)_spentTime);
-    }
-
-
-    private void RandomLevel()
-    {
-        int randomLevel = Random.Range(3, _levelsAmount + 1);
-        Load(randomLevel);
+        AppMetricaEvents.OnFail(LevelNumber, "Boss Won");
     }
 
     private void Load(int number)
     {
-        switch (number)
-        {
-            case 0:
-                Visual.Load();
-                break;
-            default:
-                RandomLevel();
-                break;
-        }
+        LevelsStock.LoadLevel(number);
     }
 
-    private void Update()
+    public void OnSceneLoaded(int level)
     {
-        _spentTime += Time.deltaTime;
+        _levelIndex = level;
     }
 }

@@ -5,62 +5,89 @@ using System.Collections;
 public class CameraSwitcher : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _gameCamera;
-    [SerializeField] private CinemachineVirtualCamera _roadOverCamera;
-    [SerializeField] private CinemachineVirtualCamera _bossAreaCamera;
-    [Header("Triggers")]
-    [SerializeField] private RoadOverTrigger _roadOverTrigger;
-    [SerializeField] private BossAreaTrigger _BossAreaTrigger;
+    [SerializeField] private CinemachineVirtualCamera _sortCamera;
+    [SerializeField] private CinemachineVirtualCamera _bossFightCamera;
+    [Header("BossArea")]
+    [SerializeField] private Boss _boss;
+    [SerializeField] private SortGate _sortGate;
+    [SerializeField] private BossAreaTrigger _bossAreaTrigger;
+    [Header("Shake Settings")]
+    [Range(0f, 1f)]
+    [SerializeField] private float _amplitude;
+    [SerializeField] private float _time;
+    [SerializeField] private int _gain;
 
     private CinemachineVirtualCamera[] _cameras;
 
-    private const float DELAY = 2f;
-    private const int MIN_PRIORITET = 1;
-    private const int MAX_PRIORITET = 2;
+    private const float Delay = 1f;
+    private const int MinPrioritet = 1;
+    private const int MaxPrioritet = 2;
 
     private void OnEnable()
     {
         _cameras = GetComponentsInChildren<CinemachineVirtualCamera>();
 
-        _roadOverTrigger.RoadOver += OnRoadOver;
-        _BossAreaTrigger.NestsReached += OnBossAreaReached;
+        _boss.SuperAttacked += OnSuperAttacked;
+        _sortGate.SortGateReached += OnSortEnable;
+        _bossAreaTrigger.BossAreaReached += OnBossAreaReached;
     }
 
     private void OnDisable()
     {
-        _roadOverTrigger.RoadOver -= OnRoadOver;
-        _BossAreaTrigger.NestsReached -= OnBossAreaReached;        
+        _boss.SuperAttacked -= OnSuperAttacked;
+        _sortGate.SortGateReached -= OnSortEnable;
+        _bossAreaTrigger.BossAreaReached -= OnBossAreaReached;        
     }
 
-    private void OnRoadOver()
+    private void OnSuperAttacked()
     {
-        SetPriority(MAX_PRIORITET, _roadOverCamera);
+        StartCoroutine(ShakeCameraSwitcher(_bossFightCamera));
+    }
+
+    private void OnFightEnable()
+    {
+        EnableCamera(_bossFightCamera);
+    }
+
+    private void OnSortEnable()
+    {
+        EnableCamera(_sortCamera);
     }
 
     private void OnBossAreaReached()
     {
-        SetPriority(MAX_PRIORITET, _bossAreaCamera);
+        Invoke(nameof(OnFightEnable), Delay);
     }
 
-    private void SetPriority(int prioritet, CinemachineVirtualCamera mainCamera)
+    private void EnableCamera(CinemachineVirtualCamera mainCamera)
     {
         ResetPriority();
-        mainCamera.Priority = prioritet;
+        mainCamera.Priority = MaxPrioritet;
     }
 
     private void ResetPriority()
     {
-        foreach (var camera in _cameras)
+        foreach (CinemachineVirtualCamera camera in _cameras)
         {
-            camera.Priority = MIN_PRIORITET;
+            camera.Priority = MinPrioritet;
         }
     }
 
-    private IEnumerator TimerToSwitch(CinemachineVirtualCamera camera)
+    private IEnumerator ShakeCameraSwitcher(CinemachineVirtualCamera orig)
     {
-        var waitForSeconds = new WaitForSeconds(DELAY);
-        yield return waitForSeconds;
-        SetPriority(MAX_PRIORITET, camera);
-        yield return waitForSeconds;
-        camera.LookAt = null;
+        var waitForSeconds = new WaitForSeconds(_time);
+        Vector3 originalPositions = orig.transform.localPosition;
+
+        for (int i = 0; i < _gain; i++)
+        {
+            float x = Random.Range(-_amplitude, _amplitude);
+            float y = Random.Range(-_amplitude, _amplitude);
+            float z = Random.Range(-_amplitude, _amplitude);
+
+            Vector3 shakePos = new Vector3(originalPositions.x + x, originalPositions.y + y, originalPositions.z + z);
+            orig.transform.localPosition = shakePos;
+            yield return waitForSeconds;
+            orig.transform.localPosition = originalPositions;
+        }
     }
 }

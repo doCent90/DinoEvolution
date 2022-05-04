@@ -1,6 +1,1 @@
-using UnityEngine;
-
-public class UVLamp : MonoBehaviour
-{
-
-}
+public class UVLamp : Gate {}

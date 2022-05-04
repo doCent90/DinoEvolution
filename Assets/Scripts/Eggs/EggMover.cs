@@ -1,38 +1,69 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Egg))]
+[RequireComponent(typeof(EggAnimator))]
 [RequireComponent(typeof(SphereCollider))]
 public class EggMover : MonoBehaviour
 {
-    private Egg _egg;
     private SphereCollider _collider;
-    private Transform _followEgg;
-    private Transform _origParent;
-    private Transform _nextEgg;
+    private EggAnimator _eggAnimator;
+    private EggMover _previousEgg;
+    private EggMover _nextEgg;
 
-    private float _power;
-    private float _step;
     private bool _hasStack = false;
 
-    private const float SPEED = 20f;
+    private const float Step = 0.9f;
+    private const float Power = 40f;
+    private const float Delay = 0.05f;
 
+    public Egg Egg { get; private set; }
     public PlayerHand PlayerHand { get; private set; }
 
-    public void Disable()
+    public void Disable(Transform parent)
     {
+        if(this == PlayerHand.LastInStack)
+            PlayerHand.SetLastEgg(_previousEgg);
+
+        // If this egg in midlle stack
+        if (_nextEgg != null && _previousEgg != null)
+        {
+            _previousEgg.SetNextEgg(_nextEgg);
+            _nextEgg.SetPreviousEgg(_previousEgg);
+        }
+
+        // If this egg is first in stack
+        if(_nextEgg != null && _previousEgg == null)
+        {
+            _nextEgg.SetPreviousEgg(null);
+            _nextEgg.transform.parent = PlayerHand.EggStackPosition;
+            _nextEgg.transform.position = PlayerHand.EggStackPosition.position;
+        }
+
+        // If this egg is last in stack
+        if(_nextEgg == null && _previousEgg != null)
+            _previousEgg.SetNextEgg(null);
+
+        // If this egg is single in stack
+        if (_nextEgg == null && _previousEgg == null)
+            PlayerHand.OnHandEmpty();
+
         _collider.enabled = false;
-        ResetFollow();
+        transform.parent = parent;
+
+        _nextEgg = null;
+        _previousEgg = null;
+
+        enabled = false;
     }
 
-    public void ResetFollow()
-    {
-        transform.parent = _origParent;
-        _followEgg = null;
-    }
-
-    public void SetNextEgg(Transform egg)
+    public void SetNextEgg(EggMover egg)
     {
         _nextEgg = egg;
+    }
+
+    public void SetPreviousEgg(EggMover previousEgg)
+    {
+        _previousEgg = previousEgg;
     }
 
     public void OnTakedHand(PlayerHand playerHand)
@@ -40,22 +71,32 @@ public class EggMover : MonoBehaviour
         PlayerHand = playerHand;
     }
 
-    public void OnTaked(PlayerHand playerHand, Transform followEgg, float step, float power)
+    public void OnTaked(PlayerHand playerHand, EggMover followEgg, Transform parent)
     {
-        transform.parent = null;
+        transform.parent = parent;
         PlayerHand = playerHand;
-        _step = step;
-        _power = power;
-        _followEgg = followEgg;
-        _hasStack = _egg.HasInStack;
+        _hasStack = Egg.HasInStack;
+        SetPreviousEgg(followEgg);
+        Animate();
+    }
+
+    public void Animate()
+    {
+        _eggAnimator.ScaleAnimation();
+        Invoke(nameof(AnimateLeaderEgg), Delay);
+    }
+
+    public void AnimateLeaderEgg()
+    {
+        if(_previousEgg != null)
+            _previousEgg.Animate();
     }
 
     private void OnEnable()
     {
-        _egg = GetComponent<Egg>();
+        Egg = GetComponent<Egg>();
         _collider = GetComponent<SphereCollider>();
-
-        _origParent = transform.parent;
+        _eggAnimator = GetComponent<EggAnimator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,28 +105,33 @@ public class EggMover : MonoBehaviour
         {
             if (egg.HasInStack == false && this == PlayerHand.LastInStack)
             {
-                SetNextEgg(egg.transform);
-                egg.OnNextTaked(transform, PlayerHand);
-                PlayerHand.SetLastEgg(egg.Mover);
+                SetNextEgg(egg.EggMover);
+                egg.OnNextTaked(this, PlayerHand, PlayerHand.EggStackParent);
+                PlayerHand.SetLastEgg(egg.EggMover);
             }
             else if (egg.HasInStack == false && this != PlayerHand.LastInStack)
             {
-                PlayerHand.LastInStack.SetNextEgg(egg.transform);
-                egg.OnNextTaked(PlayerHand.LastInStack.transform, PlayerHand);
-                PlayerHand.SetLastEgg(egg.Mover);
+                PlayerHand.LastInStack.SetNextEgg(egg.EggMover);
+                egg.OnNextTaked(PlayerHand.LastInStack, PlayerHand, PlayerHand.EggStackParent);
+                PlayerHand.SetLastEgg(egg.EggMover);
             }
         }
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
-        if (_hasStack == false || _followEgg == null)
+        if (_hasStack == false || _previousEgg == null)
             return;
 
         Vector3 position;
-        Vector3 targetPosition = new Vector3(_followEgg.position.x, _followEgg.position.y, _followEgg.position.z + _step);
+        Vector3 previuosEgg = _previousEgg.transform.position;
 
-        position = Vector3.Lerp(transform.position, targetPosition, _power);
+        Vector3 targetPosition = new Vector3(previuosEgg.x,
+            previuosEgg.y, previuosEgg.z + Step);
+
+        position = Vector3.Lerp(transform.position, targetPosition,
+            Mathf.SmoothStep(0f, 1f, Power * Time.deltaTime));
+
         transform.position = position;
     }
 }

@@ -1,18 +1,27 @@
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(NestGateAnimator))]
-public class NestGate : MonoBehaviour
+public class NestGate : Gate
 {
     private NestGateAnimator _nestGateAnimator;
+    private BoxCollider _boxCollider;
 
-    private void OnEnable()
+    private int _count = 12;
+
+    private void Awake()
     {
+        _boxCollider = GetComponent<BoxCollider>();
         _nestGateAnimator = GetComponent<NestGateAnimator>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void GiveNest()
     {
-        if (other.TryGetComponent(out Egg egg))
-            _nestGateAnimator.DeleteCurrentNest();
+        _count--;
+
+        if(_count <= 0)
+            _boxCollider.enabled = false;
+
+        _nestGateAnimator.DeleteCurrentNest();
     }
 }

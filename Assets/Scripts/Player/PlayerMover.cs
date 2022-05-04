@@ -1,26 +1,41 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private InputController _inputController;
     [Header("Settings")]
-    [Range(0f, 1f)]
-    [SerializeField] private float _sensitivity = 0.08f;
 
-    private float _slideDirection;
+    private float _offset;
+    private bool _hasSortGate = false;
 
-    private const float TRESHOLD = 1f;
+    private const float Treshold = 1f;
+    private const float Duration = 0.3f;
+
+    public Vector3 Position { get; private set; }
+
+    public void SetDefaultPosition()
+    {
+        _hasSortGate = true;
+        transform.DOMoveX(0, Duration);
+    }
 
     private void Move()
     {
-        _slideDirection = _inputController.GetSlideValue() * _sensitivity;
+        _offset = _inputController.CurrentOffset;
+        float position = Mathf.Clamp(_offset, -Treshold, Treshold);
 
-        var position = Mathf.Clamp(_slideDirection, -TRESHOLD, TRESHOLD);
-        transform.position = new Vector3(position, transform.position.y, transform.position.z);
+        Vector3 targetPosition = new Vector3(position, transform.position.y, transform.position.z);
+        transform.position = targetPosition;
+
+        Position = transform.position;
     }
 
     private void Update()
     {
+        if (_hasSortGate)
+            return;
+
         Move();
     }
 }

@@ -1,0 +1,1 @@
+public class EggUpgradeGate : Gate {}

@@ -1,6 +1,3 @@
 using UnityEngine;
 
-public class Grinder : MonoBehaviour
-{
-
-}
+public class Grinder : MonoBehaviour {}
