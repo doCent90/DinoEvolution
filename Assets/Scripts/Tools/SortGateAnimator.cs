@@ -6,6 +6,7 @@ public class SortGateAnimator : Gate
     [SerializeField] private Animator _animator;
 
     private BoxCollider _collider;
+    private bool _isPlayerMoverDisable = false;
 
     private const string OpenDoors = "OpenDoors";
 
@@ -18,8 +19,19 @@ public class SortGateAnimator : Gate
     {
         if (other.TryGetComponent(out Egg egg))
         {
+            DisablePlayerMover(egg);
+
             _collider.enabled = false;
             _animator.SetTrigger(OpenDoors);
+        }
+    }
+
+    private void DisablePlayerMover(Egg egg)
+    {
+        if (_isPlayerMoverDisable == false)
+        {
+            _isPlayerMoverDisable = true;
+            egg.PlayerHand.PlayerMover.SetDefaultPosition();
         }
     }
 }
