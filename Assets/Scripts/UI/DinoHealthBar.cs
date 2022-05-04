@@ -13,13 +13,13 @@ public class DinoHealthBar : MonoBehaviour
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private float _speed = 0.005f;
 
-    private const int Number = 3; 
+    private const int Number = 14; 
     private const float Duration = 0.3f;
     private const string Level = "level";
 
     private void OnEnable()
     {
-        _boss.HealthChanged += OnHealthChanged;
+        _boss.HealthChanged += OnHealthChanged;        
     }
 
     private void OnDisable()
@@ -43,7 +43,7 @@ public class DinoHealthBar : MonoBehaviour
     {
         int multiply = PlayerPrefs.GetInt(Level);
         int level = Number * multiply;
-        _levelBoss.text = level.ToString();
+        _levelBoss.text = $"{level} lvl";
     }
 
     private void OnHealthChanged()

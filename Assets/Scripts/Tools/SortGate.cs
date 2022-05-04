@@ -12,10 +12,9 @@ public class SortGate : MonoBehaviour
 
     private RoadMover _mover;
 
-    private bool _isPlayerMoverDisable = false;
     private bool _hasActivated = false;
 
-    private const float Duration = 3f;
+    private const float Duration = 1f;
 
     public event Action SortGateReached;
 
@@ -40,7 +39,6 @@ public class SortGate : MonoBehaviour
 
     private void Sort(Egg egg)
     {
-        DisablePlayerMover(egg);
         DisableView(_negative);
         EnableView(_positive);
 
@@ -53,15 +51,6 @@ public class SortGate : MonoBehaviour
             EnableView(_negative);
             egg.Sort(transform);
             egg.transform.DOMove(_point.position, Duration);
-        }
-    }
-
-    private void DisablePlayerMover(Egg egg)
-    {
-        if (_isPlayerMoverDisable == false)
-        {
-            _isPlayerMoverDisable = true;
-            egg.PlayerHand.PlayerMover.SetDefaultPosition();
         }
     }
 

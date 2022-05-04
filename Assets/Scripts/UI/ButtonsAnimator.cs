@@ -14,7 +14,7 @@ public class ButtonsAnimator : MonoBehaviour
     private Boss _boss;
     private UI _uI;
 
-    private const float Delay = 4f;
+    private const float Delay = 2f;
 
     private void OnEnable()
     {

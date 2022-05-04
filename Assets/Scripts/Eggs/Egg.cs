@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using DG.Tweening;
 
 [RequireComponent(typeof(SphereCollider))]
 public class Egg : MonoBehaviour
