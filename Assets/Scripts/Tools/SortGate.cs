@@ -14,7 +14,7 @@ public class SortGate : MonoBehaviour
 
     private bool _hasActivated = false;
 
-    private const float Duration = 1f;
+    private const float Duration = 2f;
 
     public event Action SortGateReached;
 
