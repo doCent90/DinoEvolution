@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 
+  - 973bc6182ecdf00ac857571cb2010ff7
   appIds:
-  - 321234123
+  - 744490866706245
   appLabels:
   - ru.IJunior.DinoEvolution
   cookie: 1
