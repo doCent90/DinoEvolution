@@ -112,6 +112,7 @@ public class UI : MonoBehaviour
         _fightTap.enabled = false;
         _restartGame.enabled = false;
         _restartBoss.enabled = false;
+        _buttonsAnimator.HideRestart();
         Invoke(nameof(EnableLosePanel), Delay);
     }
 
