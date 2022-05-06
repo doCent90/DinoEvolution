@@ -71012,6 +71012,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tools: {fileID: 8847185161471116533}
   _animator: {fileID: 73228791510060929}
+  _positive: {fileID: 2105569916096291600}
+  _negative: {fileID: 2672440746508648263}
 --- !u!65 &3225623046187714478
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -80945,8 +80947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tools: {fileID: 8847185161471116533}
   _point: {fileID: 3491632545298269890}
-  _positive: {fileID: 2105569916096291600}
-  _negative: {fileID: 2672440746508648263}
+  _animator: {fileID: 4976155162628290048}
 --- !u!95 &73228791510060929
 Animator:
   serializedVersion: 3
@@ -86303,6 +86304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tools: {fileID: 8847185161471116533}
   _animator: {fileID: 5094867379471788462}
+  _positive: {fileID: 0}
+  _negative: {fileID: 0}
 --- !u!65 &114741962381499976
 BoxCollider:
   m_ObjectHideFlags: 0
