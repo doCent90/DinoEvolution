@@ -137,7 +137,6 @@ public class Egg : MonoBehaviour
         {
             WasWashed = true;
             _eggAnimator.Wash();
-            _model.SetOriginalMaterial();
             _model.IncreaseScale();
         }
     }
