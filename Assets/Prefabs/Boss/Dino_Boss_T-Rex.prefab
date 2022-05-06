@@ -139,7 +139,7 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 4237633597050472843}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 0.31, y: 0, z: -2.7}
+  m_Axis: {x: 0.31, y: 0, z: 113.27}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 3.7177029, y: 66.99573, z: -6.7507753}
   serializedVersion: 2
@@ -148,11 +148,11 @@ CharacterJoint:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: 76.88202
+    limit: -13.498118
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 114.19187
+    limit: 12.752655
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
