@@ -748,11 +748,11 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 1477693469960247117}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: -73.1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -3.4946103, y: 74.67576, z: 1.1497616}
   serializedVersion: 2
-  m_SwingAxis: {x: 0, y: 1, z: 0}
+  m_SwingAxis: {x: 0, y: 1, z: -42.4}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
@@ -772,7 +772,7 @@ CharacterJoint:
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 10.018188
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
@@ -1813,31 +1813,31 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 8247909899693382109}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: -37.23}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -5.6569514, y: 74.40234, z: -1.4346797}
   serializedVersion: 2
-  m_SwingAxis: {x: 0, y: 1, z: 0}
+  m_SwingAxis: {x: 0, y: 1, z: -32.04}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: 34.666183
+    limit: 39.95277
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 65.94504
+    limit: 61.515472
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 14.231054
+    limit: 10.861242
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 11.120049
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
@@ -2377,20 +2377,20 @@ CharacterJoint:
   m_ConnectedBody: {fileID: 1021245801503031737}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: -5.5}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 39.91299, y: -2.744827, z: 6.516824}
   serializedVersion: 2
-  m_SwingAxis: {x: 0, y: 1, z: 0}
+  m_SwingAxis: {x: 0, y: 1, z: -32.45}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: 28.17796
+    limit: 6.6422787
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 47.53357
+    limit: 29.986996
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
@@ -2401,7 +2401,7 @@ CharacterJoint:
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 9.569367
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
@@ -3116,27 +3116,27 @@ CharacterJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -0.00004673004, y: 67.0976, z: -0.0001296997}
   serializedVersion: 2
-  m_SwingAxis: {x: 0, y: 1, z: 0}
+  m_SwingAxis: {x: 0, y: 1, z: -30.33}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -20
+    limit: -2.6757483
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 70
+    limit: 26.363037
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 40
+    limit: 7.6993933
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 40
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
@@ -4318,27 +4318,27 @@ CharacterJoint:
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: -10.299322, y: 39.13781, z: -23.509106}
   serializedVersion: 2
-  m_SwingAxis: {x: 0, y: 1, z: 0}
+  m_SwingAxis: {x: 0, y: 1, z: -30.18}
   m_TwistLimitSpring:
     spring: 0
     damper: 0
   m_LowTwistLimit:
-    limit: -20
+    limit: -16.532684
     bounciness: 0
     contactDistance: 0
   m_HighTwistLimit:
-    limit: 70
+    limit: 21.170227
     bounciness: 0
     contactDistance: 0
   m_SwingLimitSpring:
     spring: 0
     damper: 0
   m_Swing1Limit:
-    limit: 40
+    limit: 7.952755
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 40
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
