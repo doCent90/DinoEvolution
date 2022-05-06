@@ -36,20 +36,20 @@ public class Egg : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out WashGate washer))
-            Wash();
+        if(other.TryGetComponent(out UVLamp uFLamp) && WasUVLightsHeated == false)
+            HeatUVLamp();
 
-        if(other.TryGetComponent(out UVLamp uFLamp))
-            UVLampHeating();
-
-        if(other.TryGetComponent(out Grinder grinder))
-            ToGrinder();
-
-        if (other.TryGetComponent(out NestGate nestGate))
+        if (other.TryGetComponent(out NestGate nestGate) && HaveNest == false)
             TakeNest(nestGate);
+
+        if(other.TryGetComponent(out WashGate washer) && WasWashed == false)
+            Wash();
 
         if (other.TryGetComponent(out EggUpgradeGate colorChangeGate))
             TypeUpgrade();
+
+        if(other.TryGetComponent(out Grinder grinder))
+            ToGrinder();
     }
 
     public void Sort(Transform parent)
@@ -120,36 +120,28 @@ public class Egg : MonoBehaviour
         Animate();
     }
 
-    private void UVLampHeating()
+    private void HeatUVLamp()
     {
-        if (WasUVLightsHeated == false)
-        {
-            WasUVLightsHeated = true;
-            _cleanEgg.enabled = false;
-            _model.EnableCleanCells();
-            Animate();
-        }
+        WasUVLightsHeated = true;
+        _cleanEgg.enabled = false;
+        _model.EnableCleanCells();
+        _eggAnimator.OnUVLampHeated();
+        Animate();
     }
 
     private void Wash()
     {
-        if(WasWashed == false)
-        {
-            WasWashed = true;
-            _eggAnimator.Wash();
-            _model.IncreaseScale();
-        }
+        WasWashed = true;
+        _eggAnimator.Wash();
+        _model.IncreaseScale();
     }
 
     private void TakeNest(NestGate nestGate)
     {
-        if(HaveNest == false)
-        {
-            nestGate.GiveNest();
-            HaveNest = true;
-            _nest.enabled = true;
-            _eggAnimator.TakeNest();
-        }
+        nestGate.GiveNest();
+        HaveNest = true;
+        _nest.enabled = true;
+        _eggAnimator.TakeNest();
     }
 
     private void Die()
