@@ -4,6 +4,9 @@ using UnityEngine;
 public class SortGateAnimator : Gate
 {
     [SerializeField] private Animator _animator;
+    [Header("View")]
+    [SerializeField] private MeshRenderer _positive;
+    [SerializeField] private MeshRenderer _negative;
 
     private BoxCollider _collider;
     private bool _isPlayerMoverDisable = false;
@@ -26,6 +29,18 @@ public class SortGateAnimator : Gate
         }
     }
 
+    public void EnablePositiveSort()
+    {
+        DisableView(_negative);
+        EnableView(_positive);
+    }
+
+    public void EnableNegativeSort()
+    {
+        DisableView(_positive);
+        EnableView(_negative);
+    }
+
     private void DisablePlayerMover(Egg egg)
     {
         if (_isPlayerMoverDisable == false)
@@ -33,5 +48,15 @@ public class SortGateAnimator : Gate
             _isPlayerMoverDisable = true;
             egg.PlayerHand.PlayerMover.SetDefaultPosition();
         }
+    }
+
+    private void EnableView(MeshRenderer mesh)
+    {
+        mesh.enabled = true;
+    }
+
+    private void DisableView(MeshRenderer mesh)
+    {
+        mesh.enabled = false;
     }
 }

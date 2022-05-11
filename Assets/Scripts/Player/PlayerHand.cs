@@ -34,6 +34,12 @@ public class PlayerHand : MonoBehaviour
             egg.OnHandTaked(this);
             IsBusy = true;
         }
+
+        if (other.TryGetComponent(out SortGateAnimator sort))
+        {
+            sort.EnableNegativeSort();
+            _playerMover.SetDefaultPosition();
+        }
     }
 
     public void SetLastEgg(EggMover eggMover)

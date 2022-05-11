@@ -6,15 +6,13 @@ public class SortGate : MonoBehaviour
 {
     [SerializeField] private Tools _tools;
     [SerializeField] private Transform _point;
-    [Header("View")]
-    [SerializeField] private MeshRenderer _positive;
-    [SerializeField] private MeshRenderer _negative;
+    [SerializeField] private SortGateAnimator _animator;
 
     private RoadMover _mover;
 
     private bool _hasActivated = false;
 
-    private const float Duration = 1f;
+    private const float Duration = 2f;
 
     public event Action SortGateReached;
 
@@ -39,28 +37,16 @@ public class SortGate : MonoBehaviour
 
     private void Sort(Egg egg)
     {
-        DisableView(_negative);
-        EnableView(_positive);
+        _animator.EnablePositiveSort();
 
         _hasActivated = true;
         SortGateReached?.Invoke();
 
         if(egg.WasUVLightsHeated == false || egg.WasWashed == false || egg.HaveNest == false)
         {
-            DisableView(_positive);
-            EnableView(_negative);
+            _animator.EnableNegativeSort();
             egg.Sort(transform);
             egg.transform.DOMove(_point.position, Duration);
         }
-    }
-
-    private void EnableView(MeshRenderer mesh)
-    {
-        mesh.enabled = true;
-    }
-
-    private void DisableView(MeshRenderer mesh)
-    {
-        mesh.enabled = false;
     }
 }

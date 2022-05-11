@@ -1,22 +1,31 @@
 using System;
 using UnityEngine;
+using GameAnalyticsSDK;
 
 [RequireComponent(typeof(LevelsLoader))]
 public class StartApplication : MonoBehaviour
 {
+    [SerializeField] private GameObject _gameAnalyticsSDK;
+
     private LevelsLoader _levelsLoader;
 
     private const float Delay = 0.5f;
 
     private const string Level = "level";
-    private const string FirstDay = "first_day";
     private const string RegDay = "reg_day";
+    private const string FirstDay = "first_day";
     private const string DaysInGame = "days_in_game";
     private const string SessionCount = "session_count";
 
     private void OnEnable()
     {
         _levelsLoader = GetComponent<LevelsLoader>();
+        Init();
+    }
+
+    private void Init()
+    {
+        EnableGameAnalytics();
 
         if (PlayerPrefs.GetInt(Level) == 0)
             PlayerPrefs.SetInt(Level, 1);
@@ -32,12 +41,17 @@ public class StartApplication : MonoBehaviour
         SetRegDay();
         SetDaysInGame();
         SetCountSessions();
-
     }
 
     private void StartGame()
     {
         _levelsLoader.LoadCurrentLevelOnStartApp();
+    }
+
+    private void EnableGameAnalytics()
+    {
+        _gameAnalyticsSDK.SetActive(true);
+        GameAnalytics.Initialize();
     }
 
     private void SetCountSessions()
@@ -47,8 +61,8 @@ public class StartApplication : MonoBehaviour
 
         PlayerPrefs.SetInt(SessionCount, countStartSessions);
 
-        AppMetricaEvents.OnGameStarted(countStartSessions);
-        AppMetricaEvents.OnSessionInitialize(countStartSessions);
+        AnalyticEvents.OnGameStarted(countStartSessions);
+        AnalyticEvents.OnSessionInitialize(countStartSessions);
     }
 
     private void SetDaysInGame()
@@ -59,7 +73,7 @@ public class StartApplication : MonoBehaviour
         if(PlayerPrefs.GetInt(daysInGame) == 0)
         {
             PlayerPrefs.SetInt(daysInGame, 1);
-            AppMetricaEvents.SetDaysInGame(1);
+            AnalyticEvents.SetDaysInGame(1);
         }
 
         if (currentDay != PlayerPrefs.GetInt(FirstDay))
@@ -68,7 +82,7 @@ public class StartApplication : MonoBehaviour
             days++;
 
             PlayerPrefs.SetInt(daysInGame, days);
-            AppMetricaEvents.SetDaysInGame(days);
+            AnalyticEvents.SetDaysInGame(days);
         }
     }
 
@@ -86,6 +100,6 @@ public class StartApplication : MonoBehaviour
             PlayerPrefs.SetString(regDay, date);
         }
 
-        AppMetricaEvents.SetRegDay(PlayerPrefs.GetString(regDay));
+        AnalyticEvents.SetRegDay(PlayerPrefs.GetString(regDay));
     }
 }

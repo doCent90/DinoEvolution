@@ -24,7 +24,7 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
             _gameOver.Won += OnLevelDone;
             _gameOver.Losed += OnLevelFaled;
-            AppMetricaEvents.OnLevelStarted(LevelNumber);
+            AnalyticEvents.OnLevelStarted(LevelNumber);
         }
 
         if(_isTestLevel)
@@ -48,7 +48,7 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
     {
         Load(_levelIndex);
         
-        AppMetricaEvents.OnLevelComplete(LevelNumber);
+        AnalyticEvents.OnLevelComplete(LevelNumber);
     }
 
     public void OnLevelDone()
@@ -58,7 +58,7 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
         int nextLevel = LevelNumber + 1;
         PlayerPrefs.SetInt(Level, nextLevel);
-        AppMetricaEvents.OnLevelComplete(LevelNumber);
+        AnalyticEvents.OnLevelComplete(LevelNumber);
 
         _gameOver.Won -= OnLevelDone;
         _gameOver.Losed -= OnLevelFaled;
@@ -66,7 +66,7 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
     private void OnLevelFaled()
     {
-        AppMetricaEvents.OnFail(LevelNumber, "Boss Won");
+        AnalyticEvents.OnFail(LevelNumber, "Boss Won");
     }
 
     private void Load(int number)

@@ -297,6 +297,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 40.801926
       objectReference: {fileID: 0}
+    - target: {fileID: 6525230391639314236, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9914449
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525230391639314236, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.13052616
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525230391639314236, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525230391639314236, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 6525230391639314237, guid: 334ab804bd8e6e64ab28f7dfbdfa379a, type: 3}
       propertyPath: field of view
       value: 30
@@ -440,7 +456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 977277783576796908, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: m_fontSize
-      value: 120
+      value: 83.45
       objectReference: {fileID: 0}
     - target: {fileID: 5058267720323509088, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: _boss
@@ -1191,6 +1207,14 @@ PrefabInstance:
       propertyPath: _finishPoint
       value: 
       objectReference: {fileID: 945491537}
+    - target: {fileID: 1782704980970468765, guid: d8c57d9cb3ee9704a944a329453a0abd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782704980970468765, guid: d8c57d9cb3ee9704a944a329453a0abd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -37.598
+      objectReference: {fileID: 0}
     - target: {fileID: 6910804948814197676, guid: d8c57d9cb3ee9704a944a329453a0abd, type: 3}
       propertyPath: _gameOver
       value: 
