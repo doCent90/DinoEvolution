@@ -10,10 +10,11 @@ public class EggAnimator : MonoBehaviour
     [SerializeField] private CellDestroy[] _cellsDirt;
 
     private RoadParent _roadParent;
-    private float _targetScale = 1.6f;
+    private readonly float _targetScale = 1.6f;
 
     private const string NestAnimation = "Nest";
     private const string FlexAnimation = "Flex";
+    private const string JumpAnimation = "Jump";
 
     private const float MaxDelay = 2f;
     private const float MinDelay = 0.5f;
@@ -23,6 +24,11 @@ public class EggAnimator : MonoBehaviour
     private void OnEnable()
     {
         _roadParent = FindObjectOfType<RoadParent>();
+    }
+
+    public void Jump()
+    {
+        _animator.SetTrigger(JumpAnimation);
     }
 
     public void TakeNest()

@@ -48,6 +48,9 @@ public class Egg : MonoBehaviour
         if (other.TryGetComponent(out EggUpgradeGate colorChangeGate))
             TypeUpgrade();
 
+        if(other.TryGetComponent(out CylinderTrigger cylinder))
+            OnCylinderTriggered();
+
         if(other.TryGetComponent(out Grinder grinder))
             ToGrinder();
     }
@@ -102,6 +105,11 @@ public class Egg : MonoBehaviour
     {
         DinoMini dino = Instantiate(_data.Dino, transform.position, Quaternion.identity);
         dino.Init(_gameOver, PlayerHand.BossArea, _data.Health, _data.Damage);
+    }
+
+    private void OnCylinderTriggered()
+    {
+        _eggAnimator.Jump();
     }
 
     private void ToGrinder()

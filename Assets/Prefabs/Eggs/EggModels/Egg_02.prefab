@@ -602,9 +602,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4a6a8fddc726a409c53451177d6c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dirtyMaterial: {fileID: 2100000, guid: e3ecf1422e7988540b4b7b147810afb9, type: 2}
   _meshRenderers:
   - {fileID: 696140997536179004}
   - {fileID: 8885804018692617270}
   - {fileID: 6671411062656312523}
   - {fileID: 4315548296088516985}
+  _cellsPreOpenEgg:
+  - {fileID: 15214499022859103}
+  - {fileID: 615354210254896552}

@@ -5,6 +5,7 @@ public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private InputController _inputController;
     [Header("Settings")]
+    [SerializeField] private float _sens = 0.8f;
 
     private float _offset;
     private bool _hasSortGate = false;
@@ -26,7 +27,7 @@ public class PlayerMover : MonoBehaviour
         float position = Mathf.Clamp(_offset, -Treshold, Treshold);
 
         Vector3 targetPosition = new Vector3(position, transform.position.y, transform.position.z);
-        transform.position = targetPosition;
+        transform.position = Vector3.Lerp(transform.position, targetPosition, _sens);
 
         Position = transform.position;
     }

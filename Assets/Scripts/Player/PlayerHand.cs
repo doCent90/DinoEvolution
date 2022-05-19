@@ -40,6 +40,9 @@ public class PlayerHand : MonoBehaviour
             sort.EnableNegativeSort();
             _playerMover.SetDefaultPosition();
         }
+
+        if (other.TryGetComponent(out CylinderTrigger cylinder))
+            _animator.Jump();
     }
 
     public void SetLastEgg(EggMover eggMover)

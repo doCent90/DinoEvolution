@@ -476,12 +476,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4a6a8fddc726a409c53451177d6c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dirtyMaterial: {fileID: 2100000, guid: e3ecf1422e7988540b4b7b147810afb9, type: 2}
   _meshRenderers:
   - {fileID: 3810006551702282592}
   - {fileID: 8408770144640020604}
   - {fileID: 5217535199439148548}
   - {fileID: 857551668119442862}
+  _cellsPreOpenEgg:
+  - {fileID: 8996184868675998698}
+  - {fileID: 3744391669757000243}
 --- !u!1 &7461437824554410552
 GameObject:
   m_ObjectHideFlags: 0

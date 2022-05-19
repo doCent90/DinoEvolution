@@ -16,8 +16,6 @@ public class LevelsLoader : MonoBehaviour, ISceneLoadHandler<int>
 
     private void OnEnable()
     {
-        Application.targetFrameRate = 60;
-
         if (_isStartApp == false && _isTestLevel == false)
         {
             LevelNumber = PlayerPrefs.GetInt(Level);

@@ -10,8 +10,8 @@ public class CellDestroy : MonoBehaviour
     private Rigidbody _rigidbody;
     private MeshCollider _collider;
 
-    private const float Delay = 2f;
-    private const float Power = 100f;
+    private const float Delay = 4f;
+    private const float Power = 150f;
 
     public void Destroy(Transform parent)
     {
@@ -47,8 +47,8 @@ public class CellDestroy : MonoBehaviour
         float y;
 
         x = Random.Range(-range, range);
-        y = Random.Range(0, range);
-        z = 0;
+        y = Random.Range(range / 2, range);
+        z = Random.Range(-range, range);
 
         _collider.isTrigger = false;
         _rigidbody.isKinematic = false;

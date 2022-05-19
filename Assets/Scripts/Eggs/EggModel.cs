@@ -4,6 +4,7 @@ using UnityEngine;
 public class EggModel : MonoBehaviour
 {
     [SerializeField] private MeshRenderer[] _meshRenderers;
+    [SerializeField] private CellDestroy[] _cellsPreOpenEgg; 
 
     private RoadParent _roadParent;
     private CellDestroy[] _cellDestroys;
@@ -26,6 +27,9 @@ public class EggModel : MonoBehaviour
     {
         foreach (MeshRenderer cell in _meshRenderers)
             cell.enabled = true;
+
+        foreach (CellDestroy cell in _cellsPreOpenEgg)
+            cell.Destroy(_roadParent.transform);
     }
 
     public void DestroyCells()
