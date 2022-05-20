@@ -1,11 +1,15 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class PlayerMover : MonoBehaviour
 {
+    [SerializeField] private Button _scmoothNull;
+    [SerializeField] private Button _scmoothLow;
+    [SerializeField] private Button _scmoothHigh;
     [SerializeField] private InputController _inputController;
     [Header("Settings")]
-    [SerializeField] private float _sens = 0.8f;
+    [SerializeField] private float _sens = 0.25f;
 
     private float _offset;
     private bool _hasSortGate = false;
@@ -15,10 +19,56 @@ public class PlayerMover : MonoBehaviour
 
     public Vector3 Position { get; private set; }
 
+    private void OnEnable()
+    {
+        if (_scmoothNull == null)
+            return;
+
+        _scmoothNull.onClick.AddListener(SetSmoothNull);
+        _scmoothLow.onClick.AddListener(SetSmoothLow);
+        _scmoothHigh.onClick.AddListener(SetSmoothHigh);
+    }
+
+    private void OnDisable()
+    {
+        _scmoothNull.onClick?.RemoveListener(SetSmoothNull);
+        _scmoothLow?.onClick?.RemoveListener(SetSmoothLow);
+        _scmoothHigh?.onClick?.RemoveListener(SetSmoothHigh);
+    }
+
+    private void Update()
+    {
+        if (_hasSortGate)
+            return;
+
+        Move();
+    }
+
     public void SetDefaultPosition()
     {
         _hasSortGate = true;
         transform.DOMoveX(0, Duration);
+    }
+
+
+    private void SetSmoothNull()
+    {
+        SetSmoothValue(1);
+    }
+
+    private void SetSmoothLow()
+    {
+        SetSmoothValue(0.25f);
+    }
+
+    private void SetSmoothHigh()
+    {
+        SetSmoothValue(0.15f);
+    }
+
+    private void SetSmoothValue(float sens)
+    {
+        _sens = sens;
     }
 
     private void Move()
@@ -30,13 +80,5 @@ public class PlayerMover : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, targetPosition, _sens);
 
         Position = transform.position;
-    }
-
-    private void Update()
-    {
-        if (_hasSortGate)
-            return;
-
-        Move();
     }
 }

@@ -5,7 +5,7 @@ public class RegDollKicker : MonoBehaviour
     [SerializeField] private Dinosaur _dinosaur;
 
     private Rigidbody[] _rigidbodies;
-    private readonly float _range = 6f;
+    private readonly float _range = 7f;
 
     private void OnEnable()
     {
@@ -30,15 +30,15 @@ public class RegDollKicker : MonoBehaviour
 
     private void Move(Rigidbody rigidbody, float range)
     {
-        float x = Random.Range(-range, range) / 2;
-        float y = Random.Range(0, range);
-        float z = -range;
+        float x = Random.Range(-range, range) / 3;
+        float y = range / 2;
+        float z = range;
 
         rigidbody.isKinematic = false;
 
         if (_dinosaur is DinoMini)
-            rigidbody.AddForce(new Vector3(x, y, z), ForceMode.VelocityChange);
+            rigidbody.AddForce(new Vector3(x, y, -z), ForceMode.VelocityChange);
         else
-            rigidbody.AddForce(new Vector3(0, y / 10, 0), ForceMode.VelocityChange);
+            rigidbody.AddForce(new Vector3(0, y, z / 3.5f), ForceMode.VelocityChange);
     }
 }

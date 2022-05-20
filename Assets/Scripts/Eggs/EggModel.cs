@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class EggModel : MonoBehaviour
 {
+    [SerializeField] private MeshRenderer _meshRendererDino;
     [SerializeField] private MeshRenderer[] _meshRenderers;
     [SerializeField] private CellDestroy[] _cellsPreOpenEgg; 
 
@@ -30,11 +31,17 @@ public class EggModel : MonoBehaviour
 
         foreach (CellDestroy cell in _cellsPreOpenEgg)
             cell.Destroy(_roadParent.transform);
+
+        if(_meshRendererDino != null)
+            _meshRendererDino.enabled = true;
     }
 
     public void DestroyCells()
     {
         foreach (CellDestroy cell in _cellDestroys)
             cell.Destroy(_roadParent.transform);
+
+        if(_meshRendererDino != null)
+            _meshRendererDino.enabled = false;
     }
 }

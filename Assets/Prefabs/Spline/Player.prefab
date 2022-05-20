@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputController: {fileID: 0}
-  _sens: 0.13
+  _sens: 0.25
 --- !u!114 &1618884643686366502
 MonoBehaviour:
   m_ObjectHideFlags: 0

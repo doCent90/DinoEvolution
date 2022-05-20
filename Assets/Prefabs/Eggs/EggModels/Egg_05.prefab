@@ -602,6 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4a6a8fddc726a409c53451177d6c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshRendererDino: {fileID: 0}
   _meshRenderers:
   - {fileID: 6239677396075194621}
   - {fileID: 616387664727006113}
@@ -609,4 +610,3 @@ MonoBehaviour:
   - {fileID: 1292367487466221821}
   _cellsPreOpenEgg:
   - {fileID: 4024913548876229296}
-  - {fileID: 5433689226395173948}
