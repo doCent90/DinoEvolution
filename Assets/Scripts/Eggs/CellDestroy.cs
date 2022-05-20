@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent (typeof(MeshCollider))]
@@ -15,6 +14,9 @@ public class CellDestroy : MonoBehaviour
 
     public void Destroy(Transform parent)
     {
+        if (gameObject.activeSelf == false)
+            return;
+
         transform.parent = parent;
 
         if(_renderer != null)

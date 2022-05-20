@@ -15,6 +15,7 @@ public class RoadMover : MonoBehaviour
     private const float Acceleration = 3;
     private const float BackUpSpeed = -25f;
     private const float SortGateSpeed = 3f;
+    private const float SpentTimeDelay = -0.1f;
 
     private void OnEnable()
     {
@@ -44,7 +45,7 @@ public class RoadMover : MonoBehaviour
 
     public void OnToolsWorked()
     {
-        SetSpeed(ref _currentSpeed, ToolsSpeed);
+        SetSpeed(ref _currentSpeed, ToolsSpeed, SpentTimeDelay);
     }
 
     public void OnSortGateReached()
@@ -65,9 +66,9 @@ public class RoadMover : MonoBehaviour
         enabled = false;
     }
 
-    private void SetSpeed(ref float speed, float targetSpeed)
+    private void SetSpeed(ref float speed, float targetSpeed, float spentTime = 0)
     {
         speed = targetSpeed;
-        _spentTime = 0;
+        _spentTime = spentTime;
     }
 }
