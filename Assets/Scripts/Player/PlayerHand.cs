@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimator))]
 public class PlayerHand : MonoBehaviour
 {
+    [SerializeField] private Player _player;
     [SerializeField] private BossArea _bossArea;
     [SerializeField] private Transform _eggStackParent;
     [SerializeField] private Transform _eggStackPosition;
@@ -53,6 +54,12 @@ public class PlayerHand : MonoBehaviour
     public void OnEggAdded()
     {        
         _animator.Take();
+        _player.AddEggCount();
+    }
+
+    public void OnEggLost()
+    {
+        _player.ReduceEggCount();
     }
 
     public void OnHandEmpty()

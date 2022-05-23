@@ -68,6 +68,7 @@ public class Egg : MonoBehaviour
     public void Destroy()
     {
         _eggMover.Disable(_roadParent.transform);
+        PlayerHand.OnEggLost();
         Die();
     }
 

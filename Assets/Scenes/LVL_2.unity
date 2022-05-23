@@ -500,7 +500,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 977277783576796908, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: m_fontSize
-      value: 120
+      value: 83.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506488861000556482, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.613903
+      objectReference: {fileID: 0}
+    - target: {fileID: 3506488861000556482, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.688202
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714313019724650006, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.0508995
       objectReference: {fileID: 0}
     - target: {fileID: 5058267720323509088, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: _boss
@@ -514,6 +526,10 @@ PrefabInstance:
       propertyPath: _gameOver
       value: 
       objectReference: {fileID: 50013270}
+    - target: {fileID: 5058267720323509088, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
+      propertyPath: _eggsCounter
+      value: 
+      objectReference: {fileID: 3491632545410125803}
     - target: {fileID: 5058267720323509088, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
       propertyPath: _levelsLoader
       value: 
@@ -634,6 +650,10 @@ PrefabInstance:
       propertyPath: _bossAreaTrigger
       value: 
       objectReference: {fileID: 1003165848}
+    - target: {fileID: 7650621396534347517, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 100809503}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a4392deaa6e2d8428357b0e324e1ab0, type: 3}
 --- !u!114 &658158907 stripped
@@ -1342,6 +1362,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 658158909}
     - target: {fileID: 1618884643686366489, guid: 5621a99cf07a1cf459c728b41e603b97, type: 3}
+      propertyPath: _scmoothMedium
+      value: 
+      objectReference: {fileID: 658158909}
+    - target: {fileID: 1618884643686366489, guid: 5621a99cf07a1cf459c728b41e603b97, type: 3}
       propertyPath: _inputController
       value: 
       objectReference: {fileID: 407141299}
@@ -1427,6 +1451,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1872184936}
     m_Modifications:
+    - target: {fileID: 25186656992245645, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1396268201345076914, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1822,6 +1850,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adc3ccd289920ea44aac9df21a1d4ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3491632545410125803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3671412413456156052, guid: 628b02c832d354740bb45c0320c5f96b, type: 3}
+  m_PrefabInstance: {fileID: 3491632545410125797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7153a964edafd5438badbde787d6cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8009463641615151729

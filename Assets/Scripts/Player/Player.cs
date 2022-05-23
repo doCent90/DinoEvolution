@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -6,6 +7,22 @@ public class Player : MonoBehaviour
     [SerializeField] private RoadMover _splineMover;
     [SerializeField] private ParticleSystem _trail;
     [SerializeField] private PlayerAnimator _animator;
+
+    private int _eggCount;
+
+    public event Action<int> EggCountChanged;
+
+    public void AddEggCount()
+    {
+        _eggCount++;
+        EggCountChanged?.Invoke(_eggCount);
+    }
+
+    public void ReduceEggCount()
+    {
+        _eggCount--;
+        EggCountChanged?.Invoke(_eggCount);
+    }
 
     public void EnableMove()
     {

@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d273e3232e5c04ba58ca28438c100e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1618884643686366491}
   _bossArea: {fileID: 0}
   _eggStackParent: {fileID: 0}
   _eggStackPosition: {fileID: 1618884645329767702}
@@ -163,6 +164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbb72357659e804e83fc3c9b5ec0a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scmoothNull: {fileID: 0}
+  _scmoothLow: {fileID: 0}
+  _scmoothHigh: {fileID: 0}
   _inputController: {fileID: 0}
   _sens: 0.25
 --- !u!114 &1618884643686366502

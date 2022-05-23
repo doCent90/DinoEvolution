@@ -5,14 +5,11 @@ using System.Collections;
 public class CameraSwitcher : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _gameCamera;
-    [SerializeField] private CinemachineVirtualCamera _gameCameraLeft;
-    [SerializeField] private CinemachineVirtualCamera _gameCameraRight;
     [SerializeField] private CinemachineVirtualCamera _sortCamera;
     [SerializeField] private CinemachineVirtualCamera _bossFightCamera;
     [SerializeField] private PlayerMover _playerMover;
     [Header("BossArea")]
     [SerializeField] private Boss _boss;
-    [SerializeField] private Gate[] _gates;
     [SerializeField] private SortGate _sortGate;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
     [Header("Shake Settings")]
@@ -34,12 +31,6 @@ public class CameraSwitcher : MonoBehaviour
         _boss.SuperAttacked += OnSuperAttacked;
         _sortGate.SortGateReached += OnSortEnable;
         _bossAreaTrigger.BossAreaReached += OnBossAreaReached;
-
-        foreach (Gate gate in _gates)
-            gate.GateReached += OnToolsGateReached;
-
-        foreach (Gate gate in _gates)
-            gate.GateDone += EnableGameCamera;
     }
 
     private void OnDisable()
@@ -47,17 +38,6 @@ public class CameraSwitcher : MonoBehaviour
         _boss.SuperAttacked -= OnSuperAttacked;
         _sortGate.SortGateReached -= OnSortEnable;
         _bossAreaTrigger.BossAreaReached -= OnBossAreaReached;        
-
-        foreach (Gate gate in _gates)
-            gate.GateReached -= OnToolsGateReached;
-
-        foreach (Gate gate in _gates)
-            gate.GateDone -= EnableGameCamera;
-    }
-
-    private void EnableGameCamera()
-    {
-        EnableCamera(_gameCamera);
     }
 
     private void OnSuperAttacked()
@@ -68,14 +48,6 @@ public class CameraSwitcher : MonoBehaviour
     private void OnFightEnable()
     {
         EnableCamera(_bossFightCamera);
-    }
-
-    private void OnToolsGateReached()
-    {
-        if(_playerMover.Position.x > 0)
-            EnableCamera(_gameCameraLeft);
-        else if(_playerMover.Position.x < 0)
-            EnableCamera(_gameCameraRight);
     }
 
     private void OnSortEnable()

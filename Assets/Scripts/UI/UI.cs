@@ -7,10 +7,13 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private GameOver _gameOver;
-    [SerializeField] private LevelViewer _levelViewer;
+    [SerializeField] private EggsCounter _eggsCounter;
     [SerializeField] private LevelsLoader _levelsLoader;
-    [SerializeField] private DinoHealthBar _dinoHealthBar;
     [SerializeField] private BossAreaTrigger _bossAreaTrigger;
+    [Header("Canvas Prefab Components")]
+    [SerializeField] private PowerBarView _powerBar;
+    [SerializeField] private LevelViewer _levelViewer;
+    [SerializeField] private DinoHealthBar _dinoHealthBar;
     [SerializeField] private InputController _inputController;
     [SerializeField] private ButtonsAnimator _buttonsAnimator;
     [Header("Canvas")]
@@ -38,6 +41,7 @@ public class UI : MonoBehaviour
     private void OnEnable()
     {
         _boss = _bossAreaTrigger.Boss;
+        _powerBar.Init(_player, _eggsCounter);
 
         _gameOver.Won += OnGameWon;
         _gameOver.Losed += OnGameLosed;

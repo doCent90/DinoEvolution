@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerMover : MonoBehaviour
 {
-    [SerializeField] private Button _scmoothNull;
     [SerializeField] private Button _scmoothLow;
+    [SerializeField] private Button _scmoothMedium;
     [SerializeField] private Button _scmoothHigh;
     [SerializeField] private InputController _inputController;
     [Header("Settings")]
@@ -21,18 +21,18 @@ public class PlayerMover : MonoBehaviour
 
     private void OnEnable()
     {
-        if (_scmoothNull == null)
+        if (_scmoothMedium == null)
             return;
 
-        _scmoothNull.onClick.AddListener(SetSmoothNull);
         _scmoothLow.onClick.AddListener(SetSmoothLow);
+        _scmoothMedium.onClick.AddListener(SetSmoothMedium);
         _scmoothHigh.onClick.AddListener(SetSmoothHigh);
     }
 
     private void OnDisable()
     {
-        _scmoothNull.onClick?.RemoveListener(SetSmoothNull);
         _scmoothLow?.onClick?.RemoveListener(SetSmoothLow);
+        _scmoothMedium.onClick?.RemoveListener(SetSmoothMedium);
         _scmoothHigh?.onClick?.RemoveListener(SetSmoothHigh);
     }
 
@@ -50,15 +50,14 @@ public class PlayerMover : MonoBehaviour
         transform.DOMoveX(0, Duration);
     }
 
-
-    private void SetSmoothNull()
-    {
-        SetSmoothValue(1);
-    }
-
     private void SetSmoothLow()
     {
         SetSmoothValue(0.25f);
+    }
+
+    private void SetSmoothMedium()
+    {
+        SetSmoothValue(0.20f);
     }
 
     private void SetSmoothHigh()
