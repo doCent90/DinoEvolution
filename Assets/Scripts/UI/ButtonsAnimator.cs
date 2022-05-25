@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class ButtonsAnimator : MonoBehaviour
     [SerializeField] private DinoHealthBar _healthBar;
     [SerializeField] private CanvasGroup _fightButton;
     [SerializeField] private CanvasGroup _tapsCanvas;
+    [SerializeField] private CanvasGroup _powerBarCanvas;
     [Header("Taps text")]
     [SerializeField] private TMP_Text[] _tapsText;
 
@@ -15,6 +17,7 @@ public class ButtonsAnimator : MonoBehaviour
     private UI _uI;
 
     private const float Delay = 2f;
+    private const float Duration = 0.3f;
 
     private void OnEnable()
     {
@@ -39,6 +42,7 @@ public class ButtonsAnimator : MonoBehaviour
     private void OnBossAreaTrigged()
     {
         Invoke(nameof(EnableFightButton), Delay);
+        DisableCanvas(_powerBarCanvas);
     }
 
     private void EnableFightButton()
@@ -55,14 +59,14 @@ public class ButtonsAnimator : MonoBehaviour
 
     private void EnableCanvas(CanvasGroup canvasGroup)
     {
-        canvasGroup.alpha = 1;
+        canvasGroup.DOFade(1, Duration);
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
     }
 
     private void DisableCanvas(CanvasGroup canvasGroup)
     {
-        canvasGroup.alpha = 0;
+        canvasGroup.DOFade(0, Duration);
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
     }

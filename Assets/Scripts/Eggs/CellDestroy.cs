@@ -2,15 +2,15 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent (typeof(MeshCollider))]
 public class CellDestroy : MonoBehaviour
 {
     private Renderer _renderer;
     private Rigidbody _rigidbody;
-    private MeshCollider _collider;
+    private Collider _collider;
 
     private const float Delay = 4f;
-    private const float Power = 150f;
+    private const float RangeDelay = 0.1f;
+    private const float Power = 200;
 
     public void Destroy(Transform parent)
     {
@@ -22,7 +22,8 @@ public class CellDestroy : MonoBehaviour
         if(_renderer != null)
             _renderer.enabled = true;
 
-        Move(Power);
+        float randomDelay = Random.Range(0, RangeDelay);
+        Invoke(nameof(Move), randomDelay);
         StartCoroutine(TimeToDestroy());
     }
 
@@ -32,7 +33,7 @@ public class CellDestroy : MonoBehaviour
             _renderer = GetComponent<Renderer>();
 
         _rigidbody = GetComponent<Rigidbody>();
-        _collider = GetComponent<MeshCollider>();
+        _collider = GetComponent<Collider>();
     }
 
     private IEnumerator TimeToDestroy()
@@ -42,15 +43,11 @@ public class CellDestroy : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void Move(float range)
+    private void Move()
     {
-        float x;
-        float z;
-        float y;
-
-        x = Random.Range(-range, range);
-        y = Random.Range(range / 2, range);
-        z = Random.Range(-range, range);
+        float x = Random.Range(-Power, Power);
+        float z = Random.Range(-Power / 2, -Power * 2);
+        float y = Random.Range(-Power, Power);
 
         _collider.isTrigger = false;
         _rigidbody.isKinematic = false;

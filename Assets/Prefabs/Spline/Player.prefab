@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbb72357659e804e83fc3c9b5ec0a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scmoothNull: {fileID: 0}
   _scmoothLow: {fileID: 0}
+  _scmoothMedium: {fileID: 0}
   _scmoothHigh: {fileID: 0}
   _inputController: {fileID: 0}
   _sens: 0.25
@@ -272,7 +272,7 @@ SkinnedMeshRenderer:
   m_GameObject: {fileID: 3958134474482170803}
   m_Enabled: 1
   m_CastShadows: 2
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -282,7 +282,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 39279b6d990cc2342a27e06561c8bb42, type: 2}
+  - {fileID: 2100000, guid: fa98d5ea230c6dc40af5d1d739dce099, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

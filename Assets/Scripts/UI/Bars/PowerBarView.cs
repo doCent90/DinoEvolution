@@ -27,6 +27,6 @@ public class PowerBarView : MonoBehaviour
         float cellFill = maxFill;
 
         cellFill /= _eggsCounter.EggCount;
-        _fill.fillAmount = cellFill * ((_eggsCounter.EggCount - count) - _eggsCounter.EggCount) * -1;
+        _fill.fillAmount = cellFill * ((_eggsCounter.EggCount - count) - _eggsCounter.EggCount) * - 1;
     }
 }

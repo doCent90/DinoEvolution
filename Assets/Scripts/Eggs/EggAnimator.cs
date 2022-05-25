@@ -52,6 +52,11 @@ public class EggAnimator : MonoBehaviour
         ScaleAnimation();
     }
 
+    public void Stop()
+    {
+        _animator.StopPlayback();
+    }
+
     public void ScaleAnimation()
     {
         var tween1 = _model.DOScale(_targetScale, Duration);

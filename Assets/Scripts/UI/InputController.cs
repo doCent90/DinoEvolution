@@ -23,7 +23,7 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && enabled)
             Clicked?.Invoke();
 
         SetOffsetValue();

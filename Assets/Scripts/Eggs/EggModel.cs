@@ -14,8 +14,12 @@ public class EggModel : MonoBehaviour
 
     private void OnEnable()
     {
-        _roadParent = FindObjectOfType<RoadParent>();
         _cellDestroys = GetComponentsInChildren<CellDestroy>();
+    }
+
+    public void Init(RoadParent roadParent)
+    {
+        _roadParent = roadParent;
     }
 
     public void IncreaseScale()

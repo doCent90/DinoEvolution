@@ -31,11 +31,4 @@ public class Player : MonoBehaviour
         _mover.enabled = true;
         _splineMover.enabled = true;
     }
-
-    public void DisableMove()
-    {
-        _trail.Stop();
-        _mover.enabled = false;
-        _splineMover.enabled = false;
-    }
 }

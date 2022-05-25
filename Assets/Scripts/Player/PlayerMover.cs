@@ -48,6 +48,7 @@ public class PlayerMover : MonoBehaviour
     {
         _hasSortGate = true;
         transform.DOMoveX(0, Duration);
+        enabled = false;
     }
 
     private void SetSmoothLow()

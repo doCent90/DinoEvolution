@@ -7,7 +7,6 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _gameCamera;
     [SerializeField] private CinemachineVirtualCamera _sortCamera;
     [SerializeField] private CinemachineVirtualCamera _bossFightCamera;
-    [SerializeField] private PlayerMover _playerMover;
     [Header("BossArea")]
     [SerializeField] private Boss _boss;
     [SerializeField] private SortGate _sortGate;

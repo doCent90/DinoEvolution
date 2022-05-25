@@ -29,9 +29,10 @@ public class Egg : MonoBehaviour
 
     private void OnEnable()
     {
-        InitType();
         _roadParent = GetComponentInParent<RoadParent>();
         _gameOver = _tools.GameOver;
+
+        InitType();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,7 +53,7 @@ public class Egg : MonoBehaviour
             OnCylinderTriggered();
 
         if(other.TryGetComponent(out Grinder grinder))
-            ToGrinder();
+            Hatch();
     }
 
     public void Sort(Transform parent)
@@ -99,6 +100,7 @@ public class Egg : MonoBehaviour
         EggModel model = _data.EggModelType;
 
         _model = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
+        _model.Init(_roadParent);
         _cleanEgg = _model.GetComponent<MeshRenderer>();
     }
 
@@ -113,11 +115,13 @@ public class Egg : MonoBehaviour
         _eggAnimator.Jump();
     }
 
-    private void ToGrinder()
+    private void Hatch()
     {
         SpawnDino();
         _nest.enabled = false;
         _cleanEgg.enabled = false;
+        _eggMover.enabled = false;
+        _eggAnimator.Stop();
         _model.DestroyCells();
     }
 

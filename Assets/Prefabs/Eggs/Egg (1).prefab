@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1996439075523440512}
   - component: {fileID: 5808641528305491872}
   - component: {fileID: 1224474396879298124}
-  - component: {fileID: 653916886489032052}
   - component: {fileID: 653916886489032053}
   - component: {fileID: 653916886489032054}
+  - component: {fileID: 3340053008086625235}
   m_Layer: 3
   m_Name: Dirt_cell.029
   m_TagString: Untagged
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653916886489032055}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -84,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &653916886489032052
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653916886489032055}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1494662080241220119, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &653916886489032053
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,6 +112,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &3340053008086625235
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653916886489032055}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1494662080241220119, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &656491581975995275
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,9 +137,9 @@ GameObject:
   - component: {fileID: 6545665233316978213}
   - component: {fileID: 7022169082192458032}
   - component: {fileID: 7636138847100350422}
-  - component: {fileID: 656491581975995272}
   - component: {fileID: 656491581975995273}
   - component: {fileID: 656491581975995274}
+  - component: {fileID: 2895181825272126054}
   m_Layer: 3
   m_Name: Dirt_cell.019
   m_TagString: Untagged
@@ -177,7 +177,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656491581975995275}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -210,20 +210,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &656491581975995272
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656491581975995275}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4313484016028341294, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &656491581975995273
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -252,6 +238,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &2895181825272126054
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656491581975995275}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4313484016028341294, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &1370872649324191931
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,9 +344,9 @@ GameObject:
   - component: {fileID: 6399713647518115848}
   - component: {fileID: 285577894037402377}
   - component: {fileID: 5819861406974602268}
-  - component: {fileID: 2461559411687354940}
   - component: {fileID: 2461559411687354941}
   - component: {fileID: 2461559411687354942}
+  - component: {fileID: 6409370376064243953}
   m_Layer: 3
   m_Name: Dirt_cell.008
   m_TagString: Untagged
@@ -384,7 +384,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2461559411687354943}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -417,20 +417,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2461559411687354940
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2461559411687354943}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5870046492603819615, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &2461559411687354941
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -459,6 +445,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &6409370376064243953
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2461559411687354943}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5870046492603819615, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &2872399249577810572
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,9 +470,9 @@ GameObject:
   - component: {fileID: 3177665219703561265}
   - component: {fileID: 5719012008289944101}
   - component: {fileID: 7683048118636093532}
-  - component: {fileID: 2872399249577810569}
   - component: {fileID: 2872399249577810570}
   - component: {fileID: 2872399249577810571}
+  - component: {fileID: 7476671637686854195}
   m_Layer: 3
   m_Name: Dirt_cell.003
   m_TagString: Untagged
@@ -510,7 +510,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2872399249577810572}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -543,20 +543,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2872399249577810569
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2872399249577810572}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -4138353350759120303, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &2872399249577810570
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -585,6 +571,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &7476671637686854195
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872399249577810572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4138353350759120303, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &3921337367334362751
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,9 +596,9 @@ GameObject:
   - component: {fileID: 1499348019969037511}
   - component: {fileID: 7019680036588330617}
   - component: {fileID: 5411985602445168435}
-  - component: {fileID: 8455334679033050770}
   - component: {fileID: 3649741249859490148}
   - component: {fileID: 1260593754563610892}
+  - component: {fileID: 2063969649153288823}
   m_Layer: 3
   m_Name: Dirt_cell.024 (1)
   m_TagString: Untagged
@@ -636,7 +636,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3921337367334362751}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -669,20 +669,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8455334679033050770
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3921337367334362751}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5988474350736432283, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &3649741249859490148
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -711,6 +697,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &2063969649153288823
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3921337367334362751}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5988474350736432283, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &4366216844201230795
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,9 +722,9 @@ GameObject:
   - component: {fileID: 6398978878947578100}
   - component: {fileID: 6006897867690911605}
   - component: {fileID: 3478145433991555978}
-  - component: {fileID: 4366216844201230792}
   - component: {fileID: 4366216844201230793}
   - component: {fileID: 4366216844201230794}
+  - component: {fileID: 4898113634134615438}
   m_Layer: 3
   m_Name: Dirt_cell.024
   m_TagString: Untagged
@@ -762,7 +762,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4366216844201230795}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -795,20 +795,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4366216844201230792
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4366216844201230795}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5988474350736432283, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &4366216844201230793
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -837,6 +823,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &4898113634134615438
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4366216844201230795}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5988474350736432283, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &4782750810315530680
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,9 +848,9 @@ GameObject:
   - component: {fileID: 2573799537059540905}
   - component: {fileID: 7416172488496834705}
   - component: {fileID: 7855157420793120992}
-  - component: {fileID: 8302464459510291942}
   - component: {fileID: 8150897490570799646}
   - component: {fileID: 2822257689763938500}
+  - component: {fileID: 8076528527580738602}
   m_Layer: 3
   m_Name: Dirt_cell.016 (1)
   m_TagString: Untagged
@@ -888,7 +888,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4782750810315530680}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -921,20 +921,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8302464459510291942
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4782750810315530680}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6559905415612338251, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &8150897490570799646
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -963,6 +949,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &8076528527580738602
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4782750810315530680}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6559905415612338251, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &5304125320087246485
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,7 +992,6 @@ Transform:
   m_Children:
   - {fileID: 1751198516815084033}
   - {fileID: 4978217679454649973}
-  - {fileID: 5304125320686997121}
   m_Father: {fileID: 5304125320110239484}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1141,87 +1140,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &5304125320686997122
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5304125320686997121}
-  - component: {fileID: 5304125320686997247}
-  - component: {fileID: 5304125320686997120}
-  m_Layer: 0
-  m_Name: Dino
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5304125320686997121
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304125320686997122}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5304125320087246484}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5304125320686997247
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304125320686997122}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5304125320686997120
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304125320686997122}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5646949016022738127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,7 +1204,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5646949016022738127}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1330,9 +1248,9 @@ GameObject:
   - component: {fileID: 7700537518958239241}
   - component: {fileID: 744290522292883395}
   - component: {fileID: 1907198332413996681}
-  - component: {fileID: 6299578798626538159}
   - component: {fileID: 6299578798626538160}
   - component: {fileID: 6299578798626538161}
+  - component: {fileID: 7625313037618046207}
   m_Layer: 3
   m_Name: Dirt_cell.002
   m_TagString: Untagged
@@ -1370,7 +1288,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6299578798626538162}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1403,20 +1321,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6299578798626538159
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6299578798626538162}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8327427313542564664, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &6299578798626538160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1445,6 +1349,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &7625313037618046207
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6299578798626538162}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8327427313542564664, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &6433712322417458281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,9 +1374,9 @@ GameObject:
   - component: {fileID: 5693475401918185281}
   - component: {fileID: 7242537619172904154}
   - component: {fileID: 6498670569669475712}
-  - component: {fileID: 5823424986990191223}
   - component: {fileID: 6374339237351622256}
   - component: {fileID: 6276709394392770046}
+  - component: {fileID: 1632179621307167317}
   m_Layer: 3
   m_Name: Dirt_cell.002 (1)
   m_TagString: Untagged
@@ -1496,7 +1414,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6433712322417458281}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1529,20 +1447,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5823424986990191223
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6433712322417458281}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8327427313542564664, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &6374339237351622256
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1571,6 +1475,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &1632179621307167317
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6433712322417458281}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8327427313542564664, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &6484051888864210442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,9 +1500,9 @@ GameObject:
   - component: {fileID: 4429347604219216926}
   - component: {fileID: 7637101224773092790}
   - component: {fileID: 6791024163357362848}
-  - component: {fileID: 6484051888864210439}
   - component: {fileID: 6484051888864210440}
   - component: {fileID: 6484051888864210441}
+  - component: {fileID: 3424973422327049834}
   m_Layer: 3
   m_Name: Dirt_cell.009
   m_TagString: Untagged
@@ -1622,7 +1540,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6484051888864210442}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1655,20 +1573,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6484051888864210439
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6484051888864210442}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6442519970480141299, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &6484051888864210440
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1697,6 +1601,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &3424973422327049834
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6484051888864210442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6442519970480141299, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &7096993739760918461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,9 +1626,9 @@ GameObject:
   - component: {fileID: 1423015223025997468}
   - component: {fileID: 57854045162836790}
   - component: {fileID: 7355612306834367923}
-  - component: {fileID: 7096993739760918458}
   - component: {fileID: 7096993739760918459}
   - component: {fileID: 7096993739760918460}
+  - component: {fileID: 2848820103877882330}
   m_Layer: 3
   m_Name: Dirt_cell.011
   m_TagString: Untagged
@@ -1748,7 +1666,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7096993739760918461}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1781,20 +1699,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7096993739760918458
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7096993739760918461}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7339169969843581304, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &7096993739760918459
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1823,6 +1727,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &2848820103877882330
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7096993739760918461}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7339169969843581304, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &7588336183371254367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,9 +1752,9 @@ GameObject:
   - component: {fileID: 6301310855116000922}
   - component: {fileID: 9009879034719406577}
   - component: {fileID: 571570209862645222}
-  - component: {fileID: 7588336183371254364}
   - component: {fileID: 7588336183371254365}
   - component: {fileID: 7588336183371254366}
+  - component: {fileID: 3986101638552958811}
   m_Layer: 3
   m_Name: Dirt_cell.005
   m_TagString: Untagged
@@ -1874,7 +1792,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7588336183371254367}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1907,20 +1825,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7588336183371254364
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7588336183371254367}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3948896893023221669, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &7588336183371254365
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1949,6 +1853,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &3986101638552958811
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7588336183371254367}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3948896893023221669, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &7860185419863726795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,9 +1878,9 @@ GameObject:
   - component: {fileID: 6346555962527677281}
   - component: {fileID: 8620051454719633373}
   - component: {fileID: 5408694008127664888}
-  - component: {fileID: 5652334110091886640}
   - component: {fileID: 5239188927268098318}
   - component: {fileID: 7976268027817156644}
+  - component: {fileID: 3821073087139773498}
   m_Layer: 3
   m_Name: Dirt_cell.005 (1)
   m_TagString: Untagged
@@ -2000,7 +1918,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7860185419863726795}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2033,20 +1951,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5652334110091886640
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7860185419863726795}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3948896893023221669, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &5239188927268098318
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2075,6 +1979,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &3821073087139773498
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860185419863726795}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3948896893023221669, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &7864970593893337608
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,9 +2004,9 @@ GameObject:
   - component: {fileID: 5804473012514505197}
   - component: {fileID: 7931966867724774790}
   - component: {fileID: 1085746743004266585}
-  - component: {fileID: 7864970593893337605}
   - component: {fileID: 7864970593893337606}
   - component: {fileID: 7864970593893337607}
+  - component: {fileID: 7383846149514315376}
   m_Layer: 3
   m_Name: Dirt_cell.028
   m_TagString: Untagged
@@ -2126,7 +2044,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7864970593893337608}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2159,20 +2077,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7864970593893337605
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7864970593893337608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3691225448272865305, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &7864970593893337606
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2201,6 +2105,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &7383846149514315376
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7864970593893337608}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3691225448272865305, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &8185214079581941088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2212,9 +2130,9 @@ GameObject:
   - component: {fileID: 6850735320424845670}
   - component: {fileID: 8047596259117439857}
   - component: {fileID: 8002731916621637801}
-  - component: {fileID: 8185214079581941085}
   - component: {fileID: 8185214079581941086}
   - component: {fileID: 8185214079581941087}
+  - component: {fileID: 5537747003431846127}
   m_Layer: 3
   m_Name: Dirt_cell.016
   m_TagString: Untagged
@@ -2252,7 +2170,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8185214079581941088}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2285,20 +2203,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8185214079581941085
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8185214079581941088}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6559905415612338251, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &8185214079581941086
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2327,6 +2231,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &5537747003431846127
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8185214079581941088}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6559905415612338251, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!1 &8683272652068638015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,9 +2256,9 @@ GameObject:
   - component: {fileID: 3051066354438797674}
   - component: {fileID: 5199449618782270897}
   - component: {fileID: 5887440454272393755}
-  - component: {fileID: 8683272652068638012}
   - component: {fileID: 8683272652068638013}
   - component: {fileID: 8683272652068638014}
+  - component: {fileID: 6966895328656791138}
   m_Layer: 3
   m_Name: Dirt_cell.012
   m_TagString: Untagged
@@ -2378,7 +2296,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8683272652068638015}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2411,20 +2329,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8683272652068638012
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8683272652068638015}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -9033519647335370947, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
 --- !u!54 &8683272652068638013
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2453,3 +2357,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf6d016220a45f4c8a0d933ec3afc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &6966895328656791138
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683272652068638015}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -9033519647335370947, guid: 78894b11ca011714da9fc618d490b0e2, type: 3}
