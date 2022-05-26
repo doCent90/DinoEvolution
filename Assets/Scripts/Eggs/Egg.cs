@@ -101,7 +101,7 @@ public class Egg : MonoBehaviour
 
         _model = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
         _model.Init(_roadParent);
-        _cleanEgg = _model.GetComponent<MeshRenderer>();
+        _cleanEgg = _model.MeshRendererEgg;
     }
 
     private void SpawnDino()

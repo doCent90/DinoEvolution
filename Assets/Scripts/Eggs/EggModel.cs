@@ -1,8 +1,8 @@
 using UnityEngine;
 
-[RequireComponent(typeof(MeshRenderer))]
 public class EggModel : MonoBehaviour
 {
+    [SerializeField] private MeshRenderer _meshRendererEgg;
     [SerializeField] private MeshRenderer _meshRendererDino;
     [SerializeField] private MeshRenderer[] _meshRenderers;
     [SerializeField] private CellDestroy[] _cellsPreOpenEgg; 
@@ -11,6 +11,8 @@ public class EggModel : MonoBehaviour
     private CellDestroy[] _cellDestroys;
 
     private const float Multiply = 1.1f;
+
+    public MeshRenderer MeshRendererEgg => _meshRendererEgg;
 
     private void OnEnable()
     {
