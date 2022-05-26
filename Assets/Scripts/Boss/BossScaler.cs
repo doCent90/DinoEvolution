@@ -5,7 +5,7 @@ public class BossScaler : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private Transform _model;
 
-    private readonly Vector3 _bigSize = new Vector3(4, 4, 4);
+    private readonly Vector3 _bigSize = new Vector3(3, 3, 3);
     private Vector3 _defaultScale;
     private float  _maxDistance;
 
