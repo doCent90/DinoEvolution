@@ -8,7 +8,7 @@ public class Trap : MonoBehaviour
     private RoadMover _splineMover;
     private BoxCollider _boxCollider;
 
-    private const float Delay = 0.5f;
+    private const float Delay = 0.8f;
 
     private void OnEnable()
     {
@@ -21,7 +21,7 @@ public class Trap : MonoBehaviour
         if(other.TryGetComponent(out Egg egg))
         {
             EnableCoolDown();
-            _splineMover.OnTrapWorked();
+            _splineMover.OnTrapWorked(Delay);
             egg.Destroy();
         }
     }

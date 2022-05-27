@@ -137,7 +137,6 @@ MonoBehaviour:
   _gameCamera: {fileID: 6525230391756204659}
   _sortCamera: {fileID: 8381448172039349390}
   _bossFightCamera: {fileID: 6525230391359862896}
-  _playerMover: {fileID: 0}
   _boss: {fileID: 0}
   _sortGate: {fileID: 0}
   _bossAreaTrigger: {fileID: 0}
@@ -168,8 +167,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6525230391359862898}
-  m_LocalRotation: {x: 0.31871077, y: -0.35488716, z: 0.13582066, w: 0.8683498}
-  m_LocalPosition: {x: 4.952, y: 6.847, z: 137.647}
+  m_LocalRotation: {x: 0.08052145, y: -0.3812272, z: 0.033353075, w: 0.9203639}
+  m_LocalPosition: {x: 5, y: 2, z: 137.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6525230391820926838}
@@ -353,8 +352,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6525230391756204660}
-  m_LocalRotation: {x: 0.08002495, y: 0, z: 0, w: 0.99679285}
-  m_LocalPosition: {x: 0, y: 2.8609571, z: -23.045927}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: 3.3223426, z: 30.431923}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6525230393033348438}
@@ -382,7 +381,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 30
+    FieldOfView: 35
     OrthographicSize: 5
     NearClipPlane: 0.1
     FarClipPlane: 1000
@@ -513,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 2.5, z: -5.8}
+  m_TrackedObjectOffset: {x: 0, y: 2.74, z: -4.5}
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
@@ -569,7 +568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7357419482388414905}
   m_LocalRotation: {x: 0.17540924, y: -0, z: -0, w: 0.9844956}
-  m_LocalPosition: {x: 0.11579804, y: 5.3771024, z: 38.693718}
+  m_LocalPosition: {x: 0, y: 5.3771033, z: 28.823713}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9005841043756618611}

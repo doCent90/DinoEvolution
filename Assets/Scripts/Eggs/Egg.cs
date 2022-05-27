@@ -14,7 +14,7 @@ public class Egg : MonoBehaviour
     [SerializeField] private MeshRenderer _dirt;
 
     private EggData _data;
-    private EggModel _model;
+    private EggModel _eggModel;
     private GameOver _gameOver;
     private RoadParent _roadParent;
     private MeshRenderer _cleanEgg;
@@ -99,9 +99,9 @@ public class Egg : MonoBehaviour
         _data = _eggType.GetTypeData(level);
         EggModel model = _data.EggModelType;
 
-        _model = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
-        _model.Init(_roadParent);
-        _cleanEgg = _model.MeshRendererEgg;
+        _eggModel = Instantiate(model, _eggParent.position, Quaternion.identity, _eggParent);
+        _eggModel.Init(_roadParent);
+        _cleanEgg = _eggModel.MeshRendererEgg;
     }
 
     private void SpawnDino()
@@ -122,13 +122,13 @@ public class Egg : MonoBehaviour
         _cleanEgg.enabled = false;
         _eggMover.enabled = false;
         _eggAnimator.Stop();
-        _model.DestroyCells();
+        _eggModel.DestroyCells();
     }
 
     private void TypeUpgrade()
     {
         level++;
-        Destroy(_model.gameObject);
+        Destroy(_eggModel.gameObject);
         InitType();
         Animate();
     }
@@ -137,7 +137,7 @@ public class Egg : MonoBehaviour
     {
         WasUVLightsHeated = true;
         _cleanEgg.enabled = false;
-        _model.EnableCleanCells();
+        _eggModel.EnableCleanCells();
         _eggAnimator.OnUVLampHeated();
         Animate();
     }
@@ -146,7 +146,7 @@ public class Egg : MonoBehaviour
     {
         WasWashed = true;
         _eggAnimator.Wash();
-        _model.IncreaseScale();
+        _eggModel.IncreaseScale();
     }
 
     private void TakeNest(NestGate nestGate)
@@ -162,7 +162,8 @@ public class Egg : MonoBehaviour
         _nest.enabled = false;
         _dirt.enabled = false;
         _cleanEgg.enabled = false;
-        _model.DestroyCells();
+        _eggModel.DestroyCells();
+        _eggAnimator.OnEggDestroy();
 
         Destroy(gameObject, 3f);
     }

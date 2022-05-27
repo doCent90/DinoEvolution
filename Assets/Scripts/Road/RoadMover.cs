@@ -6,6 +6,7 @@ public class RoadMover : MonoBehaviour
     [Header("Moveable objects")]
     [SerializeField] private RoadTrigger _road;
 
+    private bool _hasOnTrap = false;
     private float _currentSpeed;
     private float _spentTime;
     private float _speed = 5f;
@@ -38,14 +39,17 @@ public class RoadMover : MonoBehaviour
         _road.transform.Translate(_currentSpeed * Time.deltaTime * Vector3.back);
     }
 
-    public void OnTrapWorked()
+    public void OnTrapWorked(float dealy)
     {
+        _hasOnTrap = true;
         SetSpeed(ref _currentSpeed, BackUpSpeed);
+        Invoke(nameof(ResetAfterTrap), dealy);
     }
 
     public void OnToolsWorked()
     {
-        SetSpeed(ref _currentSpeed, ToolsSpeed, SpentTimeDelay);
+        if(_hasOnTrap == false)
+            SetSpeed(ref _currentSpeed, ToolsSpeed, SpentTimeDelay);
     }
 
     public void OnSortGateReached()
@@ -59,6 +63,11 @@ public class RoadMover : MonoBehaviour
         _speed = _currentSpeed;
 
         Invoke(nameof(Disable), DisableTime);
+    }
+
+    private void ResetAfterTrap()
+    {
+        _hasOnTrap = false;
     }
 
     private void Disable()

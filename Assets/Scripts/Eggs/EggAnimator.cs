@@ -46,10 +46,16 @@ public class EggAnimator : MonoBehaviour
     {
         _dirtyEgg.transform.DOScale(0, DurationWash);
 
-        foreach (var item in _cellsDirt)
+        foreach (CellDestroy item in _cellsDirt)
             item.Destroy(_roadParent.transform);
 
         ScaleAnimation();
+    }
+
+    public void OnEggDestroy()
+    {
+        foreach (CellDestroy item in _cellsDirt)
+            item.Destroy(_roadParent.transform);
     }
 
     public void Stop()
