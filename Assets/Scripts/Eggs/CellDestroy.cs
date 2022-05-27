@@ -8,9 +8,9 @@ public class CellDestroy : MonoBehaviour
     private Rigidbody _rigidbody;
     private Collider _collider;
 
-    private const float Delay = 4f;
+    private const float Delay = 5f;
     private const float RangeDelay = 0.1f;
-    private const float Power = 200;
+    private const float Power = 60;
 
     public void Destroy(Transform parent)
     {

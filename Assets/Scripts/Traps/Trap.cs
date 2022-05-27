@@ -8,7 +8,7 @@ public class Trap : MonoBehaviour
     private RoadMover _splineMover;
     private BoxCollider _boxCollider;
 
-    private const float Delay = 0.8f;
+    private const float Delay = 0.6f;
 
     private void OnEnable()
     {
