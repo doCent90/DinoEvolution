@@ -13,27 +13,27 @@ MonoBehaviour:
   m_Name: Egg_Lvl_Settings
   m_EditorClassIdentifier: 
   _level1:
-    _eggModelType: {fileID: 8473939482032130097, guid: 8589a98dd328b5146ab6042915e0c208, type: 3}
+    _eggModelType: {fileID: 5327234473167632361, guid: 8afb40fb9bdccee4b8693aab5236841b, type: 3}
     _dino: {fileID: 7636936893259968095, guid: fbca602a62e08c4489ab8674758d6396, type: 3}
     _damage: 2
     _health: 10
   _level2:
-    _eggModelType: {fileID: 2058422925919755206, guid: b56b956de9eccf74090eba99b5bd77fc, type: 3}
+    _eggModelType: {fileID: 5327234473167632361, guid: 0c8d4506ea9da2749baf06a2bd076248, type: 3}
     _dino: {fileID: 7636936893259968095, guid: 430161a056533c340a2d5bb032767a2f, type: 3}
     _damage: 4
     _health: 20
   _level3:
-    _eggModelType: {fileID: 8297108511440115145, guid: 146d50fc4b2257b4297f8260b6a363cd, type: 3}
+    _eggModelType: {fileID: 5327234473167632361, guid: aeb85288a81414742b7f3f2f1d57c6a8, type: 3}
     _dino: {fileID: 7636936893259968095, guid: 1096ce3180d8e984881449d0d1e8fbb0, type: 3}
     _damage: 6
     _health: 30
   _level4:
-    _eggModelType: {fileID: 5327234473167632361, guid: 4e262a018a2874743b944093a0e011b7, type: 3}
+    _eggModelType: {fileID: 5327234473167632361, guid: 2e4a91086e040744fbf109f9e3074ad5, type: 3}
     _dino: {fileID: 7636936893259968095, guid: 61070e843df7fd24b9f48976934b7490, type: 3}
     _damage: 8
     _health: 40
   _level5:
-    _eggModelType: {fileID: 3482704969100230111, guid: 861e7b64fbf53f4439c14daf49cb3f0d, type: 3}
+    _eggModelType: {fileID: 5327234473167632361, guid: 1a70af4caa7814a4892357c0883f4208, type: 3}
     _dino: {fileID: 7636936893259968095, guid: 18952329edce83740ba02fd543882ef2, type: 3}
     _damage: 10
     _health: 50
